@@ -8,9 +8,11 @@ package com.dealerman.entityGeneral;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -26,772 +28,775 @@ public class Company implements Serializable {
     @Id
     @Column(name = "company_id", columnDefinition = "char(2)")
     private String companyId;
-    
+
     @Column(name = "company_name", columnDefinition = "varchar(254)", nullable = true)
     private String companyName;
-    
+
     @Column(name = "address", columnDefinition = "varchar(254)", nullable = true)
     private String address;
-    
+
     @Column(name = "city", columnDefinition = "varchar(15)", nullable = true)
     private String city;
-    
+
     @Column(name = "telephone", columnDefinition = "varchar(24)", nullable = true)
     private String telephone;
-    
+
     @Column(name = "telephone1", columnDefinition = "varchar(24)", nullable = true)
     private String telephone1;
-    
+
     @Column(name = "ruc", columnDefinition = "char(13)", nullable = false)
     private String ruc;
-    
+
     @Column(name = "dollars", columnDefinition = "bit", nullable = true)
     private Boolean dollars;
-    
+
     @Column(name = "askfac", columnDefinition = "bit", nullable = true)
     private Boolean askfac;
-    
+
     @Column(name = "askdpto", columnDefinition = "bit", nullable = true)
-    private Boolean askdpto;//10
-    
+    private Boolean askdpto;
+
     @Column(name = "askmoneda", columnDefinition = "bit", nullable = true)
     private Boolean askmoneda;
-    
+
     @Column(name = "bank_id", columnDefinition = "char(2)", nullable = false)
     private String bankId;
-    
+
     @Column(name = "asknp", columnDefinition = "bit", nullable = true)
     private Boolean asknp;
-    
+
     @Column(name = "dctodetall", columnDefinition = "bit", nullable = true)
     private Boolean dctodetall;
-    
+
     @Column(name = "cespecial_num", columnDefinition = "numeric(5)", nullable = true)
     private BigDecimal cespecialNum;
-    
+
     @Column(name = "askdcto2", columnDefinition = "bit", nullable = true)
     private Boolean askdcto2;
-    
+
     @Column(name = "cobraiva", columnDefinition = "bit", nullable = true)
     private Boolean cobraIva;
-    
+
     @Column(name = "logo", columnDefinition = "text", nullable = true)
     private String logo;
-    
+
     @Column(name = "ambiente", columnDefinition = "numeric(1)", nullable = true)
     private int ambiente;
-    
+
     @Column(name = "modif1", columnDefinition = "bit", nullable = true)
     private Boolean modif1;
-    
+
     @Column(name = "mismasec", columnDefinition = "bit", nullable = true)
     private Boolean mismasec;
-    
+
     @Column(name = "flag", columnDefinition = "char(1)", nullable = false)
     private String flag;
-    
+
     @Column(name = "control", columnDefinition = "char(7)", nullable = false)
     private String control;
-    
+
     @Column(name = "mora", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date mora;
-    
+
     @Column(name = "periodo", columnDefinition = "numeric(2)", nullable = true)
     private Integer periodo;
-    
+
     @Column(name = "fecforzada", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecForzada;
-    
+
     @Column(name = "estructura", columnDefinition = "char(20)", nullable = false)
     private String estructura;
-    
+
     @Column(name = "activos", columnDefinition = "char(20)", nullable = false)
     private String activos;
-    
+
     @Column(name = "pasivos", columnDefinition = "char(20)", nullable = false)
     private String pasivos;
-    
+
     @Column(name = "patrimonio", columnDefinition = "char(20)", nullable = false)
     private String patrimonio;
-    
+
     @Column(name = "patrimoni1", columnDefinition = "char(20)", nullable = false)
     private String patrimoni1;
-    
+
     @Column(name = "ingresos", columnDefinition = "char(20)", nullable = false)
     private String ingresos;
-    
+
     @Column(name = "gastos", columnDefinition = "char(20)", nullable = false)
     private String gastos;
-    
+
     @Column(name = "caja", columnDefinition = "char(20)", nullable = false)
     private String caja;
-    
+
     @Column(name = "cheques", columnDefinition = "char(20)", nullable = false)
     private String cheques;
-    
+
     @Column(name = "our_comision", columnDefinition = "char(20)", nullable = false)
     private String ourComision;
-    
+
     @Column(name = "impuestose", columnDefinition = "char(20)", nullable = false)
     private String impuestose;
-    
+
     @Column(name = "impuestova", columnDefinition = "char(20)", nullable = false)
     private String impuestova;
-    
+
     @Column(name = "ctaenvases", columnDefinition = "char(20)", nullable = false)
     private String ctaenvases;
-    
+
     @Column(name = "ctafletes", columnDefinition = "char(20)", nullable = false)
     private String ctaFletes;
-    
+
     @Column(name = "impuestopa", columnDefinition = "char(20)", nullable = false)
     private String impuestopa;
-    
+
     @Column(name = "largopieza", columnDefinition = "numeric(2)", nullable = true)
     private Integer largoPieza;
-    
+
     @Column(name = "noflibre", columnDefinition = "bit", nullable = true)
     private Boolean noflibre;
-    
+
     @Column(name = "uenglish", columnDefinition = "bit", nullable = true)
     private Boolean uenglish;
-    
+
     @Column(name = "upgroups", columnDefinition = "bit", nullable = true)
     private Boolean upgroups;
-    
+
     @Column(name = "ufob", columnDefinition = "bit", nullable = true)
     private Boolean ufob;
-    
+
     @Column(name = "uexcemptos", columnDefinition = "bit", nullable = true)
     private Boolean uexcemptos;
-    
+
     @Column(name = "uprice1", columnDefinition = "bit", nullable = true)
     private Boolean uprice1;
-    
+
     @Column(name = "uprice2", columnDefinition = "bit", nullable = true)
     private Boolean uprice2;
-    
+
     @Column(name = "uprice3", columnDefinition = "bit", nullable = true)
     private Boolean uprice3;
     //50
     @Column(name = "upvp", columnDefinition = "bit", nullable = true)
     private Boolean upvp;
-    
+
     @Column(name = "umedida", columnDefinition = "bit", nullable = true)
     private Boolean umedida;
-    
+
     @Column(name = "upeso1", columnDefinition = "bit", nullable = true)
     private Boolean upeso1;
-    
+
     @Column(name = "upeso2", columnDefinition = "bit", nullable = true)
     private Boolean upeso2;
-    
+
     @Column(name = "upackages", columnDefinition = "bit", nullable = true)
     private Boolean upackages;
-    
+
     @Column(name = "enteros", columnDefinition = "bit", nullable = true)
     private Boolean enteros;
-    
+
     @Column(name = "buy_in_d", columnDefinition = "bit", nullable = true)
     private Boolean buyInD;
-    
+
     @Column(name = "common_buy", columnDefinition = "char(1)", nullable = false)
     private String commonBuy;
-    
+
     @Column(name = "ayudaencom", columnDefinition = "bit", nullable = true)
     private Boolean ayudaencom;
-    
+
     @Column(name = "costoconim", columnDefinition = "bit", nullable = true)
     private Boolean costoconim;
-    
+
     @Column(name = "porcentaje", columnDefinition = "numeric(2)", nullable = false)
     private Integer porcentaje;
-    
+
     @Column(name = "uregion", columnDefinition = "bit", nullable = true)
     private Boolean uregion;
-    
+
     @Column(name = "upobox", columnDefinition = "bit", nullable = true)
     private Boolean upobox;
-    
+
     @Column(name = "ucountry", columnDefinition = "bit", nullable = true)
     private Boolean ucountry;
-    
+
     @Column(name = "utitle", columnDefinition = "bit", nullable = true)
     private Boolean utitle;
-    
+
     @Column(name = "ucexentos", columnDefinition = "bit", nullable = true)
     private Boolean ucexentos;
-    
+
     @Column(name = "uzone", columnDefinition = "bit", nullable = true)
     private Boolean uzone;
-    
+
     @Column(name = "askcarro", columnDefinition = "bit", nullable = true)
     private Boolean askcarro;
-    
+
     @Column(name = "acterms", columnDefinition = "bit", nullable = true)
     private Boolean acterms;
-    
+
     @Column(name = "acupo", columnDefinition = "bit", nullable = true)
     private Boolean acupo;
-    
+
     @Column(name = "permiteneg", columnDefinition = "bit", nullable = true)
     private Boolean permiteneg;
-    
+
     @Column(name = "cespecial", columnDefinition = "numeric(1)", nullable = false)
     private Integer cespecial;
-    
+
     @Column(name = "retencio01", columnDefinition = "char(20)", nullable = false)
     private String retencio01;
-    
+
     @Column(name = "retencio03", columnDefinition = "char(20)", nullable = false)
     private String retencio03;
-    
+
     @Column(name = "retencio05", columnDefinition = "char(20)", nullable = false)
     private String retencio05;
-    
+
     @Column(name = "retencio100", columnDefinition = "char(20)", nullable = false)
     private String retencio100;
-    
+
     @Column(name = "retencio30", columnDefinition = "char(20)", nullable = false)
     private String retencio30;
-    
+
     @Column(name = "retencio70", columnDefinition = "char(20)", nullable = false)
     private String retencio70;
-    
+
     @Column(name = "retenido01", columnDefinition = "char(20)", nullable = false)
     private String retenido01;
-    
+
     @Column(name = "internal_key", columnDefinition = "char(25)", nullable = false)
     private String internalKey;
-    
+
     @Column(name = "token", columnDefinition = "char(25)", nullable = false)
     private String token;
-    
+
     @Column(name = "smtp_name", columnDefinition = "char(20)", nullable = false)
     private String smtpName;
-    
+
     @Column(name = "retenido30", columnDefinition = "char(20)", nullable = false)
     private String retenido30;
-    
+
     @Column(name = "my_address", columnDefinition = "char(60)", nullable = false)
     private String myAddress;
-    
+
     @Column(name = "chequesgir", columnDefinition = "char(20)", nullable = false)
     private String chequesgir;
-    
+
     @Column(name = "libras", columnDefinition = "bit", nullable = true)
     private Boolean libras;
-    
+
     @Column(name = "posfechado", columnDefinition = "bit", nullable = true)
     private Boolean posfechado;
-    
+
     @Column(name = "anofiscal", columnDefinition = "numeric(4)", nullable = false)
     private Integer anoFiscal;
-    
+
     @Column(name = "mescerrado", columnDefinition = "numeric(2)", nullable = false)
     private Integer mesCerrado;
-    
+
     @Column(name = "asktexto", columnDefinition = "bit", nullable = true)
     private Boolean asktexto;
-    
+
     @Column(name = "facdetail", columnDefinition = "bit", nullable = true)
     private Boolean facdetail;
-    
+
     @Column(name = "comdetail", columnDefinition = "bit", nullable = true)
     private Boolean comdetail;
-    
+
     @Column(name = "otrdetail", columnDefinition = "bit", nullable = true)
     private Boolean otrdetail;
-    
+
     @Column(name = "tarjetacre", columnDefinition = "bit", nullable = true)
     private Boolean tarjetacre;
-    
+
     @Column(name = "tipo_emision", columnDefinition = "numeric(1)", nullable = true)
     private Integer tipoEmision;
-    
+
     @Column(name = "askparts", columnDefinition = "bit", nullable = true)
     private Boolean askparts;
-    
+
     @Column(name = "formapago", columnDefinition = "bit", nullable = true)
     private Boolean formaPago;
-    
+
     @Column(name = "formapago1", columnDefinition = "bit", nullable = true)
     private Boolean formaPago1;
-    
+
     @Column(name = "actuforma", columnDefinition = "bit", nullable = true)
     private Boolean actuforma;
-    
+
     @Column(name = "actucxpag", columnDefinition = "bit", nullable = true)
     private Boolean actucxpag;
-    //100
+
     @Column(name = "ultimomes", columnDefinition = "numeric(2)", nullable = false)
     private Integer ultimoMes;
-    
+
     @Column(name = "prioseg", columnDefinition = "numeric(2)", nullable = false)
     private Integer prioseg;
-    
+
     @Column(name = "batch", columnDefinition = "bit", nullable = true)
     private Boolean batch;
-    
+
     @Column(name = "costosfij", columnDefinition = "bit", nullable = true)
     private Boolean costosfij;
-    
+
     @Column(name = "condicion", columnDefinition = "bit", nullable = true)
     private Boolean condicion;
-    
+
     @Column(name = "aporvend", columnDefinition = "bit", nullable = true)
     private Boolean aporvend;
-    
+
     @Column(name = "atrasado", columnDefinition = "bit", nullable = true)
     private Boolean atrasado;
-    
+
     @Column(name = "clienteven", columnDefinition = "bit", nullable = true)
     private Boolean clienteven;
-    
+
     @Column(name = "clientepre", columnDefinition = "bit", nullable = true)
     private Boolean clientepre;
-    
+
     @Column(name = "clientedes", columnDefinition = "bit", nullable = true)
     private Boolean clientedes;
-    
+
     @Column(name = "glenlinea", columnDefinition = "bit", nullable = true)
     private Boolean glenlinea;
-    
+
     @Column(name = "otrnumero", columnDefinition = "bit", nullable = true)
     private Boolean otrnumero;
-    
+
     @Column(name = "ganancia_c", columnDefinition = "char(20)", nullable = false)
     private String gananciaC;
-    
+
     @Column(name = "perdida_c", columnDefinition = "char(20)", nullable = false)
     private String perdidaC;
-    
+
     @Column(name = "diferencia_c", columnDefinition = "char(20)", nullable = false)
     private String diferenciaC;
-    
+
     @Column(name = "ask3070", columnDefinition = "bit", nullable = true)
     private Boolean ask3070;
-    
+
     @Column(name = "fcno_items", columnDefinition = "numeric(3)", nullable = false)
     private Integer fcnoItems;
-    
+
     @Column(name = "smtp_port", columnDefinition = "numeric(3)", nullable = false)
     private Integer smtpPort;
-    
+
     @Column(name = "fvno_items", columnDefinition = "numeric(3)", nullable = false)
     private Integer fvnoItems;
-    
+
     @Column(name = "clientedes1", columnDefinition = "bit", nullable = true)
     private Boolean clientedes1;
-    
+
     @Column(name = "askfv", columnDefinition = "bit", nullable = true)
     private Boolean askfv;
-    
+
     @Column(name = "send_online", columnDefinition = "bit", nullable = true)
     private Boolean sendOnline;
-    
+
     @Column(name = "askprice", columnDefinition = "bit", nullable = true)
     private Boolean askPrice;
-    
+
     @Column(name = "e_i", columnDefinition = "bit", nullable = false)
     private Boolean eI;
-    
+
     @Column(name = "timeout1", columnDefinition = "numeric(2,1)", nullable = false)
     private BigDecimal timeout1;
-    
+
     @Column(name = "icc", columnDefinition = "char(20)", nullable = false)
     private String icc;
-    
+
     @Column(name = "dalyve", columnDefinition = "bit", nullable = false)
     private Boolean dalyve;
-    
+
     @Column(name = "bar_length", columnDefinition = "numeric(2)", nullable = false)
     private Integer barLength;
-    
+
     @Column(name = "q_integers", columnDefinition = "numeric(1)", nullable = false)
     private Integer qIntegers;
-    
+
     @Column(name = "q_decimals", columnDefinition = "numeric(1)", nullable = false)
     private Integer qDecimals;
-    
+
     @Column(name = "impguia_d", columnDefinition = "bit", nullable = true)
     private Boolean impguiaD;
-    
+
     @Column(name = "cards", columnDefinition = "char(20)", nullable = false)
     private String cards;
-    
+
     @Column(name = "my_password", columnDefinition = "char(20)", nullable = false)
     private String myPassword;
-    
+
     @Column(name = "comision", columnDefinition = "char(20)", nullable = false)
     private String comision;
-    
+
     @Column(name = "sent_date", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date sentDate;
-    
+
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = false)
     private String branchId;
-    
+
     @Column(name = "jordan", columnDefinition = "bit", nullable = true)
     private Boolean jordan;
-    
+
     @Column(name = "toscana", columnDefinition = "bit", nullable = true)
     private Boolean toscana;
-    
+
     @Column(name = "domino", columnDefinition = "bit", nullable = true)
     private Boolean domino;
-    
+
     @Column(name = "consep_code", columnDefinition = "char(9)", nullable = false)
     private String consepCode;
-    
+
     @Column(name = "marlene", columnDefinition = "bit", nullable = true)
     private Boolean marlene;
-    
+
     @Column(name = "cus_auto", columnDefinition = "bit", nullable = true)
     private Boolean cusAuto;
-    
+
     @Column(name = "group_auto", columnDefinition = "bit", nullable = true)
     private Boolean groupAuto;
-    
+
     @Column(name = "pgroup_auto", columnDefinition = "bit", nullable = true)
     private Boolean pgroupAuto;
-    
+
     @Column(name = "single_checks", columnDefinition = "bit", nullable = true)
     private Boolean singleChecks;
-    
+
     @Column(name = "single_ces", columnDefinition = "bit", nullable = true)
     private Boolean singleCes;
-    
+
     @Column(name = "single_rets", columnDefinition = "bit", nullable = true)
     private Boolean singleRets;
-    
+
     @Column(name = "s1001", columnDefinition = "bit", nullable = true)
     private Boolean s1001;
-    
+
     @Column(name = "bonus", columnDefinition = "bit", nullable = true)
     private Boolean bonus;
-    
+
     @Column(name = "truck", columnDefinition = "bit", nullable = true)
     private Boolean truck;
     //150
     @Column(name = "days1", columnDefinition = "tinyint", nullable = false)
     private Integer days1;
-    
+
     @Column(name = "days2", columnDefinition = "tinyint", nullable = false)
     private Integer days2;
-    
+
     @Column(name = "days3", columnDefinition = "tinyint", nullable = false)
     private Integer days3;
-    
+
     @Column(name = "serials", columnDefinition = "bit", nullable = true)
     private Boolean serials;
-    
+
     @Column(name = "ccuotas", columnDefinition = "numeric(2)", nullable = false)
     private Integer ccuotas;
-    
+
     @Column(name = "fcuotas", columnDefinition = "numeric(2)", nullable = false)
     private Integer fcuotas;
-    
+
     @Column(name = "ahmed", columnDefinition = "bit", nullable = true)
     private Boolean ahmed;
-    
+
     @Column(name = "dfrom", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dfrom;
-    
+
     @Column(name = "dto", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dto;
-    
+
     @Column(name = "ndays", columnDefinition = "numeric(3)", nullable = false)
     private Integer ndays;
-    
+
     @Column(name = "difrom", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date difrom;
-    
+
     @Column(name = "dito", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dito;
-    
+
     @Column(name = "nunits", columnDefinition = "numeric(3)", nullable = false)
     private Integer nunits;
-    
+
     @Column(name = "cretencion", columnDefinition = "bit", nullable = true)
     private Boolean cretencion;
-    
+
     @Column(name = "dec_pos1", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos1;
-    
+
     @Column(name = "dec_pos2", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos2;
-    
+
     @Column(name = "dec_pos3", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos3;
-    
+
     @Column(name = "uprice4", columnDefinition = "bit", nullable = true)
     private Boolean uprice4;
-    
+
     @Column(name = "dec_pos4", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos4;
-    
+
     @Column(name = "uprice5", columnDefinition = "bit", nullable = true)
     private Boolean uprice5;
-    
+
     @Column(name = "dec_pos5", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos5;
-    
+
     @Column(name = "uprice6", columnDefinition = "bit", nullable = true)
     private Boolean uprice6;
-    
+
     @Column(name = "dec_pos6", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos6;
-    
+
     @Column(name = "uprice7", columnDefinition = "bit", nullable = true)
     private Boolean uprice7;
-    
+
     @Column(name = "dec_pos7", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos7;
-    
+
     @Column(name = "uprice8", columnDefinition = "bit", nullable = true)
     private Boolean uprice8;
-    
+
     @Column(name = "dec_pos8", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos8;
-    
+
     @Column(name = "uprice9", columnDefinition = "bit", nullable = true)
     private Boolean uprice9;
-    
+
     @Column(name = "dec_pos9", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos9;
-    
+
     @Column(name = "uprice10", columnDefinition = "bit", nullable = true)
     private Boolean uprice10;
-    
+
     @Column(name = "dec_pos10", columnDefinition = "numeric(1)", nullable = false)
     private Integer decPos10;
-    
+
     @Column(name = "profit_perc", columnDefinition = "numeric(1)", nullable = false)
     private Integer profitPerc;
-    
+
     @Column(name = "iva_included", columnDefinition = "bit", nullable = true)
     private Boolean ivaIncluded;
-    
+
     @Column(name = "uunit", columnDefinition = "bit", nullable = true)
     private Boolean uunit;
-    
+
     @Column(name = "product_auto", columnDefinition = "bit", nullable = true)
     private Boolean productAuto;
-    
+
     @Column(name = "makers", columnDefinition = "bit", nullable = true)
     private Boolean makers;
-    
+
     @Column(name = "pos", columnDefinition = "bit", nullable = true)
     private Boolean pos;
-    
+
     @Column(name = "ucreditcard", columnDefinition = "bit", nullable = true)
     private Boolean ucreditCard;
-    
+
     @Column(name = "discount1dec", columnDefinition = "bit", nullable = true)
     private Boolean discount1dec;
-    
+
     @Column(name = "notsend_checks", columnDefinition = "bit", nullable = true)
     private Boolean notsendChecks;
-    
+
     @Column(name = "sendproducts", columnDefinition = "bit", nullable = true)
     private Boolean sendProducts;
-    
+
     @Column(name = "peno_items", columnDefinition = "numeric(3)", nullable = false)
     private Integer penoItems;
-    
+
     @Column(name = "fc_noitems", columnDefinition = "numeric(3)", nullable = false)
     private Integer fcNoitems;
-    
+
     @Column(name = "fv_noitems", columnDefinition = "numeric(3)", nullable = false)
     private Integer fvNoitems;
-    
+
     @Column(name = "fe_noitems", columnDefinition = "numeric(3)", nullable = false)
     private Integer feNoitems;
-    
+
     @Column(name = "fvisinvoice", columnDefinition = "bit", nullable = true)
     private Boolean fvisinvoice;
-    
+
     @Column(name = "oldretencion", columnDefinition = "bit", nullable = true)
     private Boolean oldRetencion;
-    
+
     @Column(name = "newprnegresos", columnDefinition = "bit", nullable = true)
     private Boolean newprnEgresos;
-    
+
     @Column(name = "newprnreceipts", columnDefinition = "bit", nullable = true)
     private Boolean newprnreceipts;
-    
+
     @Column(name = "newprnincomes", columnDefinition = "bit", nullable = true)
     private Boolean newprnincomes;
 
     @Column(name = "newprnretencion", columnDefinition = "bit", nullable = true)
     private Boolean newprnRetencion;
-    
+
     @Column(name = "gpanalisys", columnDefinition = "bit", nullable = true)
     private Boolean gpanalisys;
-    
+
     @Column(name = "comisionsales", columnDefinition = "bit", nullable = true)
     private Boolean comisionsales;
-    
+
     @Column(name = "comisioncolle", columnDefinition = "bit", nullable = true)
     private Boolean comisioncolle;
-    
+
     @Column(name = "nosanfco", columnDefinition = "bit", nullable = true)
     private Boolean nosanfco;
-    
+
     @Column(name = "toledo", columnDefinition = "bit", nullable = true)
     private Boolean toledo;
-    
+
     @Column(name = "noshowbr", columnDefinition = "bit", nullable = true)
     private Boolean noshowbr;
-    
+
     @Column(name = "p_orders", columnDefinition = "bit", nullable = true)
     private Boolean pOrders;
-    
+
     @Column(name = "razon_social", columnDefinition = "varchar(254)", nullable = true)
     private String razonSocial;
-    
+
     @Column(name = "e_mail", columnDefinition = "varchar(60)", nullable = true)
     private String eMail;
-    
+
     @Column(name = "tipo_id", columnDefinition = "char(1)", nullable = false)
     private String tipoId;
-    
+
     @Column(name = "legal_id", columnDefinition = "char(13)", nullable = false)
     private String legalId;
-    
+
     @Column(name = "accountant", columnDefinition = "char(13)", nullable = false)
     private String accountant;
-    
+
     @Column(name = "fccredit_enable", columnDefinition = "bit", nullable = true)
     private Boolean fccreditEnable;
-    
+
     @Column(name = "askfe", columnDefinition = "bit", nullable = true)
     private Boolean askfe;
-    
+
     @Column(name = "fewithiva", columnDefinition = "bit", nullable = true)
     private Boolean fewithiva;
-    
+
     @Column(name = "workshop", columnDefinition = "bit", nullable = true)
     private Boolean workshop;
-    
+
     @Column(name = "ruc_is_code", columnDefinition = "bit", nullable = true)
     private Boolean rucIsCode;
-    
+
     @Column(name = "unused1", columnDefinition = "bit", nullable = true)
     private Boolean unused1;
-    
+
     @Column(name = "unused2", columnDefinition = "bit", nullable = true)
     private Boolean unused2;
-    
+
     @Column(name = "unused3", columnDefinition = "bit", nullable = true)
     private Boolean unused3;
-    
+
     @Column(name = "unused4", columnDefinition = "bit", nullable = true)
     private Boolean unused4;
-    
+
     @Column(name = "unused5", columnDefinition = "bit", nullable = true)
     private Boolean unused5;
-    
+
     @Column(name = "unused6", columnDefinition = "bit", nullable = true)
     private Boolean unused6;
-    
+
     @Column(name = "unused7", columnDefinition = "bit", nullable = true)
     private Boolean unused7;
-    
+
     @Column(name = "unused8", columnDefinition = "bit", nullable = true)
     private Boolean unused8;
-    
+
     @Column(name = "unused9", columnDefinition = "bit", nullable = true)
     private Boolean unused9;
-    
+
     @Column(name = "not_log", columnDefinition = "bit", nullable = true)
     private Boolean notLog;
-    
+
     @Column(name = "sw1", columnDefinition = "bit", nullable = false)
     private Boolean sw1;
-    
+
     @Column(name = "sw2", columnDefinition = "bit", nullable = false)
     private Boolean sw2;
-    
+
     @Column(name = "sw3", columnDefinition = "bit", nullable = false)
     private Boolean sw3;
-    
+
     @Column(name = "sw4", columnDefinition = "bit", nullable = false)
     private Boolean sw4;
-    
+
     @Column(name = "sw5", columnDefinition = "bit", nullable = false)
     private Boolean sw5;
-    
+
     @Column(name = "sw6", columnDefinition = "bit", nullable = false)
     private Boolean sw6;
-    
+
     @Column(name = "sw7", columnDefinition = "bit", nullable = false)
     private Boolean sw7;
-    
+
     @Column(name = "sw8", columnDefinition = "bit", nullable = false)
     private Boolean sw8;
-    
+
     @Column(name = "sw9", columnDefinition = "bit", nullable = false)
     private Boolean sw9;
-    
+
     @Column(name = "sw10", columnDefinition = "bit", nullable = false)
     private Boolean sw10;
-    
+
     @Column(name = "sw11", columnDefinition = "bit", nullable = false)
     private Boolean sw11;
-    
+
     @Column(name = "sw12", columnDefinition = "bit", nullable = false)
     private Boolean sw12;
-    
+
     @Column(name = "sw13", columnDefinition = "bit", nullable = false)
     private Boolean sw13;
-    
+
     @Column(name = "sw14", columnDefinition = "bit", nullable = false)
     private Boolean sw14;
-    
+
     @Column(name = "sw15", columnDefinition = "bit", nullable = false)
     private Boolean sw15;
-    
+
     @Column(name = "sw16", columnDefinition = "bit", nullable = false)
     private Boolean sw16;
-    
+
     @Column(name = "sw17", columnDefinition = "bit", nullable = false)
     private Boolean sw17;
-    
+
     @Column(name = "sw18", columnDefinition = "bit", nullable = false)
     private Boolean sw18;
-    
+
     @Column(name = "sw19", columnDefinition = "bit", nullable = false)
     private Boolean sw19;
-    
+
     @Column(name = "sw20", columnDefinition = "bit", nullable = false)
     private Boolean sw20;
-    
+
     @Column(name = "sw21", columnDefinition = "bit", nullable = false)
     private Boolean sw21;
-    
+
     @Column(name = "sw22", columnDefinition = "bit", nullable = false)
     private Boolean sw22;
 
     @Column(name = "discontinued", columnDefinition = "bit", nullable = false)
     private Boolean discontinued;
-    
+
     @Column(name = "dummysupp", columnDefinition = "char(13)", nullable = true)
     private String dummysupp;
-    
+
     @Column(name = "dummycust_ctype", columnDefinition = "tinyint", nullable = true)
     private Integer dummycustCtype;
-    
+
     @Column(name = "dummycust_price_type", columnDefinition = "tinyint", nullable = true)
     private Integer dummycustPriceType;
+
+    @OneToMany(mappedBy = "companyId")
+    private List<Branches> listBranches;
 
     public Company() {
     }
@@ -2826,6 +2831,14 @@ public class Company implements Serializable {
 
     public void setFvNoitems(Integer fvNoitems) {
         this.fvNoitems = fvNoitems;
+    }
+
+    public List<Branches> getListBranches() {
+        return listBranches;
+    }
+
+    public void setListBranches(List<Branches> listBranches) {
+        this.listBranches = listBranches;
     }
 
 }

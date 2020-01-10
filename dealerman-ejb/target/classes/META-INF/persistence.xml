@@ -5,6 +5,8 @@
         <jta-data-source>java:/jboss/dealermanDS</jta-data-source>
         <class>com.dealerman.entityConfiguration.Setup</class>
         <class>com.dealerman.entityGeneral.Company</class>
+        <class>com.dealerman.entityGeneral.Branches</class>
+        <class>com.dealerman.entityConfiguration.Inumbers</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
