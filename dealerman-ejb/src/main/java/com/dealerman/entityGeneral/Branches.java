@@ -5,14 +5,19 @@
  */
 package com.dealerman.entityGeneral;
 
+import com.dealerman.entityConfiguration.Inumbers;
+import com.dealerman.entityOrders.Salesmen;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
@@ -26,6 +31,7 @@ public class Branches implements Serializable {
     @Id
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     @ManyToOne
+    @ForeignKey(name = "FK__branches__compan__145C0A3F")
     private Company companyId;
 
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = true)
@@ -69,8 +75,10 @@ public class Branches implements Serializable {
     private Boolean qtyBypassv;
     @Column(name = "gl_deferredv", columnDefinition = "bit", nullable = true)
     private Boolean glDeferredv;
-    @Column(name = "salesman_id", columnDefinition = "char(5)", nullable = true)
-    private String salesmanId;
+    @JoinColumn(name = "salesman_id", referencedColumnName = "salesman_id")
+    @ManyToOne
+    @ForeignKey(name = "FK__branches__salesm__15502E78")
+    private Salesmen salesmanId;
     @Column(name = "added", columnDefinition = "bit", nullable = true)
     private Boolean added;
     @Column(name = "modified", columnDefinition = "bit", nullable = true)
@@ -157,8 +165,18 @@ public class Branches implements Serializable {
     private Integer defPriceType;
     @Column(name = "def_credit_term_id", columnDefinition = "char(4)", nullable = true)
     private String defCreditTermId;
+    @OneToMany(mappedBy = "companyBodegaFK")
+    private List<Inumbers> ListInumbers;
 
     public Branches() {
+    }
+
+    public List<Inumbers> getListInumbers() {
+        return ListInumbers;
+    }
+
+    public void setListInumbers(List<Inumbers> ListInumbers) {
+        this.ListInumbers = ListInumbers;
     }
 
     public String getBranchId() {
@@ -321,11 +339,11 @@ public class Branches implements Serializable {
         this.glDeferredv = glDeferredv;
     }
 
-    public String getSalesmanId() {
+    public Salesmen getSalesmanId() {
         return salesmanId;
     }
 
-    public void setSalesmanId(String salesmanId) {
+    public void setSalesmanId(Salesmen salesmanId) {
         this.salesmanId = salesmanId;
     }
 

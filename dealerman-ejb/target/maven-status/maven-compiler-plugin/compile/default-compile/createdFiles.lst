@@ -1,4 +1,5 @@
 com\dealerman\entityGeneral\Company.class
+com\dealerman\entityOrders\Salesmen.class
 com\dealerman\entityConfiguration\Setup.class
 com\dealerman\entityGeneral\Branches.class
 com\dealerman\entityConfiguration\Inumbers.class
