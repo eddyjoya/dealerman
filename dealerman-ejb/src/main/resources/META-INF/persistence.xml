@@ -4,14 +4,31 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:/jboss/dealermanDS</jta-data-source>
         <class>com.dealerman.entityConfiguration.Setup</class>
-        <class>com.dealerman.entityGeneral.Company</class>
-        <class>com.dealerman.entityGeneral.Branches</class>
         <class>com.dealerman.entityConfiguration.Inumbers</class>
+        <class>com.dealerman.entityConfiguration.Accounts</class>
+        <class>com.dealerman.entityConfiguration.CategoryDeudor</class>
+        <class>com.dealerman.entityGeneral.Company</class>
+        <class>com.dealerman.entityGeneral.Cities</class>
+        <class>com.dealerman.entityGeneral.Cantons</class>
+        <class>com.dealerman.entityGeneral.EstadoCivil</class>
+        <class>com.dealerman.entityGeneral.Contribuyentes</class>
+        <class>com.dealerman.entityGeneral.Branches</class>
+        <class>com.dealerman.entityGeneral.Sexo</class>
+        <class>com.dealerman.entityGeneral.Zones</class>
+        <class>com.dealerman.entityGeneral.ChainMaster</class>
+        <class>com.dealerman.entityGeneral.RouteMaster</class>
+        <class>com.dealerman.entityGeneral.Brands</class>
+        <class>com.dealerman.entityGeneral.Colors</class>
+        <class>com.dealerman.entityGeneral.Types</class>
+        <class>com.dealerman.entityGeneral.CreditTerms</class>
         <class>com.dealerman.entityOrders.Salesmen</class>
+        <class>com.dealerman.entityOrders.Orders</class>
+        <class>com.dealerman.entityOrders.Vehicles</class>
+        <class>com.dealerman.entityOrders.Customers</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
