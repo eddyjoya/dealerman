@@ -75,10 +75,12 @@ public class Branches implements Serializable {
     private Boolean qtyBypassv;
     @Column(name = "gl_deferredv", columnDefinition = "bit", nullable = true)
     private Boolean glDeferredv;
-    @JoinColumn(name = "salesman_id", referencedColumnName = "salesman_id")
+
     @ManyToOne
     @ForeignKey(name = "FK__branches__salesm__15502E78")
+    @JoinColumn(name = "salesman_id", referencedColumnName = "salesman_id")
     private Salesmen salesmanId;
+
     @Column(name = "added", columnDefinition = "bit", nullable = true)
     private Boolean added;
     @Column(name = "modified", columnDefinition = "bit", nullable = true)

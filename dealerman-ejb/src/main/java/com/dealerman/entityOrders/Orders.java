@@ -5,7 +5,11 @@
  */
 package com.dealerman.entityOrders;
 
+import com.dealerman.entityAccounting.Journals;
 import com.dealerman.entityGeneral.Branches;
+import com.dealerman.entityGeneral.CreditTerms;
+import com.dealerman.entityGeneral.Status;
+import com.dealerman.entityProduction.CostCenters;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -50,7 +54,7 @@ public class Orders implements Serializable {
 
     @Column(name = "aplicacion", columnDefinition = "char(1)", nullable = false)
     private String aplicacion;
-    @Column(name = "customerId", columnDefinition = "char(13)", nullable = false)
+    @Column(name = "customer_id", columnDefinition = "char(13)", nullable = false)
     private String customerId;
     @Column(name = "ship_to_id", columnDefinition = "char(3)", nullable = true)
     private String shipToId;
@@ -102,10 +106,14 @@ public class Orders implements Serializable {
     private Integer priceType;
     @Column(name = "car_number", columnDefinition = "tinyint", nullable = true)
     private Integer carNumber;
-    @Column(name = "job_id", columnDefinition = "char(6)", nullable = true)
-    private String jobId;
-    @Column(name = "credit_term_id", columnDefinition = "char(4)", nullable = true)
-    private String creditTermId;
+    @ManyToOne
+    @ForeignKey(name = "FK_orders_cost_centers")
+    @JoinColumn(name = "job_id", referencedColumnName = "job_id")
+    private CostCenters costCenters;
+    @ManyToOne
+    @ForeignKey(name = "FK__orders__credit_t__38996AB5")
+    @JoinColumn(name = "credit_term_id", referencedColumnName = "credit_term_id")
+    private CreditTerms creditTerms;
     @Column(name = "deliver_by", columnDefinition = "smalldatetime", nullable = true)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date deliverBy;
@@ -120,8 +128,10 @@ public class Orders implements Serializable {
     private String cashierId;
     @Column(name = "employee_id", columnDefinition = "char(6)", nullable = false)
     private String employeeId;
-    @Column(name = "salesman_id", columnDefinition = "char(5)", nullable = true)
-    private String salesmanId;
+    @ManyToOne
+    @ForeignKey(name = "FK__orders__salesman__398D8EEE")
+    @JoinColumn(name = "salesman_id", referencedColumnName = "salesman_id")
+    private Salesmen salesman;
     @Column(name = "detail_discount", columnDefinition = "money", nullable = false)
     private BigDecimal detailDiscount;
     @Column(name = "discount", columnDefinition = "numeric(6,2)", nullable = false)
@@ -152,8 +162,10 @@ public class Orders implements Serializable {
     private BigDecimal costLast;
     @Column(name = "total", columnDefinition = "money", nullable = false)
     private BigDecimal total;
-    @Column(name = "journal_id", columnDefinition = "int", nullable = true)
-    private Integer journalId;
+    @ManyToOne
+    @JoinColumn(name = "journal_id", referencedColumnName = "journal_id")
+    @ForeignKey(name = "FK__orders__journal___37A5467C")
+    private Journals journals;
     @Column(name = "check_id", columnDefinition = "int", nullable = true)
     private Integer checkId;
     @Column(name = "cross_id", columnDefinition = "int", nullable = true)
@@ -219,15 +231,21 @@ public class Orders implements Serializable {
     private String accountId;
     @Column(name = "almacen_id", columnDefinition = "char(2)", nullable = true)
     private String almacenId;
-    @Column(name = "tpedido_id", columnDefinition = "char(1)", nullable = true)
-    private String tpedidoId;
-    @Column(name = "tentrega_id", columnDefinition = "char(2)", nullable = true)
-    private String tentregaId;
+    @ManyToOne
+    @ForeignKey(name = "FK__orders__tpedido___36B12243")
+    @JoinColumn(name = "tpedido_id", referencedColumnName = "tpedido_id")
+    private Tpedidos tPedido;
+    @ManyToOne
+    @ForeignKey(name = "FK__orders__tentrega__35BCFE0A")
+    @JoinColumn(name = "tentrega_id", referencedColumnName = "tentrega_id")
+    private Tentregas tEntrega;
     @Column(name = "fentrega", columnDefinition = "datetime", nullable = true)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fentrega;
-    @Column(name = "status_id", columnDefinition = "char(1)", nullable = true)
-    private String statusId;
+    @ManyToOne
+    @ForeignKey(name = "FK__orders__status_i__34C8D9D1")
+    @JoinColumn(name = "status_id", referencedColumnName = "status_id")
+    private Status status;
     @Column(name = "fautorizado", columnDefinition = "datetime", nullable = true)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fautorizado;
@@ -244,6 +262,16 @@ public class Orders implements Serializable {
     private String degso;
     @Column(name = "to_attach", columnDefinition = "text", nullable = true)
     private String toAttach;
+
+    @MapsId("customer_id")
+    @ManyToOne
+    @ForeignKey(name = "FK__orders__3B75D760")
+    @JoinColumns({
+        @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
+        ,
+        @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    })
+    private Customers OrdersCustomersFK;
 
     public Orders() {
     }
@@ -496,20 +524,20 @@ public class Orders implements Serializable {
         this.carNumber = carNumber;
     }
 
-    public String getJobId() {
-        return jobId;
+    public CostCenters getCostCenters() {
+        return costCenters;
     }
 
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
+    public void setCostCenters(CostCenters costCenters) {
+        this.costCenters = costCenters;
     }
 
-    public String getCreditTermId() {
-        return creditTermId;
+    public CreditTerms getCreditTerms() {
+        return creditTerms;
     }
 
-    public void setCreditTermId(String creditTermId) {
-        this.creditTermId = creditTermId;
+    public void setCreditTerms(CreditTerms creditTerms) {
+        this.creditTerms = creditTerms;
     }
 
     public Date getDeliverBy() {
@@ -560,12 +588,12 @@ public class Orders implements Serializable {
         this.employeeId = employeeId;
     }
 
-    public String getSalesmanId() {
-        return salesmanId;
+    public Salesmen getSalesman() {
+        return salesman;
     }
 
-    public void setSalesmanId(String salesmanId) {
-        this.salesmanId = salesmanId;
+    public void setSalesman(Salesmen salesman) {
+        this.salesman = salesman;
     }
 
     public BigDecimal getDetailDiscount() {
@@ -688,12 +716,12 @@ public class Orders implements Serializable {
         this.total = total;
     }
 
-    public Integer getJournalId() {
-        return journalId;
+    public Journals getJournals() {
+        return journals;
     }
 
-    public void setJournalId(Integer journalId) {
-        this.journalId = journalId;
+    public void setJournals(Journals journals) {
+        this.journals = journals;
     }
 
     public Integer getCheckId() {
@@ -944,20 +972,20 @@ public class Orders implements Serializable {
         this.almacenId = almacenId;
     }
 
-    public String getTpedidoId() {
-        return tpedidoId;
+    public Tpedidos gettPedido() {
+        return tPedido;
     }
 
-    public void setTpedidoId(String tpedidoId) {
-        this.tpedidoId = tpedidoId;
+    public void settPedido(Tpedidos tPedido) {
+        this.tPedido = tPedido;
     }
 
-    public String getTentregaId() {
-        return tentregaId;
+    public Tentregas gettEntrega() {
+        return tEntrega;
     }
 
-    public void setTentregaId(String tentregaId) {
-        this.tentregaId = tentregaId;
+    public void settEntrega(Tentregas tEntrega) {
+        this.tEntrega = tEntrega;
     }
 
     public Date getFentrega() {
@@ -968,12 +996,12 @@ public class Orders implements Serializable {
         this.fentrega = fentrega;
     }
 
-    public String getStatusId() {
-        return statusId;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStatusId(String statusId) {
-        this.statusId = statusId;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Date getFautorizado() {
@@ -1030,6 +1058,14 @@ public class Orders implements Serializable {
 
     public void setToAttach(String toAttach) {
         this.toAttach = toAttach;
+    }
+
+    public Customers getOrdersCustomersFK() {
+        return OrdersCustomersFK;
+    }
+
+    public void setOrdersCustomersFK(Customers OrdersCustomersFK) {
+        this.OrdersCustomersFK = OrdersCustomersFK;
     }
 
 }

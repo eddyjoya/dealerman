@@ -9,6 +9,7 @@
         <class>com.dealerman.entityConfiguration.CategoryDeudor</class>
         <class>com.dealerman.entityGeneral.Company</class>
         <class>com.dealerman.entityGeneral.Cities</class>
+        <class>com.dealerman.entityGeneral.Sexo</class>
         <class>com.dealerman.entityGeneral.Cantons</class>
         <class>com.dealerman.entityGeneral.EstadoCivil</class>
         <class>com.dealerman.entityGeneral.Contribuyentes</class>
@@ -21,10 +22,22 @@
         <class>com.dealerman.entityGeneral.Colors</class>
         <class>com.dealerman.entityGeneral.Types</class>
         <class>com.dealerman.entityGeneral.CreditTerms</class>
+        <class>com.dealerman.entityGeneral.Regional</class>
+        <class>com.dealerman.entityGeneral.Banks</class>
+        <class>com.dealerman.entityGeneral.Status</class>
         <class>com.dealerman.entityOrders.Salesmen</class>
-        <class>com.dealerman.entityOrders.Orders</class>
         <class>com.dealerman.entityOrders.Vehicles</class>
         <class>com.dealerman.entityOrders.Customers</class>
+        <class>com.dealerman.entityOrders.Orders</class>
+        <class>com.dealerman.entityOrders.Tentregas</class>
+        <class>com.dealerman.entityOrders.Tpedidos</class>
+        <class>com.dealerman.entityAccounting.JournalDaily</class>
+        <class>com.dealerman.entityAccounting.JournalAplcs</class>
+        <class>com.dealerman.entityAccounting.JournalTypes</class>
+        <class>com.dealerman.entityAccounting.Journals</class>
+        <class>com.dealerman.entityPayroll.Empleado</class>
+        <class>com.dealerman.entityPayroll.Deptment</class>
+        <class>com.dealerman.entityProduction.CostCenters</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>

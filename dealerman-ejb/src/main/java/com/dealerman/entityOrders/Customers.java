@@ -77,6 +77,8 @@ public class Customers implements Serializable {
     private String cantonId;
     @Column(name = "city_id", columnDefinition = "char(3)", nullable = true)
     private String cityId;
+    @Column(name = "contact_name", columnDefinition = "varchar(30)", nullable = true)
+    private String contactName;
     @ManyToOne
     @ForeignKey(name = "FK__customers__sexo__2C3393D0")
     @JoinColumn(name = "sexo", referencedColumnName = "sexo")
@@ -787,6 +789,14 @@ public class Customers implements Serializable {
 
     public void setCitiesFK(Cities citiesFK) {
         this.citiesFK = citiesFK;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
 }
