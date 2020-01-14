@@ -2,6 +2,7 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\sr
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Contribuyentes.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityPayroll\Empleado.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Status.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityInventary\Packages.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityConfiguration\Accounts.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityConfiguration\CategoryDeudor.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Brands.java
@@ -9,7 +10,9 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\sr
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityAccounting\Journals.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Sexo.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityOrders\Customers.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityInventary\Category.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityConfiguration\Setup.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityInventary\PriceGroups.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityAccounting\JournalAplcs.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Zones.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Cantons.java
@@ -23,6 +26,8 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\sr
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityOrders\Tpedidos.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\CreditTerms.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityProduction\CostCenters.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityInventary\Products.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityInventary\ProductGroups.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityOrders\Vehicles.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\RouteMaster.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityOrders\Tentregas.java
@@ -30,5 +35,7 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\sr
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\EstadoCivil.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Cities.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Regional.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityInventary\PBrands.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityConfiguration\Inumbers.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityPayroll\Deptment.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman\dealerman-ejb\src\main\java\com\dealerman\entityGeneral\Countries.java

@@ -25,6 +25,7 @@
         <class>com.dealerman.entityGeneral.Regional</class>
         <class>com.dealerman.entityGeneral.Banks</class>
         <class>com.dealerman.entityGeneral.Status</class>
+        <class>com.dealerman.entityGeneral.Countries</class>
         <class>com.dealerman.entityOrders.Salesmen</class>
         <class>com.dealerman.entityOrders.Vehicles</class>
         <class>com.dealerman.entityOrders.Customers</class>
@@ -38,6 +39,12 @@
         <class>com.dealerman.entityPayroll.Empleado</class>
         <class>com.dealerman.entityPayroll.Deptment</class>
         <class>com.dealerman.entityProduction.CostCenters</class>
+        <class>com.dealerman.entityInventary.Packages</class>
+        <class>com.dealerman.entityInventary.PBrands</class>
+        <class>com.dealerman.entityInventary.Category</class>
+        <class>com.dealerman.entityInventary.ProductGroups</class>
+        <class>com.dealerman.entityInventary.PriceGroups</class>
+        <class>com.dealerman.entityInventary.Products</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>

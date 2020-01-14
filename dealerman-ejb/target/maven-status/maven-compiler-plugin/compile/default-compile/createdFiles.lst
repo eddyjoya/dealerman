@@ -1,10 +1,15 @@
 com\dealerman\entityAccounting\Journals.class
 com\dealerman\entityGeneral\Types.class
+com\dealerman\entityInventary\Category.class
+com\dealerman\entityInventary\ProductGroups.class
+com\dealerman\entityInventary\PriceGroups.class
 com\dealerman\entityGeneral\Regional.class
 com\dealerman\entityGeneral\CreditTerms.class
 com\dealerman\entityGeneral\Banks.class
 com\dealerman\entityConfiguration\Inumbers.class
+com\dealerman\entityInventary\Packages.class
 com\dealerman\entityGeneral\Brands.class
+com\dealerman\entityInventary\PBrands.class
 com\dealerman\entityGeneral\Company.class
 com\dealerman\entityOrders\Tpedidos.class
 com\dealerman\entityOrders\Orders.class
@@ -16,6 +21,7 @@ com\dealerman\entityGeneral\Status.class
 com\dealerman\entityProduction\CostCenters.class
 com\dealerman\entityOrders\Tentregas.class
 com\dealerman\entityConfiguration\Setup.class
+com\dealerman\entityInventary\Products.class
 com\dealerman\entityGeneral\Zones.class
 com\dealerman\entityGeneral\Branches.class
 com\dealerman\entityGeneral\Sexo.class
@@ -26,6 +32,7 @@ com\dealerman\entityGeneral\ChainMaster.class
 com\dealerman\entityGeneral\EstadoCivil.class
 com\dealerman\entityOrders\Salesmen.class
 com\dealerman\entityGeneral\Colors.class
+com\dealerman\entityGeneral\Countries.class
 com\dealerman\entityPayroll\Empleado.class
 com\dealerman\entityGeneral\Cities.class
 com\dealerman\entityOrders\Vehicles.class
