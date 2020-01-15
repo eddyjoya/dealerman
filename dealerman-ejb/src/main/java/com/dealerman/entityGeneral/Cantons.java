@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Table(name = "cantons")
 public class Cantons implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "province_id", columnDefinition = "char(2)")
     private String provinceId;

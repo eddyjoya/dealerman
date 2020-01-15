@@ -13,6 +13,8 @@ import com.dealerman.entityProduction.CostCenters;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,6 +22,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
@@ -263,6 +266,9 @@ public class Orders implements Serializable {
     @Column(name = "to_attach", columnDefinition = "text", nullable = true)
     private String toAttach;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderLineItems> orderItems;
+
     @MapsId("customer_id")
     @ManyToOne
     @ForeignKey(name = "FK__orders__3B75D760")
@@ -274,6 +280,14 @@ public class Orders implements Serializable {
     private Customers OrdersCustomersFK;
 
     public Orders() {
+    }
+
+    public List<OrderLineItems> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderLineItems> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public Integer getOrderId() {

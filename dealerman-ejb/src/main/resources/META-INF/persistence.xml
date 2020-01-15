@@ -30,6 +30,7 @@
         <class>com.dealerman.entityOrders.Vehicles</class>
         <class>com.dealerman.entityOrders.Customers</class>
         <class>com.dealerman.entityOrders.Orders</class>
+        <class>com.dealerman.entityOrders.OrderLineItems</class>
         <class>com.dealerman.entityOrders.Tentregas</class>
         <class>com.dealerman.entityOrders.Tpedidos</class>
         <class>com.dealerman.entityAccounting.JournalDaily</class>
@@ -49,7 +50,7 @@
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.show_sql" value="true"/> 
         </properties>
     </persistence-unit>
 </persistence>

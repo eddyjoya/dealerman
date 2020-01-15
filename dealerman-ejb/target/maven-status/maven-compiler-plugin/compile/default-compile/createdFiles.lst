@@ -23,6 +23,7 @@ com\dealerman\entityOrders\Tentregas.class
 com\dealerman\entityConfiguration\Setup.class
 com\dealerman\entityInventary\Products.class
 com\dealerman\entityGeneral\Zones.class
+com\dealerman\entityOrders\OrderLineItems.class
 com\dealerman\entityGeneral\Branches.class
 com\dealerman\entityGeneral\Sexo.class
 com\dealerman\entityConfiguration\CategoryDeudor.class
