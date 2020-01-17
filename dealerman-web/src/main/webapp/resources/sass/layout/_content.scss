@@ -1,0 +1,9 @@
+.layout-wrapper {
+    
+    .layout-main {
+        margin-left: 65px;
+        padding: 60px 0 0 0;
+        @include transition(margin-left .3s);
+    }
+
+}

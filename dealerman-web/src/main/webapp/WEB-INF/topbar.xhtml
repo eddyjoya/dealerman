@@ -1,0 +1,60 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <p:outputPanel id="top" class="topbar" style="z-index: 200">
+        <div class="logo">
+            <h:link outcome="/pages/home">
+                <p:graphicImage name="logo.png" library="images" style="height: 100%; width: auto; margin-left: 15px;" />
+            </h:link>
+
+        </div>
+
+
+        <a id="topbar-menu-button" href="#">
+
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <ul class="topbar-menu fadeInDown animated">
+            <li class="profile-item">
+                <a id="topbar-usermenu-button" href="#">     
+                    <div class="profile-image">
+                        <p:graphicImage name="user.png" library="images" style="border-radius: 15px !important; width: 40px;" />
+                    </div>
+                    <div class="profile-info">
+                        <span class="topbar-item-name profile-name">#</span>
+                        <span class="topbar-item-name profile-role">#</span>
+                        <span class="topbar-item-name profile-role">#</span>
+                    </div>
+                </a>
+
+                <ul id="topbar-usermenu" class="usermenu">
+                    <li>
+                        <p:commandLink action="#" >
+                            <i class="fa fa-fw fa-sign-out"></i>
+                            <span class="topbar-item-name"> <p:outputLabel value="Cerrar Sesión"/>
+                            </span>
+                        </p:commandLink>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-fw fa-user"></i>
+                            <span class="topbar-item-name"> <p:outputLabel value="Name user"/></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-fw fa-building"></i>
+                            <span class="topbar-item-name">  <p:outputLabel value="Dealerman"/></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </p:outputPanel>
+
+</ui:composition>

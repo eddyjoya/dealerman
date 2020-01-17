@@ -1,0 +1,52 @@
+/* 
+    Created on : Jan 17, 2020, 3:37:43 PM
+    Author     : eddie
+*/
+
+.topbarDealerman{
+    height: 45px !important;
+    box-shadow:0 0 0 0 rgba(0, 0, 0, 0) !important;
+    -moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0) !important;
+    -webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+.layout-wrapper .topbar #topbar-menu-button {
+    margin: 0px 20px 0 0 !important;
+}
+
+@media (max-width: 640px){
+    .layout-wrapper .topbar .logo {
+        padding-top: 0px !important; 
+    }
+}
+
+body div#divFooter{
+    display: flex;
+}
+
+.topbar .logo img{
+    width: auto !important;
+    height: 36px !important;
+    margin-top: 4px !important;
+    margin-left: 15px;
+}
+
+.topbar .topbar-menu{
+    margin-top: 8px !important;
+}
+
+.layout-sidebar{
+    display: none !important;
+}
+body .layout-wrapper .layout-main{
+    margin-left: 0px !important;
+}
+
+body .layout-wrapper .layout-main{
+    padding-right : 0px;
+    padding-left: 0px;  
+    padding-top: 100px;
+}
+
+.topbar{
+    padding: 1px 0.65em;
+}

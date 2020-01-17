@@ -1,0 +1,164 @@
+/* 
+    Created on : Jan 17, 2020, 5:02:19 PM
+    Author     : eddie
+*/
+body .ui-inputfield[role='textbox']{
+    display: inline-block !important;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+    border: 1px solid #b7b7b7 !important;
+    -webkit-border-radius: 5px !important;
+    border-radius: 5px !important;
+    color: rgba(107,107,107,1) !important;
+    -o-text-overflow: clip !important;
+    text-overflow: clip !important;
+    background: rgb(255,255,255);
+}
+
+[role='textbox']:hover {
+    background: rgba(252,252,252,1);
+    -webkit-box-shadow: 0 0 1px 0 rgba(0,0,0,0.74) inset;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.74) inset;
+}
+
+[role='textbox']:focus {
+    border: 1px solid rgba(98,122,145,0.8);
+    -webkit-box-shadow: 0 0 3px 0 rgba(5,234,255,0.8) inset;
+    box-shadow: 0 0 3px 0 rgba(5,234,255,0.8) inset;
+}
+
+[role='textbox'].ui-state-error{
+    -webkit-box-shadow: 0 0 3px 0 rgba(255,0,0,0.8) inset;
+    box-shadow: 0 0 5px 0 rgba(255,0,0,0.8) inset;
+}
+
+.itemDescripcion{
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    margin-bottom: -0.65em !important;
+    margin-top: -0.30em !important;
+}
+.itemDetalle .ui-chkbox-icon{
+    font-size: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+.itemDetalle .ui-chkbox-box{
+    width: 27px !important;
+    height: 27px !important;
+}
+.boton > .ui-icon{
+    width: 42px;
+    height: 42px;
+    top: 12px !important;
+}
+
+.boton .ui-button-text{
+    height: 100%;
+    width: calc( 100% - 42px );
+    padding-left: 40px !important; 
+    padding-top: 8px !important; 
+    font-size: 1.25vw !important; 
+}
+
+.boton{
+    width: 10vw !important;
+    height: 46px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    border-radius: 10px !important;
+    border: 0px !important;
+    min-width: 60px;
+}
+
+@media screen and (max-width:480){
+    /*xs*/
+    .itemDetalle{
+        padding-top: 8px !important;
+        padding-bottom: 15px !important;
+    }
+    body .ui-inputfield{
+        font-size: 11.5px;
+    }
+    .itemDescripcion .ui-outputlabel{
+        font-size: 10px !important;
+        font-weight: bolder;
+        color: #474747 !important;
+    }
+    body .ui-inputfield[role='textbox']{
+        padding: 3px 5px 3px 5px;
+    }
+}
+@media screen and (min-width:480px) and (max-width:768px){
+    /*s*/
+    .itemDetalle{
+        padding-top: 8px !important;
+        padding-bottom: 15px !important;
+    }
+    .itemDescripcion .ui-outputlabel{
+        font-size: 10px !important;
+        font-weight: bolder;
+        color: #474747 !important;
+    }
+    body .ui-inputfield{
+        font-size: 12px;
+    }
+    body .ui-inputfield[role='textbox']{
+        padding: 3px 5px 3px 5px;
+    }
+
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /*m*/
+    .itemDetalle{
+        padding-top: 8px !important;
+        padding-bottom: 15px !important;
+    }
+    .itemDescripcion .ui-outputlabel{
+        font-size: 13px !important;
+        font-weight: bolder;
+        color: #474747 !important;
+    }
+    body .ui-inputfield{
+        font-size: 15px;
+    }
+    boy .ui-inputfield[role='textbox']{
+        padding: 0px 5px 0px 5px;
+    }
+}
+
+@media screen and (min-width: 1025px)and (max-width: 1400px) {
+    /*l*/
+    .itemDetalle{
+        padding-top: 8px !important;
+        padding-bottom: 15px !important;
+    }
+    .itemDescripcion .ui-outputlabel{
+        font-size: 14px !important;
+        font-weight: bolder;
+        color: #474747 !important;
+    }
+    body .ui-inputfield{
+        font-size: 18px;
+    }
+    body .ui-inputfield[role='textbox']{
+        padding: 1px 5px 1px 5px;
+    }
+
+}
+@media screen and (min-width: 1401px) { 
+    /*xl*/
+    .itemDetalle{
+        padding-top: 9px !important;
+        padding-bottom: 9px !important;
+    }
+    .itemDescripcion .ui-outputlabel{
+        font-size: 13px !important;
+        font-weight: bolder;
+        color: #474747 !important;
+    }
+    body .ui-inputfield[role='textbox']{
+        padding: 2px 5px 2px 5px;
+    }
+}

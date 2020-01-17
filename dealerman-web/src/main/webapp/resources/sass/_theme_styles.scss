@@ -1,0 +1,31 @@
+body .ui-dialog .ui-dialog-titlebar {
+    background-color: $primaryColor !important;
+    color: #FFFFFF !important;
+}
+
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon .ui-icon {
+    color: #FFFFFF !important;  
+}
+
+.itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+    background-color: $primaryColor !important;
+}
+
+.ui-lightbox {
+    height: calc(97% - 48px);
+    width: 97%;
+    top: 18px !important;
+}
+
+body{
+
+    .ui-button {
+
+
+        span.ui-button-text {
+            padding: 0;
+            line-height: 30px;
+            font-size: $fontSize;
+        }
+    }
+}

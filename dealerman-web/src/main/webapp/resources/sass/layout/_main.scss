@@ -1,0 +1,58 @@
+html {
+    height: 100%; 
+}
+
+body {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: $fontSize;
+    color: $textColor;
+    -webkit-font-smoothing: antialiased;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+
+    &.main-body {
+        background-color: $bodyBgColor;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .ajax-loader {
+        color: $accentColor;
+        font-size: 32px;
+    }
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+    background-color: $primaryColor !important;
+    color: #FFFFFF !important;
+}
+
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon .ui-icon {
+    color: #FFFFFF !important;  
+}
+
+.itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+    background-color: $primaryColor !important; 
+}
+.ui-selectonemenu .ui-selectonemenu-trigger{
+    background-color: $primaryColor !important;
+    color: white !important;
+    -webkit-border-radius: 0px 5px 5px 0px !important;
+    border-radius: 0px 5px 5px 0px !important; 
+}
+
+body .ui-widget-header{
+    background-color: $primaryColor;
+    border: 1px solid $primaryColor;
+}
+
+body .ui-button {
+    background-color: $primaryColor;
+}
+
+.ui-widget-header-2{
+    background-color: $secondColor ;
+}
