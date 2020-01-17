@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="dealermanDS" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:/jboss/dealermanDS</jta-data-source>
+        <class>com.dealerman.configuration.Setup</class>
+        <class>com.dealerman.configuration.Inumbers</class>
+        <class>com.dealerman.configuration.Accounts</class>
+        <class>com.dealerman.configuration.CategoryDeudor</class>
+        <class>com.dealerman.general.Company</class>
+        <class>com.dealerman.general.Cities</class>
+        <class>com.dealerman.general.Sexo</class>
+        <class>com.dealerman.general.Cantons</class>
+        <class>com.dealerman.general.EstadoCivil</class>
+        <class>com.dealerman.general.Contribuyentes</class>
+        <class>com.dealerman.general.Branches</class>
+        <class>com.dealerman.general.Sexo</class>
+        <class>com.dealerman.general.Zones</class>
+        <class>com.dealerman.general.ChainMaster</class>
+        <class>com.dealerman.general.RouteMaster</class>
+        <class>com.dealerman.general.Brands</class>
+        <class>com.dealerman.general.Colors</class>
+        <class>com.dealerman.general.Types</class>
+        <class>com.dealerman.general.CreditTerms</class>
+        <class>com.dealerman.general.Regional</class>
+        <class>com.dealerman.general.Banks</class>
+        <class>com.dealerman.general.Status</class>
+        <class>com.dealerman.general.Countries</class>
+        <class>com.dealerman.orders.Salesmen</class>
+        <class>com.dealerman.orders.Vehicles</class>
+        <class>com.dealerman.orders.Customers</class>
+        <class>com.dealerman.orders.Orders</class>
+        <class>com.dealerman.orders.OrderLineItems</class>
+        <class>com.dealerman.orders.Tentregas</class>
+        <class>com.dealerman.orders.Tpedidos</class>
+        <class>com.dealerman.accounting.JournalDaily</class>
+        <class>com.dealerman.accounting.JournalAplcs</class>
+        <class>com.dealerman.accounting.JournalTypes</class>
+        <class>com.dealerman.accounting.Journals</class>
+        <class>com.dealerman.payroll.Empleado</class>
+        <class>com.dealerman.payroll.Deptment</class>
+        <class>com.dealerman.production.CostCenters</class>
+        <class>com.dealerman.inventary.Packages</class>
+        <class>com.dealerman.inventary.PBrands</class>
+        <class>com.dealerman.inventary.Category</class>
+        <class>com.dealerman.inventary.ProductGroups</class>
+        <class>com.dealerman.inventary.PriceGroups</class>
+        <class>com.dealerman.inventary.Products</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

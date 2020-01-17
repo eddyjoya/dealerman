@@ -9,5 +9,6 @@
 <modules>  <module>dealerman-ear</module>
     <module>dealerman-web</module>
     <module>dealerman-ejb</module>
+    <module>dealerman-entities</module>
   </modules>
 </project>
