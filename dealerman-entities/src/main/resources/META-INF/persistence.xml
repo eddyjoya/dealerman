@@ -7,6 +7,7 @@
         <class>com.dealerman.configuration.Inumbers</class>
         <class>com.dealerman.configuration.Accounts</class>
         <class>com.dealerman.configuration.CategoryDeudor</class>
+        <class>com.dealerman.configuration.Employee</class>
         <class>com.dealerman.general.Company</class>
         <class>com.dealerman.general.Cities</class>
         <class>com.dealerman.general.Sexo</class>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <title>Dealerman - web</title>
+        <h:outputStylesheet library = "css" name="bootstrap.min.css"/>        
+        <h:outputStylesheet name="iofrm-style.css" library = "css"/>
+        <h:outputStylesheet name="login-style.css" library = "css"/>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="error" value="#{accessDM.respLogin}"/>
+        <f:viewAction action="#{accessController.init()}"  />
+    </f:metadata>
+    <h:body >
+        <p:growl id="mensaje" />
+        <div class="container-fluid form-body">
+
+            <div class="website-logo">
+
+            </div>
+            <div class="row">
+                <div class="img-holder">
+                    <div class="bg"></div>
+                    <div class="info-holder">
+
+                    </div>
+                </div>
+                <div class="form-holder">
+                    <div class="form-content">
+                        <div class="form-items">
+                            <div>
+                                <p:graphicImage name="logo.png" library="images" style="height: auto; width: 110%; " />
+                            </div>
+                            <h:form id="fLogin" prependId="false"
+                                    onsubmit="this.action = 'j_security_check';" 
+                                    >
+                                <p:inputText id="j_username" 
+                                             styleClass="form-control" 
+                                             placeholder="Nombre de usuario"
+                                             required="true"
+                                             >
+                                    <p:outputLabel value="#{accessDM.messageLogin}" 
+                                                   style="background-color: orangered "
+                                                   />
+                                </p:inputText>
+                                <p:password id="j_password"  
+                                            styleClass="form-control"
+                                            placeholder="Contraseña"
+                                            required="true"  
+                                            >
+                                </p:password>
+                                <div class="form-button">
+                                    <p:commandButton  value="Ingresar" 
+                                                      ajax="false" 
+                                                      class="ibtn"/>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

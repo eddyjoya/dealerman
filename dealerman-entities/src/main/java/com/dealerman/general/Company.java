@@ -801,6 +801,11 @@ public class Company implements Serializable {
     public Company() {
     }
 
+    public Company(String companyId, String legalId) {
+        this.companyId = companyId;
+        this.legalId = legalId;
+    }
+
     public String getCompanyId() {
         return companyId;
     }

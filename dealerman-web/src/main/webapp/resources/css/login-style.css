@@ -1,0 +1,16 @@
+
+.container-fluid {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.img-holder {
+    min-height: 500px !important;
+}
+
+.form-content .form-button .ibtn {
+    padding: 0px 28px !important;
+}
+body .ui-inputfield.ui-state-focus{
+    padding-bottom: 9px !important;
+}

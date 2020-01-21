@@ -1,16 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
-        <ui:composition template="/WEB-INF/template.xhtml">
-            <ui:define name="content">
-                INDEX - INICIO
-            </ui:define>
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
-        </ui:composition>
-    </body>
-</html>
+    <ui:define name="titulo">
+        Dealerman - web
+    </ui:define>
+
+    <ui:define name="head">
+
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="ui-g menu" id="menu-principal">
+            <div id="widgetPresentacionlg" class="ui-xxs-hidden ui-xs-hidden ui-s-hidden ui-m-hidden ui-g-3 ui-l-3 ui-xl-3" style="padding: 0px; position: relative">
+                <div class="imagenVertical" >
+
+                </div>
+
+            </div>
+            <div class="ui-xs-12 ui-s-12 ui-m-12 ui-g-9 ui-l-9 ui-xl-9" align="center">
+                <div id="widgetContenido" class="ui-g-12 ui-s-12 ui-m-12 ui-l-12">
+                    <div class="ui-g">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
