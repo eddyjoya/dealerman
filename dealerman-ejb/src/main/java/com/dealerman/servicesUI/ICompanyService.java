@@ -11,5 +11,5 @@ import javax.ejb.Local;
 @Local
 public interface ICompanyService {
 
-//    public List<Company> listsCompany(Company company);
+    public List<Company> buscar(Company company);
 }

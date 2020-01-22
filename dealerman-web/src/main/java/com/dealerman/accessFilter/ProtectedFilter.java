@@ -1,11 +1,19 @@
 package com.dealerman.accessFilter;
 
 import com.dealerman.accessDataManager.AccessDM;
+import com.dealerman.configuration.Employee;
+import com.dealerman.general.Branches;
+import com.dealerman.general.Company;
+import com.dealerman.servicesUI.IBranchesService;
+import com.dealerman.servicesUI.ICompanyService;
+import com.dealerman.servicesUI.IEmployeeService;
 import com.dealerman.utils.BaseController;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -30,6 +38,13 @@ public class ProtectedFilter implements Filter {
     @Inject
     AccessDM accessDM;
 
+    @EJB
+    private IEmployeeService employeeService;
+    @EJB
+    private ICompanyService companyService;
+    @EJB
+    private IBranchesService branchesService;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -41,11 +56,37 @@ public class ProtectedFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         String urlLocal = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         try {
-            String loggedUsername = request.getRemoteUser();
+            String loggedUserName = request.getRemoteUser();
             HttpSession sesion = request.getSession();
             String datosUser = request.getHeader("user-agent");
             accessDM.setDatosUser(datosUser);
-            if (loggedUsername != null) {
+            if ((loggedUserName != null) && (accessDM.getListAccessModulos().isEmpty())) {
+                accessDM.setCompanySelect(null);
+                /**
+                 * En el caso que el usuario ingrese con otra sesion se inactiva
+                 * la sesion anterior
+                 */
+                if (!cargaDatosEmployee(loggedUserName)) {
+                    inactiveSession(urlLocal, response, sesion, "1");
+                    return;
+                }
+                /**
+                 * Cuando es un grupo que tiene más de una compania
+                 */
+                if (!consultaCompanys(accessDM.getEmployeeSelect().getCompanyId())) {
+                    accessDM.setCompanySelect(new Company());
+                    accessDM.setShowDialogCompanys(true);
+                } else {
+                    /**
+                     * En el caso que el usuario no tiene asignado ninguna
+                     * sucursal se inactiva la sesion
+                     */
+                    if (!consultaBranch(accessDM.getCompanySelect(), accessDM.getEmployeeSelect().getBranchId())) {
+                        inactiveSession(urlLocal, response, sesion, "2");
+                        return;
+                    }
+                }
+
                 accessDM.setRequest(request);
                 accessDM.setResponse(response);
                 accessDM.setSesion(sesion);
@@ -57,6 +98,42 @@ public class ProtectedFilter implements Filter {
             response.sendRedirect(urlLocal + moduloAccess("accesoHome"));
         }
         chain.doFilter(request, response);
+    }
+
+    private boolean cargaDatosEmployee(String loggedUserName) {
+        List<Employee> employee = employeeService.buscar(new Employee(loggedUserName, Boolean.TRUE));
+        if (employee.isEmpty()) {
+            return false;
+        }
+        accessDM.setEmployeeSelect(employee.get(0));
+        return true;
+    }
+
+    private boolean consultaCompanys(String company) {
+        List<Company> listCompanys = companyService.buscar(new Company(company));
+        if (company == null) {
+            accessDM.setListcompanys(listCompanys);
+            return false;
+        } else {
+            accessDM.setCompanySelect(listCompanys.get(0));
+            return true;
+        }
+    }
+
+    private boolean consultaBranch(Company company, String branch) {
+
+        List<Branches> branches = branchesService.buscar(new Branches(company, branch));
+        if (branches.isEmpty()) {
+            return false;
+        }
+        accessDM.setBranchSelect(branches.get(0));
+        return true;
+
+    }
+
+    private void inactiveSession(String urlLocal, HttpServletResponse response, HttpSession sesion, String codigo) throws IOException {
+        sesion.invalidate();
+        response.sendRedirect(urlLocal + "/dealerman-web/pages/index.jsf?error=" + codigo);
     }
 
     private void listAccessModulos() {

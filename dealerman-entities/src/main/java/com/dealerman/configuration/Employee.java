@@ -92,6 +92,11 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
+    public Employee(String lastName, Boolean allowed) {
+        this.lastName = lastName;
+        this.allowed = allowed;
+    }
+
     public String getEmployeeId() {
         return employeeId;
     }

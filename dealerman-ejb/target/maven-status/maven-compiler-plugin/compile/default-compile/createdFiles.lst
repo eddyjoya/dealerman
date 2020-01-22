@@ -1,12 +1,16 @@
+com\dealerman\dao\BranchesDao.class
+com\dealerman\daoUI\IBranchesDao.class
 com\dealerman\dao\GenericDao.class
 com\dealerman\exceptions\EntidadNoGrabadaException.class
 com\dealerman\dao\CompanyDao.class
 com\dealerman\daoUI\IEmployeeDao.class
 com\dealerman\servicesUI\IEmployeeService.class
 com\dealerman\dao\EmployeeDao.class
+com\dealerman\services\BranchesService.class
 com\dealerman\exceptions\EntidadNoBorradaException.class
 com\dealerman\services\CantonsService.class
 com\dealerman\daoUI\ICompanyDao.class
+com\dealerman\servicesUI\IBranchesService.class
 com\dealerman\dao\CantonsDao.class
 com\dealerman\exceptions\EntidadNoEncontradaException.class
 com\dealerman\daoUI\ICantonsDao.class

@@ -17,8 +17,8 @@ public class CompanyService implements ICompanyService {
     @EJB
     ICompanyDao companyDao;
 
-////    @Override
-//    public List<Company> listsCompany(Company company) {
-//        return companyDao.buscar(company);
-//    }
+    @Override
+    public List<Company> buscar(Company company) {
+        return companyDao.buscar(company);
+    }
 }

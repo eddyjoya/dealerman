@@ -1,5 +1,7 @@
 package com.dealerman.servicesUI;
 
+import com.dealerman.configuration.Employee;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -9,4 +11,5 @@ import javax.ejb.Local;
 @Local
 public interface IEmployeeService {
 
+    public List<Employee> buscar(Employee employee);
 }

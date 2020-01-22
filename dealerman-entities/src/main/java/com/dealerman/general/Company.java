@@ -795,15 +795,14 @@ public class Company implements Serializable {
     @Column(name = "dummycust_price_type", columnDefinition = "tinyint", nullable = true)
     private Integer dummycustPriceType;
 
-    @OneToMany(mappedBy = "companyId")
+    @OneToMany(mappedBy = "company")
     private List<Branches> listBranches;
 
     public Company() {
     }
 
-    public Company(String companyId, String legalId) {
+    public Company(String companyId) {
         this.companyId = companyId;
-        this.legalId = legalId;
     }
 
     public String getCompanyId() {

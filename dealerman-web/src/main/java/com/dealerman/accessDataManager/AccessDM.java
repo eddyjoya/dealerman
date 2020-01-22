@@ -1,6 +1,7 @@
 package com.dealerman.accessDataManager;
 
 import com.dealerman.configuration.Employee;
+import com.dealerman.general.Branches;
 import com.dealerman.general.Company;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,21 +21,48 @@ import javax.servlet.http.HttpSession;
 @Named
 public class AccessDM implements Serializable {
 
-    private String irModuloPath = "";
     private HttpServletRequest request;
     private HttpServletResponse response;
     private HttpSession sesion;
+    private String irModuloPath = "";
     private String moduloActivePath = "";
     private String moduloIrPath = "";
     private String respLogin = null;
-    private Employee employeeUser;
-    private Properties properties = new Properties();
-    private Company companySelect;
     private String datosUser;
     private String messageLogin = null;
+    private Employee employeeSelect;
+    private Properties properties = new Properties();
+    private Company companySelect;
+    private Branches branchSelect;
+    private List<Company> listcompanys;
     private List<String> listAccessModulos = new ArrayList();
+    private boolean showDialogCompanys = false;
 
     public AccessDM() {
+    }
+
+    public Branches getBranchSelect() {
+        return branchSelect;
+    }
+
+    public void setBranchSelect(Branches branchSelect) {
+        this.branchSelect = branchSelect;
+    }
+
+    public boolean isShowDialogCompanys() {
+        return showDialogCompanys;
+    }
+
+    public void setShowDialogCompanys(boolean showDialogCompanys) {
+        this.showDialogCompanys = showDialogCompanys;
+    }
+
+    public List<Company> getListcompanys() {
+        return listcompanys;
+    }
+
+    public void setListcompanys(List<Company> listcompanys) {
+        this.listcompanys = listcompanys;
     }
 
     public List<String> getListAccessModulos() {
@@ -89,12 +117,12 @@ public class AccessDM implements Serializable {
         this.properties = properties;
     }
 
-    public Employee getEmployeeUser() {
-        return employeeUser;
+    public Employee getEmployeeSelect() {
+        return employeeSelect;
     }
 
-    public void setEmployeeUser(Employee employeeUser) {
-        this.employeeUser = employeeUser;
+    public void setEmployeeSelect(Employee employeeSelect) {
+        this.employeeSelect = employeeSelect;
     }
 
     public void setRespLogin(String respLogin) {

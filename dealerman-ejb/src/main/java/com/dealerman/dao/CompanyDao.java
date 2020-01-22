@@ -26,11 +26,12 @@ public class CompanyDao extends GenericDao<Company, Long>
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
         sql.append("Select t from Company t where 1=1");
+
         if (company.getCompanyId() != null) {
             sql.append(" and t.companyId = :companyId");
             parametros.put("companyId", company.getCompanyId());
         }
-        sql.append(" order by t.companyId asc");
+        sql.append(" order by t.companyName asc");
         Query q = this.em.createQuery(sql.toString());
         for (Object key : parametros.keySet()) {
             q.setParameter((String) key, parametros.get(key));

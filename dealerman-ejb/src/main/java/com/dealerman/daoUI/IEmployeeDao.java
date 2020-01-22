@@ -1,6 +1,7 @@
 package com.dealerman.daoUI;
 
 import com.dealerman.configuration.Employee;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -11,4 +12,5 @@ import javax.ejb.Local;
 public interface IEmployeeDao
         extends IGenericDao<Employee, Long> {
 
+    public List<Employee> buscar(Employee employee);
 }

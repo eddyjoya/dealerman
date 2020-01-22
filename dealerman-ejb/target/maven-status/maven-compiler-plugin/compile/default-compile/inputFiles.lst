@@ -5,13 +5,17 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\jav
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\servicesUI\IEmployeeService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\dao\CompanyDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\daoUI\IGenericDao.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\services\BranchesService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\exceptions\EntidadNoGrabadaException.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\services\CompanyService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\servicesUI\ICompanyService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\dao\CantonsDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\daoUI\ICompanyDao.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\dao\BranchesDao.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\daoUI\IBranchesDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\exceptions\EntidadNoEncontradaException.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\daoUI\ICantonsDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\daoUI\IEmployeeDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\dao\EmployeeDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\dao\GenericDao.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\servicesUI\IBranchesService.java

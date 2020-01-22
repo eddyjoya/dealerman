@@ -8,7 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <meta name="apple-mobile-web-app-capable" content="yes" />
-
+        <meta name="msapplication-TileColor" content="#da532c"/>
+        <meta name="theme-color" content="#ffffff"/>
         <title>Dealerman - web</title>
         <h:outputStylesheet library = "css" name="bootstrap.min.css"/>        
         <h:outputStylesheet name="iofrm-style.css" library = "css"/>
@@ -19,7 +20,7 @@
         <f:viewAction action="#{accessController.init()}"  />
     </f:metadata>
     <h:body >
-        <p:growl id="mensaje" />
+        <p:growl id="mensaje" globalOnly="true" showDetail="true"/>
         <div class="container-fluid form-body">
 
             <div class="website-logo">
@@ -38,17 +39,17 @@
                             <div>
                                 <p:graphicImage name="logo.png" library="images" style="height: auto; width: 110%; " />
                             </div>
+                            <p:outputLabel value="#{accessDM.messageLogin}" 
+                                           style="background-color: orangered "
+                                           />
                             <h:form id="fLogin" prependId="false"
                                     onsubmit="this.action = 'j_security_check';" 
                                     >
-                                <p:inputText id="j_username" 
+                                <p:inputText id="j_username"                                               
                                              styleClass="form-control" 
                                              placeholder="Nombre de usuario"
                                              required="true"
                                              >
-                                    <p:outputLabel value="#{accessDM.messageLogin}" 
-                                                   style="background-color: orangered "
-                                                   />
                                 </p:inputText>
                                 <p:password id="j_password"  
                                             styleClass="form-control"
@@ -57,11 +58,14 @@
                                             >
                                 </p:password>
                                 <div class="form-button">
-                                    <p:commandButton  value="Ingresar" 
-                                                      ajax="false" 
+                                    <p:commandButton  value="Iniciar sesión" 
+                                                      ajax="false"
+                                                      process="@this" 
+                                                      update="mensaje" 
+                                                      style="background-color: #3184EE; color: white; 
+                                                      width: 100%; font-weight: bold;   "
                                                       class="ibtn"/>
                                 </div>
-
                             </h:form>
                         </div>
                     </div>

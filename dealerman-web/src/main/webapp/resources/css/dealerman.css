@@ -33,8 +33,142 @@ body .ui-inputfield[role='textbox']{
     box-shadow: 0 0 5px 0 rgba(255,0,0,0.8) inset;
 }
 
+[role='combobox'], .ui-selectcheckboxmenu{
+    display: inline-block !important;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+    padding: 2px !important;
+    border: 1px solid #b7b7b7 !important;
+    -webkit-border-radius: 5px !important;
+    border-radius: 5px !important;
+    color: rgba(107,107,107,1) !important;
+    -o-text-overflow: clip !important;
+    text-overflow: clip !important;
+    background: rgb(255,255,255) !important;
+}
+
+[role='combobox']:hover, ui-selectcheckboxmenu:hover {
+    background: rgba(252,252,252,1);
+    -webkit-box-shadow: 0 0 1px 0 rgba(0,0,0,0.74) inset;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.74) inset;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+[role='combobox']:focus, ui-selectcheckboxmenu:focus {
+    border: 1px solid rgba(98,122,145,0.8);
+    -webkit-box-shadow: 0 0 3px 0 rgba(5,234,255,0.8) inset;
+    box-shadow: 0 0 3px 0 rgba(5,234,255,0.8) inset;
+}
+
+[role='combobox'].ui-state-error , body .ui-selectcheckboxmenu.ui-state-error{
+    -webkit-box-shadow: 0 0 3px 0 rgba(255,0,0,0.8) inset;
+    box-shadow: 0 0 3px 0 rgba(255,0,0,0.8) inset;
+}
+
+[role='combobox'] .ui-selectonemenu-trigger .ui-icon{
+    color: white !important;
+}
+
+.itemDropdown  .ui-selectcheckboxmenu-multiple-container{
+    background-image: none !important;
+}
+
+.itemDropdown .ui-button.ui-button-icon-only.ui-corner-right{
+    width: 30px !important;
+    height: 29px !important;
+    -webkit-border-radius: 0px 5px 5px 0px !important;
+    border-radius: 0px 5px 5px 0px !important;
+    background-color: #1976d2 !important;
+}
+
+.itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+    top: 0px !important;
+    width: 30px !important;
+    height: 29px !important;
+
+}
+.itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+    font-size: 30px;
+}
+
+.itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+    -webkit-border-radius: 0px 5px 5px 0px !important;
+    border-radius: 0px 5px 5px 0px !important;
+
+}
+
+.itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+    color: white !important;   
+    top:-1px !important;
+    left: 0px;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter-container{
+    width: 100% ;
+}
+.ui-selectonemenu-filter-container span{
+    display: none;
+}
+
+
+body .dlg-full-width{
+    height: 90% !important;
+}
+
+body .ui-dialog .ui-dialog-content{
+    padding: 5px;
+}
+
+.ui-dialog-titlebar-icon.ui-dialog-titlebar-close, .ui-lightbox .ui-lightbox-caption a.ui-lightbox-close{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+}
+.ui-dialog-titlebar-icon.ui-dialog-titlebar-close .ui-icon, .ui-lightbox .ui-lightbox-caption a.ui-lightbox-close .ui-icon{
+    top: 7px;
+    font-size: 25px;
+    left: 8px;
+}
+.ui-calendar input{
+    width: 95% !important;
+}
+
+.tituloGris{
+    padding: 0 !important;
+    border-bottom: 1px solid #d8d8d8;
+    color: #808080 !important;
+    background-color: #efefef;
+    font-weight: bold;
+    text-align: center;
+}
+div[role='dialog']{
+    padding: 0px !important;
+    border: 0px;
+}
+.ui-shadow-inv {
+    -webkit-box-shadow: 0px -4px 10px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px -4px 10px 0px rgba(0,0,0,0.35);
+    box-shadow: 0px -4px 10px 0px rgba(0,0,0,0.35);
+    background-color: #fff;
+}
+
+.ui-g-12.itemDropdown{
+    width: calc(100% - 35px) !important;
+}
+
+.ui-g-1.itemDropdown{
+    width: 35px !important;
+    padding-left: 3px !important;
+    padding-right: 0px !important;
+}
 .itemDescripcion{
-    padding-bottom: 0px !important;
+    padding-bottom: 5px !important;
     padding-top: 0px !important;
     margin-bottom: -0.65em !important;
     margin-top: -0.30em !important;
@@ -47,6 +181,11 @@ body .ui-inputfield[role='textbox']{
 .itemDetalle .ui-chkbox-box{
     width: 27px !important;
     height: 27px !important;
+}
+
+.ui-state-disabled{
+    opacity: 0.70 !important;
+    cursor: no-drop !important;
 }
 .boton > .ui-icon{
     width: 42px;
@@ -89,6 +228,46 @@ body .ui-inputfield[role='textbox']{
     body .ui-inputfield[role='textbox']{
         padding: 3px 5px 3px 5px;
     }
+    [role='combobox']{
+        padding: 2px 0px 2px 5px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger{
+        width: 30px !important;
+        height:  22px !important;
+        margin-top: -1.1px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger .ui-icon{
+        width: 22px !important;
+        height:  22px !important;
+        font-size: 22px !important;
+        color: white !important;
+    }
+    .ui-selectcheckboxmenu-token{
+        margin: 1px;
+        padding: 1px 1px;
+    }
+    .ui-selectcheckboxmenu-multiple-container{
+        min-height: 15px;
+    }
+    .ui-selectcheckboxmenu.ui-widget{
+        padding: 0px 0px 0px 0px !important;
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+        top: -1px !important;
+        width: 30px !important;
+        height: 22px !important;
+        right: -5px;
+
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+        font-size: 22px;
+        left: 5px;
+        margin-top: 1px;
+    }
+    .itemDescripcion.itemCalendario{
+        margin-top: -0.2em !important;
+    }
+
 }
 @media screen and (min-width:480px) and (max-width:768px){
     /*s*/
@@ -106,6 +285,45 @@ body .ui-inputfield[role='textbox']{
     }
     body .ui-inputfield[role='textbox']{
         padding: 3px 5px 3px 5px;
+    }
+    [role='combobox']{
+        padding: 2px 0px 2px 5px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger{
+        width: 30px !important;
+        height:  25px !important;
+        margin-top: -1.1px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger .ui-icon{
+        width: 22px !important;
+        height:  22px !important;
+        font-size: 22px !important;
+        color: white !important;
+    }
+    .ui-selectcheckboxmenu-token{
+        margin: 1px;
+        padding: 1px 1px;
+    }
+    .ui-selectcheckboxmenu-multiple-container{
+        min-height: 15px;
+    }
+    .ui-selectcheckboxmenu.ui-widget{
+        padding: 0px 0px 0px 0px !important;
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+        top: -1px !important;
+        width: 30px !important;
+        height: 22px !important;
+        right: -5px;
+
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+        font-size: 22px;
+        left: 5px;
+        margin-top: 1px;
+    }
+    .itemDescripcion.itemCalendario{
+        margin-top: -0.2em !important;
     }
 
 }
@@ -126,6 +344,45 @@ body .ui-inputfield[role='textbox']{
     boy .ui-inputfield[role='textbox']{
         padding: 0px 5px 0px 5px;
     }
+    [role='combobox']{
+        padding: 2px 0px 2px 5px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger{
+        width: 30px !important;
+        height:  27px !important;
+        margin-top: -1.1px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger .ui-icon{
+        width: 22px !important;
+        height:  22px !important;
+        font-size: 22px !important;
+        color: white !important;
+    }
+    .ui-selectcheckboxmenu-token{
+        margin: 1px;
+        padding: 1px 1px;
+    }
+    .ui-selectcheckboxmenu-multiple-container{
+        min-height: 15px;
+    }
+    .ui-selectcheckboxmenu.ui-widget{
+        padding: 0px 0px 0px 0px !important;
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+        top: -1px !important;
+        width: 30px !important;
+        height: 22px !important;
+        right: -5px;
+
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+        font-size: 25px;
+        left: 5px;
+        margin-top: 1px;
+    }
+    .itemDescripcion.itemCalendario{
+        margin-top: 0em !important;
+    }
 }
 
 @media screen and (min-width: 1025px)and (max-width: 1400px) {
@@ -140,10 +397,49 @@ body .ui-inputfield[role='textbox']{
         color: #474747 !important;
     }
     body .ui-inputfield{
-        font-size: 18px;
+        font-size: 14px;
     }
     body .ui-inputfield[role='textbox']{
         padding: 1px 5px 1px 5px;
+    }
+    [role='combobox']{
+        padding: 2px 0px 2px 5px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger{
+        width: 30px !important;
+        height:  27px !important;
+        margin-top: -1.1px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger .ui-icon{
+        width: 22px !important;
+        height:  22px !important;
+        font-size: 22px !important;
+        color: white !important;
+    }
+    .ui-selectcheckboxmenu-token{
+        margin: 1px;
+        padding: 1px 1px;
+    }
+    .ui-selectcheckboxmenu-multiple-container{
+        min-height: 15px;
+    }
+    .ui-selectcheckboxmenu.ui-widget{
+        padding: 0px 0px 0px 0px !important;
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+        top: -1px !important;
+        width: 30px !important;
+        height: 22px !important;
+        right: -5px;
+
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+        font-size: 22px;
+        left: 5px;
+        margin-top: 1px;
+    }
+    .itemDescripcion.itemCalendario{
+        margin-top: -0.2em !important;
     }
 
 }
@@ -160,5 +456,44 @@ body .ui-inputfield[role='textbox']{
     }
     body .ui-inputfield[role='textbox']{
         padding: 2px 5px 2px 5px;
+    }
+    [role='combobox']{
+        padding: 2px 0px 2px 5px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger{
+        width: 30px !important;
+        height:  25px !important;
+        margin-top: -1.1px !important;
+    }
+    [role='combobox'] .ui-selectonemenu-trigger .ui-icon{
+        width: 22px !important;
+        height:  22px !important;
+        font-size: 22px !important;
+        color: white !important;
+    }
+    .ui-selectcheckboxmenu-token{
+        margin: 1px;
+        padding: 1px 1px;
+    }
+    .ui-selectcheckboxmenu-multiple-container{
+        min-height: 15px;
+    }
+    .ui-selectcheckboxmenu.ui-widget{
+        padding: 0px 0px 0px 0px !important;
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{
+        top: -1px !important;
+        width: 30px !important;
+        height: 22px !important;
+        right: -5px;
+
+    }
+    .itemDropdown .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger span{
+        font-size: 22px;
+        left: 5px;
+        margin-top: 1px;
+    }
+    .itemDescripcion.itemCalendario{
+        margin-top: -0.2em !important;
     }
 }

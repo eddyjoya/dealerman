@@ -7,8 +7,8 @@
 
     <p:outputPanel id="top" class="topbar" style="z-index: 200">
         <div class="logo">
-            <h:link outcome="/pages/home">
-                <p:graphicImage name="logo.png" library="images" style="height: 100%; width: auto; margin-left: 15px;" />
+            <h:link outcome="/pages/index">
+                <p:graphicImage name="logo.png" library="images" style="height: 80%; width: auto; margin-left: 10px;" />
             </h:link>
 
         </div>
@@ -26,9 +26,9 @@
                         <p:graphicImage name="user.png" library="images" style="border-radius: 15px !important; width: 40px;" />
                     </div>
                     <div class="profile-info">
-                        <span class="topbar-item-name profile-name">#</span>
-                        <span class="topbar-item-name profile-role">#</span>
-                        <span class="topbar-item-name profile-role">#</span>
+                        <span class="topbar-item-name profile-name">#{accessDM.employeeSelect.lastName} #{accessDM.employeeSelect.firstName}</span>
+                        <span class="topbar-item-name profile-role">#{accessDM.companySelect.companyName}</span>
+                        <span class="topbar-item-name profile-role">#{accessDM.branchSelect.bodegaName}</span>
                     </div>
                 </a>
 

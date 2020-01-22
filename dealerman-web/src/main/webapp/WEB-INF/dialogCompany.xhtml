@@ -2,14 +2,51 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:form id="company-form">
-        <p:dialog header="Empresa">
+        <p:dialog id="dlgCompany"
+                  header="Empresa"
+                  closable="false" modal="true"
+                  width="50%" 
+                  visible="#{accessDM.showDialogCompanys}">
             <div  class="ui-g" >
                 <div class="ui-g-12">
+                    <br/>
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:outputLabel for="company" 
+                                       value="¿Seleccione la empresa en la que desea trabajar?" 
+                                       styleClass="oscuro" />
+                    </div>
+                    <div class="ui-inputgroup ui-g-12 itemDetalle">
+                        <p:selectOneMenu id="company" value="#{accessDM.companySelect.companyId}" 
+                                         required="true" filterMatchMode="contains" 
+                                         style="width: 100%;" 
+                                         >                        
+                            <f:selectItems value="#{accessDM.listcompanys}" 
+                                           var="company" itemLabel="#{company.companyName}" 
+                                           itemValue="#{company.companyId}" />
+                            <p:ajax />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-6">
+                        <p:commandButton style="width: 100%" value="Aceptar"
+                                         process="@this, dlgCompany" 
+                                         action="#{accessController.selectCompany()}">
+                        </p:commandButton> 
+                    </div>
+                    <div class="ui-g-6">
+                        <p:commandButton style="width: 100%" 
+                                         value="Cancelar" 
+                                         process="@this"
+                                         action="#{accessController.logout()}"
+                                         >
+                        </p:commandButton>
+                    </div>
 
-                    
-                    
+
                 </div>
             </div>
         </p:dialog>        

@@ -33,7 +33,7 @@ public class Branches implements Serializable {
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     @ManyToOne
     @ForeignKey(name = "FK__branches__compan__145C0A3F")
-    private Company companyId;
+    private Company company;
 
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = true)
     private String branchId;
@@ -174,10 +174,15 @@ public class Branches implements Serializable {
     public Branches() {
     }
 
+    public Branches(Company company, String bodegaId) {
+        this.company = company;
+        this.bodegaId = bodegaId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 73 * hash + Objects.hashCode(this.companyId);
+        hash = 73 * hash + Objects.hashCode(this.company);
         hash = 73 * hash + Objects.hashCode(this.branchId);
         hash = 73 * hash + Objects.hashCode(this.bodegaId);
         hash = 73 * hash + Objects.hashCode(this.branch);
@@ -306,7 +311,7 @@ public class Branches implements Serializable {
         if (!Objects.equals(this.defCreditTermId, other.defCreditTermId)) {
             return false;
         }
-        if (!Objects.equals(this.companyId, other.companyId)) {
+        if (!Objects.equals(this.company, other.company)) {
             return false;
         }
         if (!Objects.equals(this.branch, other.branch)) {
@@ -976,12 +981,12 @@ public class Branches implements Serializable {
         this.defCreditTermId = defCreditTermId;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
 }
