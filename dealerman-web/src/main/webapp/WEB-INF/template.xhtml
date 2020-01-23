@@ -13,15 +13,18 @@
             </ui:insert>
         </title>
         <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="msapplication-TileColor" content="#da532c"/>
+            <meta name="theme-color" content="#ffffff"/>
         </f:facet>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
         <h:outputScript name="js/nanoscroller.js" library="barcelona-layout" />
         <h:outputScript name="js/layout.js" library="barcelona-layout" />
         <h:outputScript name="js/ripple.js" library="barcelona-layout" />
         <h:outputScript name="jquery.email-autocomplete.js" library = "js"/>
-        <h:outputScript name="localeES.js" library = "js" />
+        <h:outputScript name="localeES.js" library = "js"/>
         <ui:insert name="head"/>
 
     </h:head>
@@ -30,10 +33,11 @@
         <p:outputPanel class="layout-wrapper">
             <p:growl id="message" globalOnly="true" life="4000" showDetail="true"/>
             <ui:include src="topbar.xhtml" />
-
+            <ui:include src="menu.xhtml" />
             <div class="layout-main">
                 <div class="layout-main-content">
                     <ui:insert name="content"/>
+                    <ui:include src="footer.xhtml" />
                     <ui:include src="dialogCompany.xhtml" />
                 </div>
             </div>

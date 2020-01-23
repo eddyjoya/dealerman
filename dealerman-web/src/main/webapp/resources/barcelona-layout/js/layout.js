@@ -1,6 +1,8 @@
 /** 
  * PrimeFaces Barcelona Layout
  */
+
+
 PrimeFaces.widget.Barcelona = PrimeFaces.widget.BaseWidget.extend({
     
     init: function(cfg) {

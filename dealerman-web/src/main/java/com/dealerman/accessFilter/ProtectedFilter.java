@@ -138,6 +138,7 @@ public class ProtectedFilter implements Filter {
 
     private void listAccessModulos() {
         accessDM.getListAccessModulos().add(moduloAccess("accesoHome"));
+        accessDM.getListAccessModulos().add(moduloAccess("accesoFacuracion"));
     }
 
     public String moduloAccess(String properties) {
@@ -147,8 +148,7 @@ public class ProtectedFilter implements Filter {
             return accessDM.getProperties().getProperty(properties);
 
         } catch (IOException ex) {
-            Logger.getLogger(BaseController.class
-                    .getName()).log(Level.SEVERE, null, ex);
+           
         }
         return "";
     }

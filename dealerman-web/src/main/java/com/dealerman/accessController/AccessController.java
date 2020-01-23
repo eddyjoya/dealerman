@@ -65,6 +65,16 @@ public class AccessController extends BaseController {
         accessDM.setBranchSelect(branches.get(0));
     }
 
+    public void redireccionarUrl(String urlDestino) throws IOException, EntidadNoGrabadaException {
+        String scheme = accessDM.getRequest().getScheme();
+        String serverName = accessDM.getRequest().getServerName();
+        int serverPort = accessDM.getRequest().getServerPort();
+        String urlFinal = scheme + "://" + serverName + ":" + serverPort
+                + urlDestino;
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect(urlFinal);
+    }
+
     public void logout() throws IOException {
         try {
             if (accessDM.getSesion() != null) {
@@ -78,16 +88,6 @@ public class AccessController extends BaseController {
             }
         } catch (IOException e) {
         }
-    }
-
-    public void redireccionarUrl(String urlDestino) throws IOException, EntidadNoGrabadaException {
-
-        String urlFinal = urlBase()
-                + urlDestino;
-        accessDM.setModuloIrPath(urlDestino);
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect(urlFinal);
-
     }
 
 }

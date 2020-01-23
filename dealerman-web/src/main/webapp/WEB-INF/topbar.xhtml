@@ -2,17 +2,17 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pa="http://primefaces.org/barcelona"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <p:outputPanel id="top" class="topbar" style="z-index: 200">
         <div class="logo">
             <h:link outcome="/pages/index">
-                <p:graphicImage name="logo.png" library="images" style="height: 80%; width: auto; margin-left: 10px;" />
+                <p:graphicImage name="logo.png" library="images" style="height: 70%; width: auto; margin-left: 10px;" />
             </h:link>
 
         </div>
-
 
         <a id="topbar-menu-button" href="#">
 
@@ -21,38 +21,48 @@
 
         <ul class="topbar-menu fadeInDown animated">
             <li class="profile-item">
-                <a id="topbar-usermenu-button" href="#">     
+                <a id="topbar-usermenu-button" href="#" >   
                     <div class="profile-image">
-                        <p:graphicImage name="user.png" library="images" style="border-radius: 15px !important; width: 40px;" />
+                        <p:graphicImage cache="false" name="user.png" 
+                                        library="barcelona-layout" style="border-radius: 15px !important" />
                     </div>
                     <div class="profile-info">
-                        <span class="topbar-item-name profile-name">#{accessDM.employeeSelect.lastName} #{accessDM.employeeSelect.firstName}</span>
-                        <span class="topbar-item-name profile-role">#{accessDM.companySelect.companyName}</span>
-                        <span class="topbar-item-name profile-role">#{accessDM.branchSelect.bodegaName}</span>
+                        <span class="topbar-item-name profile-name"  style="font-size: 14px !important;">#{accessDM.employeeSelect.lastName} #{accessDM.employeeSelect.firstName}</span>
+                        <span class="topbar-item-name profile-role" style="font-size: 12px !important;">#{accessDM.companySelect.companyName}</span>
+                        <span class="topbar-item-name profile-role" style="font-size: 12px !important;">#{accessDM.branchSelect.bodegaName}</span>
                     </div>
+
                 </a>
 
                 <ul id="topbar-usermenu" class="usermenu">
                     <li>
-                        <p:commandLink action="#" >
+                        <a href="#">
+                            <i class="fa fa-fw fa-building"></i>
+                            <span class="topbar-item-name">  <p:outputLabel value="#{accessDM.companySelect.companyName}"/></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-fw fa-bars"></i>
+                            <span class="topbar-item-name"> <p:outputLabel value="#{accessDM.branchSelect.bodegaName}"/></span>
+                        </a>
+                    </li>
+                    <li>
+                        <p:commandLink action="#{accessController.logout()}" >
                             <i class="fa fa-fw fa-sign-out"></i>
-                            <span class="topbar-item-name"> <p:outputLabel value="Cerrar Sesión"/>
+                            <span class="topbar-item-name"> 
+                                <p:outputLabel style="color: red; font-weight: bold;" 
+                                               value="Cerrar Sesión"/>
                             </span>
                         </p:commandLink>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-fw fa-user"></i>
-                            <span class="topbar-item-name"> <p:outputLabel value="Name user"/></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-fw fa-building"></i>
-                            <span class="topbar-item-name">  <p:outputLabel value="Dealerman"/></span>
-                        </a>
-                    </li>
                 </ul>
+            </li>
+            <li class="search-item">
+                <h:form id="topbar-extra-content">
+                    <ui:insert name="infoTopbar"/>
+
+                </h:form>
             </li>
         </ul>
     </p:outputPanel>

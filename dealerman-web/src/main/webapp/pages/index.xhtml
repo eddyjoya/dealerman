@@ -16,20 +16,80 @@
 
     <ui:define name="content">
         <div class="ui-g menu" id="menu-principal">
-            <div id="widgetPresentacionlg" class="ui-xxs-hidden ui-xs-hidden ui-s-hidden ui-m-hidden ui-g-3 ui-l-3 ui-xl-3" style="padding: 0px; position: relative">
-                <div class="imagenVertical" >
-
-                </div>
-
-            </div>
-            <div class="ui-xs-12 ui-s-12 ui-m-12 ui-g-9 ui-l-9 ui-xl-9" align="center">
+            <div class="ui-xs-12 ui-s-12 ui-m-12 ui-g-12 ui-l-12 ui-xl-12" align="center">
                 <div id="widgetContenido" class="ui-g-12 ui-s-12 ui-m-12 ui-l-12">
                     <div class="ui-g">
-                        <p:commandButton  value="Salir"
-                                          process="@this" immediate="true" 
-                                          action="#{accessController.logout()}" 
-                                          style="background-color: #3184EE; color: white;  font-weight: bold;   "/>
-
+                        <h:form id="form"
+                                prependId="false"
+                                onkeypress="if (event.keyCode === 13)
+                                    return false;">
+                            <p:menubar style="text-align: left;">
+                                <p:submenu label="Workshop Manager"  icon="fa fa-desktop">
+                                    <p:submenu label="New" icon="pi pi-briefcase">
+                                        <p:menuitem value="Project" url="#" />
+                                        <p:menuitem value="Other" url="#" />
+                                    </p:submenu>
+                                    <p:menuitem value="Open" url="#" />
+                                    <p:separator />
+                                    <p:menuitem value="Quit" url="#" />                  
+                                </p:submenu>
+                                <p:submenu label="Facturación" icon="fa fa-newspaper-o">
+                                    <p:submenu label="Proformas">
+                                        <p:menuitem value="Facturación" url="#" />
+                                        <p:menuitem value="-Consultas" url="#" />
+                                    </p:submenu>
+                                    <p:submenu label="Facturación">
+                                        <p:menuitem value="Facturación" 
+                                                    actionListener="#{accessController.redireccionarUrl(modulo.accesoFacuracion)}"/>
+                                        <p:menuitem value="- Consultas" url="#" />
+                                        <p:menuitem value="- Anulaciones" url="#" />
+                                        <p:submenu label="Notas de crédito">
+                                            <p:menuitem value="Notas de crédito" url="#" />
+                                            <p:menuitem value="- Consultas" url="#" />
+                                            <p:menuitem value="- Anulaciones" url="#" />
+                                        </p:submenu>
+                                    </p:submenu>
+                                    <p:submenu label="Guía de remisión" >
+                                        <p:menuitem value="Project" url="#" />
+                                        <p:menuitem value="Other" url="#" />
+                                    </p:submenu>                               
+                                    <p:menuitem  value="Consulta de documentos electrónicos pendientes" 
+                                                 url="#" />
+                                </p:submenu>
+                                <p:submenu label="inventarios" icon="fa fa-edit">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Pagar" icon="fa fa-money">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Bancos" icon="fa fa-university">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Nómina" icon="fa fa-group">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Contabilidad" icon="fa fa-calculator">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Gerencia" icon="fa fa-stack-overflow">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Auditoría" icon="fa fa-file-text">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                                <p:submenu label="Usuarios" icon="fa fa-user">
+                                    <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                                    <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                                </p:submenu>
+                            </p:menubar>
+                        </h:form>
                     </div>
                 </div>
             </div>

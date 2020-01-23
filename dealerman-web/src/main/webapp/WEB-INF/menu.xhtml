@@ -1,0 +1,140 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pa="http://primefaces.org/barcelona">
+
+    <div class="layout-sidebar">
+
+
+        <pa:tabMenu>
+
+
+            <pa:tab icon="home" title="Features">
+                <h:form id="menu-form">
+                    <pa:menu widgetVar="me">
+                        <p:submenu id="mantenimiento" label="Mantenimiento" icon="&#xE8B8;" rendered="#{accesoController.validarModulos(menu.modMantenimiento)}">
+                            <p:menuitem id="clientes" value="Clientes" icon="&#xE893;" rendered="#{accesoController.validarFuncionalidad(menu.funCliente)}"
+                                        url="#{accesoController.urlFinal(menu.funCliente)}" ajax="false"/>
+                            <p:menuitem id="empleado" value="Empleados" icon="&#xE892;" rendered="#{accesoController.validarFuncionalidad(menu.funEmpleado)}" 
+                                        url="#{accesoController.urlFinal(menu.funEmpleado)}" ajax="false"/>
+                            <p:submenu id="empresas" label="Empresas" icon="&#xE237;" rendered="#{accesoController.validarModulos(menu.modEmpresa)}">
+                                <p:menuitem id="empresa" value="Empresa" icon="&#xE236;" rendered="#{accesoController.validarFuncionalidad(menu.funEmpresa)}" 
+                                            url="#{accesoController.urlFinal(menu.funEmpresa)}" ajax="false" />
+                                <p:menuitem id="sucursales" value="Sucursales" icon="&#xE236;" rendered="#{accesoController.validarFuncionalidad(menu.funSucursal)}"
+                                            url="#{accesoController.urlFinal(menu.funSucursal)}" ajax="false" />
+                                <p:menuitem id="bodegas" value="Bodegas" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funBodega)}"                                           
+                                            url="#{accesoController.urlFinal(menu.funBodega)}"  ajax="false" />
+                                <p:menuitem id="ubicaciones" value="Ubicaciones" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funUbicacion)}"                                           
+                                            url="#{accesoController.urlFinal(menu.funUbicacion)}"  ajax="false" />
+                                <p:menuitem id="cajas" value="Cajas" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funCaja)}"                                            
+                                            url="#{accesoController.urlFinal(menu.funCaja)}"  ajax="false" />
+
+                            </p:submenu>
+                            <p:submenu id="productos" label="Productos" icon="&#xE237;" rendered="#{accesoController.validarModulos(menu.modProductos)}">
+                                <p:menuitem id="generico" value="Generico" icon="&#xE236;" rendered="#{accesoController.validarFuncionalidad(menu.funProductoGenrico)}" 
+                                            url="#{accesoController.urlFinal(menu.funProductoGenrico)}" ajax="false" />
+                                <p:menuitem id="serie" value="Serie" icon="&#xE236;" rendered="#{accesoController.validarFuncionalidad(menu.funProductoSerie)}" 
+                                            url="#{accesoController.urlFinal(menu.funProductoSerie)}" ajax="false" />
+
+                                <p:menuitem id="combos" value="Combos" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funProductoCombo)}"                                            
+                                            url="#{accesoController.urlFinal(menu.funProductoCombo)}"  ajax="false" />
+                                <p:menuitem id="subProducto" value="SubProducto" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funSubProducto)}"                                           
+                                            url="#{accesoController.urlFinal(menu.funSubProducto)}"  ajax="false" />
+                                <p:menuitem id="talla" value="Talla" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funTalla)}"                                             
+                                            url="#{accesoController.urlFinal(menu.funTalla)}"  ajax="false" />
+                                <p:menuitem id="color" value="Color" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funColor)}"                                           
+                                            url="#{accesoController.urlFinal(menu.funColor)}"  ajax="false" />
+                                <p:menuitem id="tallaColor" value="Talla color" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funProductoTallaColor)}"                                            
+                                            url="#{accesoController.urlFinal(menu.funProductoTallaColor)}"  ajax="false" />
+                                <p:menuitem id="marcas" value="Marcas" icon="&#xE879;"  rendered="#{accesoController.validarFuncionalidad(menu.funMarca)}"   
+                                            url="#{accesoController.urlFinal(menu.funMarca)}"  ajax="false"/>
+                            </p:submenu>
+                            <p:menuitem id="servicio" value="Servicios" icon="&#xE237;"  rendered="#{accesoController.validarFuncionalidad(menu.funProductoServicio)}"                                             
+                                        url="#{accesoController.urlFinal(menu.funProductoServicio)}"  ajax="false" />
+                            <p:menuitem id="formasPago" value="formas de pago" icon="&#xE879;"  rendered="#{accesoController.validarFuncionalidad(menu.funFormaPago)}"    
+                                        url="#{accesoController.urlFinal(menu.funFormaPago)}"  ajax="false"/>
+
+                            <p:menuitem id="secciones" value="secciones" icon="&#xE879;"  rendered="#{accesoController.validarFuncionalidad(menu.funSeccion)}"   
+                                        url="#{accesoController.urlFinal(menu.funSeccion)}"  ajax="false"/>
+
+                            <p:menuitem id="tarifas" value="Tarifas" icon="&#xE879;"  rendered="#{accesoController.validarFuncionalidad(menu.funTarifa)}"     
+                                        url="#{accesoController.urlFinal(menu.funTarifa)}"  ajax="false"/>
+                            <p:menuitem id="impuestos" value="Impuestos" icon="&#xE879;"  rendered="#{accesoController.validarFuncionalidad(menu.funImpuesto)}"             
+                                        url="#{accesoController.urlFinal(menu.funImpuesto)}"  ajax="false"/>
+                            <p:menuitem id="proveedores" value="Proveedores" icon="&#xE879;"  rendered="#{accesoController.validarFuncionalidad(menu.funProveedor)}"      
+                                        url="#{accesoController.urlFinal(menu.funProveedor)}"  ajax="false"/>
+                            <p:menuitem id="reportesGenerales" value="Reportes generales" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.accesoReportesGenerales)}"      
+                                        url="#{accesoController.urlFinal(menu.accesoReportesGenerales)}"  ajax="false"/>
+
+                        </p:submenu>
+
+                        <p:submenu id="compra" label="Compras" icon="&#xE40A;" rendered="#{accesoController.validarModulos(menu.modCompra)}">
+                            <p:menuitem id="compras" value="Ordenes Compra" icon="&#xE893;"   rendered="#{accesoController.validarFuncionalidad(menu.funCompra)}"      
+                                        url="#{accesoController.urlFinal(menu.funCompra)}" ajax="false"/>
+                            <p:menuitem id="ingresoStock" value="Ingreso sin pedido" icon="&#xE893;"   rendered="#{accesoController.validarFuncionalidad(menu.funIngresoSinPedido)}"      
+                                        url="#{accesoController.urlFinal(menu.funIngresoSinPedido)}"  ajax="false"/>
+
+                            <p:menuitem id="comprasPedido" value="Pedidos compra" icon="&#xE893;"   rendered="#{accesoController.validarFuncionalidad(menu.funPedidoCompras)}"   
+                                        url="#{accesoController.urlFinal(menu.funPedidoCompras)}" ajax="false">
+                            </p:menuitem>
+                            <p:menuitem id="pedidoCompras" value="Recepcion pedidos" icon="&#xE893;"   rendered="#{accesoController.validarFuncionalidad(menu.funRecepcionPedidoCompras)}"      
+                                        url="#{accesoController.urlFinal(menu.funRecepcionPedidoCompras)}" ajax="false">
+                            </p:menuitem>
+                        </p:submenu>
+                        <p:submenu id="ventas" label="Ventas" icon="&#xE40A;" rendered="#{accesoController.validarModulos(menu.modVenta)}">
+                            <p:menuitem id="facturas" value="Facturas" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funVenta)}"      
+                                        url="#{accesoController.urlFinal(menu.funVenta)}"  ajax="false"/>
+                            <p:menuitem id="cortizaciones" value="Cotizaciones" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funCotizacion)}"      
+                                        url="#{accesoController.urlFinal(menu.funCotizacion)}" ajax="false"/>
+                            <p:menuitem id="pagoPendiente" value="Pagos pendientes" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funPagosPendientes)}"      
+                                        url="#{accesoController.urlFinal(menu.funPagosPendientes)}"  ajax="false"/>
+                            <p:menuitem id="reportesVentas" value="Reportes de ventas" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.accesoReportesVentas)}"      
+                                        url="#{accesoController.urlFinal(menu.accesoReportesVentas)}"  ajax="false"/>
+                            <p:menuitem id="ventasHistorial" value="Historial de Facturas" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funVentasHistorial)}"      
+                                        url="#{accesoController.urlFinal(menu.funVentasHistorial)}"  ajax="false"/>
+
+                        </p:submenu>
+
+                        <p:submenu id="stock" label="Stock" icon="&#xE40A;" rendered="#{accesoController.validarModulos(menu.modStock)}">
+                            <p:menuitem id="kardex" value="Kardex" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funKardex)}"      
+                                        url="#{accesoController.urlFinal(menu.funKardex)}" ajax="false"/>
+                            <p:menuitem id="transferencias" value="Transferencias" icon="&#xE893;"   rendered="#{accesoController.validarFuncionalidad(menu.funTransFerencia)}"      
+                                        url="#{accesoController.urlFinal(menu.funTransFerencia)}"  ajax="false"/>
+                            <p:menuitem id="egresoStock" value="Egreso de stock" icon="&#xE893;"   rendered="#{accesoController.validarFuncionalidad(menu.funEntregaProducto)}"      
+                                        url="#{accesoController.urlFinal(menu.funEntregaProducto)}"  ajax="false"/>
+                            <p:menuitem id="reportesStock" value="Reportes de stock" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.accesoReportesStock)}"      
+                                        url="#{accesoController.urlFinal(menu.accesoReportesStock)}"  ajax="false"/>
+                            <p:menuitem id="ajusteIngresoStock" value="Ajuste Ingreso stock" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funAjusteIngresoStock)}"      
+                                        url="#{accesoController.urlFinal(menu.funAjusteIngresoStock)}"  ajax="false"/>
+                            <p:menuitem id="ajusteEgresoStock" value="Ajuste Egreso stock" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funAjusteEgresoStock)}"      
+                                        url="#{accesoController.urlFinal(menu.funAjusteEgresoStock)}"  ajax="false"/>
+                            <p:menuitem id="garantiaStock" value="Garantias stock" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funGarantiaStocK)}"      
+                                        url="#{accesoController.urlFinal(menu.funGarantiaStocK)}"  ajax="false"/>
+
+
+                        </p:submenu>
+
+
+                        <p:submenu id="seguridades" label="Seguridades" icon="&#xE40A;"  rendered="#{accesoController.validarModulos(menu.modSeguridad)}">
+                            <p:menuitem id="usuarios" value="Usuarios" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funUsuario)}"
+                                        url="#{accesoController.urlFinal(menu.funUsuario)}" ajax="false"/>
+
+                            <p:menuitem id="auditoria" value="Auditoria" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funAuditoria)}"
+                                        url="#{accesoController.urlFinal(menu.funAuditoria)}" ajax="false"/>
+                            <p:menuitem id="perfil" value="Perfiles" icon="&#xE893;"  rendered="#{accesoController.validarFuncionalidad(menu.funPerfil)}"
+                                        url="#{accesoController.urlFinal(menu.funPerfil)}" ajax="false"/>
+                        </p:submenu>
+
+
+
+                    </pa:menu>
+                </h:form>
+            </pa:tab>
+        </pa:tabMenu>
+
+    </div>
+
+</ui:composition>
