@@ -6,7 +6,7 @@
     xmlns:pa="http://primefaces.org/barcelona"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <p:outputPanel id="top" class="topbar" style="z-index: 200">
+    <p:outputPanel id="top" class="topbar topbarPrincipal" style="z-index: 200">
         <div class="logo">
             <h:link outcome="/pages/index">
                 <p:graphicImage name="logo.png" library="images" style="height: 70%; width: auto; margin-left: 10px;" />
@@ -57,12 +57,6 @@
                         </p:commandLink>
                     </li>
                 </ul>
-            </li>
-            <li class="search-item">
-                <h:form id="topbar-extra-content">
-                    <ui:insert name="infoTopbar"/>
-
-                </h:form>
             </li>
         </ul>
     </p:outputPanel>

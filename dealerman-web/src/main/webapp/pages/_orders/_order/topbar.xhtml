@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui">
+    <p:outputPanel class="ui-g panelBotones ui-shadow-2"
+                   id="topbar" 
+                   >
+        <div id="pnlDescripcion"
+             class="panelBotonesIzq">
+            <div class="panelBotonesIzqCont">
+                <p:commandLink process="@this">
+                    <p:graphicImage title="Guardar" 
+                                    name="button/boton-guardar.png"
+                                    library = "images"
+                                    />
+                </p:commandLink>
+                <p:commandLink process="@this">
+                    <p:graphicImage title="Imprimir" 
+                                    name="button/boton-imprimir.png"
+                                    library = "images"
+                                    />
+                </p:commandLink>
+                <p:commandLink process="@this">
+                    <p:graphicImage title="Salir" 
+                                    name="button/boton-salir.png"
+                                    library = "images"
+                                    />
+                </p:commandLink>
+                <div style="margin-left: 5px;">
+                    <div class="moduloTitulo">
+                        Facturación electrónica.
+                    </div>
+                    <div class="moduloSubtitulo">
+                        Ambiente de producción, En tiempo real Método de Autorización Off-line
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </p:outputPanel>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:outputPanel id="pnlDatosCliente" class="ui-g-12" style="padding: 0; height: 80px;">
+        <div class="ui-g-2" align="center">
+            <div class="ui-g-12 itemDescripcion">
+                <p:outputLabel value="Fecha"/>
+            </div>
+            <div class="ui-g-12 itemDetalle">
+                <p:inputText style="color: black !important;" 
+                             disabled="true"
+                             value="#{orderDM.order.orderDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </p:inputText>
+            </div>
+        </div>
+        <div class="ui-g-10" style=" padding: 0; height: 100%; border: 1px  rgb(200,200,200) solid">  
+            <div id="datosCliente_content"  class="ui-g ui-g-nopad"
+                 style="height: 100%;">
+                <div class="ui-g-12" style="height: calc(100% / 3); padding-top: 0px; margin-top: -7px; ">
+                    <div class="ui-g-3 itemDescripcion" align="center">
+                        <br/>
+                        <p:outputLabel style="font-weight: bold; padding: 0" value="Cédula o ruc"/>
+                    </div>
+                    <div class="ui-g-6">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                    <div class="ui-g-3">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                </div>
+                <div class="ui-g-12" style="height: calc(100% / 3); padding-top: 0; margin-top: -10px;">
+                    <div class="ui-g-3">
+                        <p:inputText value="#{orderDM.order.customerId}"/> 
+                    </div>
+                    <div class="ui-g-6">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                    <div class="ui-g-3">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                </div>
+                <div class="ui-g-12" style="height: calc(100% / 3); padding-top: 0px; margin-top:-9px;">
+                    <div class="ui-g-3">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                    <div class="ui-g-6">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                    <div class="ui-g-3">
+                        <p:inputText  value="#{orderDM.order.customerId}"/> 
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-g-nopad" style="height: 100%;">
+
+
+            </div>
+        </div>  
+        <div class="ui-g-12 ui-g-nopad" style="width: 50px; float: right;">
+
+        </div>
+        <div class="ui-g-12 ui-g-nopad" style="width: 50px; float: right;">
+
+
+        </div>
+
+    </p:outputPanel>  
+
+</html>

@@ -1,0 +1,214 @@
+.topbarPrincipal{
+    height: 45px !important;
+    box-shadow:0 0 0 0 rgba(0, 0, 0, 0) !important;
+    -moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0) !important;
+    -webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+.layout-wrapper .topbar #topbar-menu-button {
+    margin: 0px 20px 0 0 !important;
+}
+
+@media (max-width: 640px){
+    .layout-wrapper .topbar .logo {
+        padding-top: 0px !important; 
+    }
+}
+
+.topbar .logo img{
+    width: auto !important;
+    height: 36px !important;
+    margin-top: 4px !important;
+    margin-left: 15px;
+}
+
+
+.topbar .topbar-menu{
+    margin-top: 8px !important;
+}
+
+.layout-sidebar{
+    display: none !important;
+}
+body .layout-wrapper .layout-main{
+    margin-left: 0px !important;
+}
+
+body .layout-wrapper .layout-main{
+    padding-right : 0px;
+    padding-left: 0px;  
+    padding-top: 100px;
+}
+
+.menuPrincipal{
+    padding: 0px !important;
+    background-color: #CAE0ED;
+    box-shadow:0 3px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+    -moz-box-shadow:0 3px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+    -webkit-box-shadow:0 3px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+    position: fixed;
+    z-index: 100;
+}
+.topbar{
+    padding: 1px 0.65em;
+}
+.panelBotonesDer{
+    width: calc( 100% - 275px );
+}
+.panelBotonesDer table{
+    float: right;
+}
+.panelBotonesIzq{
+    width: 100%;
+}
+.panelBotonesIzq{
+    height: 50px;
+}
+.panelBotonesIzq .panelBotonesIzqCont{
+    display: flex;
+    height: 50px;
+    align-items: center; 
+    padding-left: 10px;
+}
+
+.panelBotonesIzq button{
+    width: 40px !important;
+    height: 40px !important;
+}
+.panelBotonesIzq .ui-icon{
+    font-size: 40px !important;
+    height: 40px !important;
+    top: 25% !important;
+    left: 25% !important;
+}
+
+.panelBotonesIzq img{
+    width: auto !important;
+    height: 35px !important;
+    padding-left: 6px;
+}
+
+.panelBotonesIzq .moduloTitulo{
+    font-size: 18px;
+    font-weight: bolder;
+    color: #686868;
+}
+
+.panelBotonesIzq .moduloSubtitulo{
+    color: #686868;
+    margin-top: -5px;
+}
+
+.btnFooter, .btnFooter2, .btnFooter3{
+    height: 100% !important;
+    background-color: #ffffff !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    -moz-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    border-left: 2px solid rgba(123, 10, 10, 1) !important;
+    border-right: 2px solid rgba(123, 10, 10, 1) !important;
+    margin-right: -1px !important;
+
+}
+
+
+.btnFooter .ui-icon, .btnFooter2 .ui-icon{
+    background-repeat: no-repeat;
+    margin: 0px !important;
+}
+
+
+
+.btnFooter .ui-button-text.ui-c, .btnFooter2 .ui-button-text.ui-c{
+    color: black;
+}
+
+
+@media screen and (max-width: 480px) {
+    /*xs*/
+     .panelBotonesDer button{
+        min-width: 45px !important;
+    }
+    .panelBotonesDer button .ui-icon{
+        background-size: 38px 38px;
+        left: 0.8vw !important;
+        top:13px !important;
+    }
+    .panelBotonesDer button .ui-button-text{
+        display: none !important;
+    }
+
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px){
+    /*s*/
+    .panelBotonesDer button{
+        min-width: 45px !important;
+    }
+    .panelBotonesDer button .ui-icon{
+        background-size: 38px 38px;
+        left: 1.1vw !important;
+        top:13px !important;
+    }
+    .panelBotonesDer button .ui-button-text{
+        display: none !important;
+    }
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /*m*/
+    .panelBotonesDer button .ui-button-text{
+        height: 100%;
+        width: calc( 100% - 40px );
+        padding-left: 32px !important; 
+        padding-top: 6px !important; 
+        font-size: 1.12vw !important; 
+        display: initial !important;
+    }
+    .panelBotonesDer button .ui-icon{
+        background-size: 36px 36px;
+        left: 3px;
+        top: 15px !important;
+    }
+
+}
+
+@media screen and (min-width: 1025px)and (max-width: 1400px) {
+    /*l*/
+
+    .panelBotonesDer button .ui-icon{
+        background-size: 40px 40px;
+        left: 5px;
+        top: 12px !important;
+    }
+    .panelBotonesDer button .ui-button-text{
+        height: 100%;
+        width: calc( 100% - 40px );
+        padding-left: 32px !important; 
+        padding-top: 6px !important; 
+        font-size: 1.1vw !important; 
+        display: initial !important;
+    }
+
+}
+
+@media screen and (min-width: 1401px) {
+    /*xl*/
+    .panelBotonesDer button .ui-icon{
+        background-size: 42px 42px;
+        left: 5px;
+        top: 12px !important;
+    }
+    .panelBotonesDer button .ui-button-text{
+        height: 100%;
+        width: calc( 100% - 40px );
+        padding-left: 32px !important; 
+        padding-top: 6px !important; 
+        font-size: 1.10vw !important; 
+        display: initial !important;
+    }
+
+
+}

@@ -5,6 +5,7 @@ import com.dealerman.general.Branches;
 import com.dealerman.general.Company;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import javax.enterprise.context.SessionScoped;
@@ -37,8 +38,17 @@ public class AccessDM implements Serializable {
     private List<Company> listcompanys;
     private List<String> listAccessModulos = new ArrayList();
     private boolean showDialogCompanys = false;
+    private Date fechaActual = new Date();
 
     public AccessDM() {
+    }
+
+    public Date getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(Date fechaActual) {
+        this.fechaActual = fechaActual;
     }
 
     public Branches getBranchSelect() {

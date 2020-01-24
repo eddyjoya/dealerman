@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <p:outputPanel class="ui-g-12 ui-g-nopad" style="padding: 0 10px;">
+        <p:dataTable value="#{ventaDM.listaDetalleOrdenVentaCreacion}" 
+                     var="productoVenta" 
+                     emptyMessage="Agregue un producto" 
+                     selectionMode="single" 
+                     styleClass="tablaProductosVenta"
+                     style="border:1px solid #d8d8d8; border-bottom: 0px;" 
+                     scrollable="true"  
+                     disabledTextSelection="true"
+                     >
+
+            <p:ajax event="rowSelect" 
+                    process="@this" 
+                    listener="#{ventaController.onRowSelectEditProducto}" />
+
+            <p:column headerText="Cant." 
+                      class="tblVenta_Cantidad"
+                      >
+                <p:inputNumber value="#{productoVenta.cantidadVendida}" 
+                               id="txtCantidadProducto"
+                               decimalPlaces="#{productoVenta.cantidadDecimales}"
+                               size="8"
+                               maxValue="999999999"
+                               thousandSeparator=""
+                               >
+                    <f:attribute name="detalle" value="#{productoVenta}" />
+                    <p:ajax event="keyup"
+                            process="@this"
+                            listener="#{ventaController.actualizarCantidad}" />
+                </p:inputNumber>
+            </p:column> 
+            <p:column headerText="Detalle" 
+                      class="tblVenta_Detalle">
+                <span>
+                    <h:outputText value="#{productoVenta.producto.nombre}"/>
+
+                    <h:outputText style="color: #007bff"
+                                  value=" - #{productoVenta.productoPadre.nombre}"/>
+
+                    <h:outputText style="color: #007bff"
+                                  value="  #{productoVenta.nombreTarifaVenta}"/>
+
+                </span>
+
+            </p:column>
+
+            <p:column headerText="Stock"
+                      class="tblVenta_Stock"
+                      style=" padding: 3px 3px;"
+                      >
+                <span>
+                    <h:outputText  value="#{productoVenta.stockDisponible}" style="color:#{productoVenta.stockDisponible eq 0?'ff0000':'000'}">
+                        <f:convertNumber pattern="#0.00###########"  locale="us" />
+                    </h:outputText>
+
+                </span>
+            </p:column>
+
+
+            <p:column headerText="P.Unit"
+                      class="tblVenta_PUnit"
+                      style=" padding: 3px 3px;"
+                      >
+                <span>
+                    <h:outputText value="#{productoVenta.precioUnitario}">
+                        <f:convertNumber pattern="#0.00###########" locale="us" />
+                    </h:outputText>
+                </span>
+            </p:column>
+            <p:column headerText="Total" 
+                      class="tblVenta_Total"
+                      >
+
+                <p:outputPanel style="color: red; font-style: italic"
+                               >
+                    Dsc.
+                    <p:outputLabel value="#{productoVenta.descuento}"
+                                   rendered="#{productoVenta.descuento > 0.00}">
+
+                    </p:outputLabel>
+                </p:outputPanel>
+                <strong> 
+                    <h:outputText id="lblTotalIncImpuestos" value="#{productoVenta.totalImpuestosAux.add(productoVenta.precioTotalAux)}">
+                        <f:convertNumber pattern="#0.00" locale="us" />
+                    </h:outputText>
+                </strong>
+
+            </p:column>
+
+            <p:column class="tblVenta_Borrar" >
+
+                <p:commandButton process="@this" 
+                                 icon="ui-icon-trash" 
+                                 styleClass="red-btn flat"
+                                 disabled="#{ventaDM.ordenVenta.estadoVenta eq 'GENERADA' or ventaDM.ordenVenta.estadoVenta eq 'ANULADO'}" 
+                                 action="#{ventaController.eliminarDetalleOrdenVenta(productoVenta)}" 
+                                 />
+            </p:column>
+
+
+            <f:facet name="footer">
+                <p:outputPanel styleClass="footer-productos-venta ui-g-12 ui-g-nopad" 
+                               style="height: 80%; width: calc(100% - 5px); display: inline-block;">
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important;">
+                            <p:outputLabel style="color: black !important" value="Valor bruto" />
+                        </div>
+
+                        <div class="ui-g-12 itemDetalle">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div>                        
+                    </div>
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                            <p:outputLabel style="color: black !important" value="Descuento" />
+                        </div>
+
+                        <div class="ui-g-12 itemDetalle">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div>                        
+                    </div>
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                            <p:outputLabel style="color: black !important" value="SubTotal" />
+                        </div>
+
+                        <div class="ui-g-12 itemDetalle">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div>                        
+                    </div>
+                                      <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                            <p:outputLabel style="color: black !important" value="Gravado" />
+                        </div>
+
+                        <div class="ui-g-12 itemDetalle">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div>                        
+                    </div>
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                            <p:outputLabel style="color: black !important; " value="IVA Total" />
+                        </div>
+
+                        <div class="ui-g-12 itemDetalle">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div>                        
+                    </div>
+
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 120px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                            <p:outputLabel style="color: black !important" value="IVA Servicios" />
+                        </div>
+
+                        <div class="ui-g-12 itemDetalle">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div>                        
+                    </div>
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; max-width: 60px; float: right">
+
+                        <div class="ui-g-12 ui-g-nopad" 
+                             style="font-family: 'Lucida Console', Monaco, monospace; 
+                             font-size:25px;
+                             height: 27px;
+                             text-align: right;
+                             color: black !important;
+                             line-height: 22px;
+                             ">
+                            <p:outputLabel value="Total" />
+                            <div style="float: right; color: black;">
+                                <h:outputText
+                                    value="0.00">
+                                    <f:convertNumber pattern="#0.00###########"  locale="us" />
+                                </h:outputText>
+                            </div>
+
+                        </div>                   
+                    </div>
+                    
+                </p:outputPanel>
+
+            </f:facet>
+
+        </p:dataTable>
+        
+    </p:outputPanel>
+
+</html>
+

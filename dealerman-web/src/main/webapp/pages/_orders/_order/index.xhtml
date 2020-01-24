@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/WEB-INF/template.xhtml">
+
+            <f:metadata>
+                <f:viewAction action="#{orderController.init()}"  />
+            </f:metadata>
+
+            <ui:define name="titulo">Facturar</ui:define>
+
+            <ui:define name="head">
+                <h:outputStylesheet name="topbarPrincipal.css" library = "css"/>
+                <h:outputStylesheet name="principal.css" library = "css"/>
+                <h:outputStylesheet name="formOrdenes.css" library = "css"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="form"
+                        prependId="false"
+                        onkeypress="if (event.keyCode === 13)
+                                    return false;"
+                        >
+
+                    <div class="content-topbar" style="width: 100%;
+                         position: fixed; top: 45px;
+                         background: white; z-index: 199;">
+                        <ui:include src="topbar.xhtml" />
+                    </div>
+                    <p:outputPanel class="ui-g" style="background-color: #A3E4D7;" id="content">
+                        <p:outputPanel class="ui-g-12">
+                            <div class="ui-g">
+                                <p:outputPanel class="ui-g-8 ui-l-8 ui-m-8 ui-xl-8 ui-s-8 ui-xs-8 ui-g-nopad">
+                                    <ui:include src="infoCliente.xhtml"/> 
+                                </p:outputPanel>
+                                <p:outputPanel class="ui-g-3 ui-l-3 ui-m-3 ui-xl-3 ui-s-3 ui-xs-3 ui-g-nopad">
+                                    NUMERO
+                                </p:outputPanel>  
+                                <p:outputPanel class="ui-g-8 ui-l-8 ui-m-8 ui-xl-8 ui-s-8 ui-xs-8 ui-g-nopad">
+                                    <ui:include src="infoAdicional.xhtml"/>
+                                </p:outputPanel>                                
+                                <p:outputPanel class="ui-g-8 ui-l-8 ui-m-8 ui-xl-8 ui-s-8 ui-xs-8 ui-g-nopad">
+                                    <ui:include src="tablaOrders.xhtml"/>
+                                    <ui:include src="infoNotas.xhtml"/>
+                                </p:outputPanel>
+                            </div>
+                        </p:outputPanel>
+                    </p:outputPanel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

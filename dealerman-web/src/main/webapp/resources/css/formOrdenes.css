@@ -1,0 +1,588 @@
+
+body .tablaProductosVenta .ui-datatable-footer{
+    padding: 0px;
+
+}
+
+body div.ui-widget-header{
+    background-color: #09745c;
+    border: 1px solid #09745c;
+}
+.ui-datatable tbody tr td {
+    line-height: 5px;
+}
+/*
+#eddie
+}*/
+
+
+.ui-datatable-scrollable-theadclone{
+    display: none !important;
+}
+
+.layout-wrapper .topbar ul.topbar-menu > li.search-item{
+    margin-top: -5px;
+    padding-top: 0;
+}
+#tablaProductos.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td, .tablaProductosVenta.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td, #tablaProductosCompra.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td{
+    font-size: 16px;
+    color: #B5B5B5;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 12px;
+}
+
+.ui-datatable tbody tr td {
+    line-height: 15px;
+}
+.ui-datatable-scrollable-theadclone{
+    display: none !important;
+}
+
+.tablaProductosVenta.ui-datatable.ui-datatable-scrollable thead tr th, #tablaProductos.ui-datatable.ui-datatable-scrollable thead tr th, #tablaProductosCompra.ui-datatable.ui-datatable-scrollable thead tr th {
+    background: #efefef;
+    padding: 0 12px;
+    border-bottom: 1px solid #d8d8d8;
+    border-top: 0px ;
+    border-left: 0px ;
+    border-right: 0px ;
+    color: #212F3D !important;
+    padding: 0 10px;
+}
+
+.ui-selectonemenu {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0px !important;
+}
+
+.ui-tabs-panel[data-index="0"] {
+    background-color: #C9F4E7;
+}
+
+.ui-tabs-panel[data-index="1"] {
+    background-color: #F6E9F2;
+}
+
+
+.ui-selectonemenu-label {
+    width: 100% !important;
+}
+
+@media screen and (max-width: 480px) {
+    /*xs*/
+    #tablaBusquedaClientes.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 430px);
+    }
+
+
+    i-datatable tbody tr td{
+        line-height: 10.5px;
+        font-size: 10.5px;
+    }
+    .tblProductos_Nombre{
+        width: 58%;
+    }
+    .tblProductos_Precio{
+        width: 10%;
+        text-align: center;
+    }
+    .tblProductos_Stock{
+        line-height: 9px;
+        font-size: 9px;
+        width: 12%;
+        text-align: center;
+    }
+    .productoInfoAdicional{
+        font-size: 9px;
+        line-height: 8px;
+    }
+    .tblProductos_Imagen img {
+        max-height: 38px;
+        max-width: 51px;
+        width: 51px;
+        height: 38px;
+    }
+    .tblProductos_Imagen {
+        width: 51px;
+    }
+    .tblProductos_Boton{
+        width: 35px;
+    }
+
+    body .tblProductos_Boton button.ui-button{
+        border-radius: 5px ;
+        width: 35px ;
+        height: 30px ;
+    }
+    .ui-datatable tbody tr td{
+        line-height: 10.5px;
+        font-size: 10.5px;
+    }
+    .tblProductos_Nombre{
+        width: 58%;
+    }
+    .tblProductos_Precio{
+        width: 10%;
+        text-align: center;
+    }
+    .tblProductos_Stock{
+        line-height: 9px;
+        font-size: 9px;
+        width: 12%;
+        text-align: center;
+    }
+    .productoInfoAdicional{
+        font-size: 9px;
+        line-height: 8px;
+    }
+    .tblProductos_Imagen img {
+        max-height: 38px;
+        max-width: 51px;
+        width: 51px;
+        height: 38px;
+    }
+    .tblProductos_Imagen {
+        width: 51px;
+    }
+    .tblProductos_Boton{
+        width: 35px;
+    }
+
+    body .tblProductos_Boton button.ui-button{
+        border-radius: 5px ;
+        width: 35px ;
+        height: 30px ;
+    }
+
+
+
+
+
+    /**/
+    .tblVenta_Cantidad{
+        width: 10%;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        padding-top:  0 !important;
+        padding-bottom: 0 !important;
+    }
+    .tblVenta_Cantidad input{
+        width: 70% !important;
+        height: 20px !important;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Detalle{
+        width: 60%;
+        line-height: 10px !important;
+        padding: 2px 2px !important;
+        font-size: 10px !important;
+    }
+    .tblVenta_PUnit{
+        width: 10%;
+        font-size: 10px !important;
+        text-align: right;
+    }
+
+    .tblVenta_Stock{
+        width: 10%;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Total{
+        width: 10%;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Borrar{
+        width: 35px;
+        text-align: right;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+    }
+
+    .tblVenta_Borrar button{
+        border-radius: 5px !important;
+        width: 35px !important;
+        height: 25px !important;
+    }
+
+    .reversar {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .totalesm {
+        font-size: 10px !important;
+    }
+    .totalesmg {
+        font-size: 14px !important;
+    }
+    #tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 330px);
+    }
+    .tablaGeneral.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 320px);
+    }
+    #tablaProductosVenta.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+        height: calc(100vh - 405px);
+    }
+
+
+    #tablaProductosCompra.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 300px);
+    }
+    #tablaProductosCompra.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+        height: calc(100vh - 375px);
+    }
+
+    #busquedaProductos{
+        width: calc(90% - 200px);
+    }
+
+    #busquedaProductosServicio{
+        width: calc(100% - 200px);
+    }
+
+}
+@media screen and (min-width: 480px) and (max-width: 768px){
+    /*s*/
+    #tablaBusquedaClientes.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 410px);
+    }
+    i-datatable tbody tr td{
+        line-height: 10.5px;
+        font-size: 10.5px;
+    }
+    .tblProductos_Nombre{
+        width: 58%;
+    }
+    .tblProductos_Precio{
+        width: 10%;
+        text-align: center;
+    }
+    .tblProductos_Stock{
+        line-height: 9px;
+        font-size: 9px;
+        width: 12%;
+        text-align: center;
+    }
+    .productoInfoAdicional{
+        font-size: 9px;
+        line-height: 8px;
+    }
+    .tblProductos_Imagen img {
+        max-height: 38px;
+        max-width: 51px;
+        width: 51px;
+        height: 38px;
+    }
+    .tblProductos_Imagen {
+        width: 51px;
+    }
+    .tblProductos_Boton{
+        width: 35px;
+    }
+
+    body .tblProductos_Boton button.ui-button{
+        border-radius: 5px ;
+        width: 35px ;
+        height: 30px ;
+    }
+    .ui-datatable tbody tr td{
+        line-height: 10.5px;
+        font-size: 10.5px;
+    }
+    .tblProductos_Nombre{
+        width: 58%;
+    }
+    .tblProductos_Precio{
+        width: 10%;
+        text-align: center;
+    }
+    .tblProductos_Stock{
+        line-height: 9px;
+        font-size: 9px;
+        width: 12%;
+        text-align: center;
+    }
+    .productoInfoAdicional{
+        font-size: 9px;
+        line-height: 8px;
+    }
+    .tblProductos_Imagen img {
+        max-height: 38px;
+        max-width: 51px;
+        width: 51px;
+        height: 38px;
+    }
+    .tblProductos_Imagen {
+        width: 51px;
+    }
+    .tblProductos_Boton{
+        width: 35px;
+    }
+
+    body .tblProductos_Boton button.ui-button{
+        border-radius: 5px ;
+        width: 35px ;
+        height: 30px ;
+    }
+
+
+
+
+    /**/
+    .tblVenta_Cantidad{
+        width: 10%;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        padding-top:  0 !important;
+        padding-bottom: 0 !important;
+    }
+    .tblVenta_Cantidad input{
+        width: 70% !important;
+        height: 20px !important;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Detalle{
+        width: 60%;
+        line-height: 10px !important;
+        padding: 2px 2px !important;
+        font-size: 10px !important;
+    }
+    .tblVenta_PUnit{
+        width: 10%;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Stock{
+        width: 10%;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Total{
+        width: 10%;
+        font-size: 10px !important;
+        text-align: right;
+    }
+    .tblVenta_Borrar{
+        width: 35px;
+        text-align: right;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+    }
+
+    .tblVenta_Borrar button{
+        border-radius: 5px !important;
+        width: 35px !important;
+        height: 25px !important;
+    }
+
+    .reversar {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .totalesm {
+        font-size: 10px !important;
+    }
+    .totalesmg {
+        font-size: 14px !important;
+    }
+    #tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 330px);
+    }
+
+    .tablaGeneral.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 320px);
+    }
+
+
+    #tablaProductosVenta.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+        height: calc(100vh - 405px);
+    }
+
+    #tablaProductosCompra.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 300px);
+    }
+    #tablaProductosCompra.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+        height: calc(100vh - 375px);
+    }
+
+
+    #busquedaProductosServicio{
+        width: calc(100% - 200px);
+    }
+}
+
+
+
+.tblVenta_Borrar button{
+    border-radius: 5px !important;
+    width: 35px !important;
+    height: 25px !important;
+}
+#tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(100vh - 270px);
+}
+
+.tablaGeneral.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(100vh - 300px);
+}
+
+
+#tablaProductosVenta.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+    height: calc(100vh - 345px);
+}
+
+#tablaProductosCompra.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(100vh - 240px);
+}
+#tablaProductosCompra.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+    height: calc(100vh - 315px);
+}
+#busquedaProductos{
+    width: calc(90% - 190px);
+}
+
+
+/*l*/
+.ui-datatable tbody tr td{
+    line-height: 12.5px;
+    font-size: 12px;
+}
+.tblProductos_Nombre{
+    width: 60%;
+}
+.tblProductos_Precio{
+    width: 10%;
+    text-align: center;
+}
+.tblProductos_Stock{
+    width: 10%;
+    text-align: center;
+}
+.productoInfoAdicional{
+    font-size: 10px;
+    line-height: 9px;
+}
+.tblProductos_Imagen img {
+    max-height: 42px;
+    max-width: 56px;
+    width: 56px;
+    height: 42px;
+}
+.tblProductos_Imagen {
+    width: 56px;
+}
+.tblProductos_Boton{
+    width: 45px;
+}
+
+body .tblProductos_Boton button.ui-button{
+    border-radius: 5px ;
+    width: 45px ;
+    height: 38px ;
+}
+
+
+
+
+.tblVenta_Borrar button{
+    border-radius: 5px !important;
+    width: 40px !important;
+    height: 35px !important;
+}
+#tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(100vh - 281px);
+}
+
+.tablaGeneral.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(100vh - 320px);
+}
+
+
+#tablaProductosVenta.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+    height: calc(100vh - 356px);
+}
+#tablaProductosCompra.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(100vh - 251px);
+}
+#tablaProductosCompra.ui-datatable.tarifas-true .ui-datatable-scrollable-body {
+    height: calc(100vh - 326px);
+}
+#busquedaProductos{
+    width: calc(90% - 160px);
+}
+
+#busquedaProductosServicio{
+    width: calc(100% - 160px);
+}  
+
+
+/**/
+.tblVenta_Cantidad{
+    width: 10%;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-top:  0 !important;
+    padding-bottom: 0 !important;
+}
+.tblVenta_Cantidad input{
+    width: 70% !important;
+    height: 25px !important;
+    font-size: 12px !important;
+    text-align: right;
+}
+.tblVenta_Detalle{
+    width: 60%;
+    line-height: 12px !important;
+    padding: 2px 2px !important;
+    font-size: 12px !important;
+}
+.tblVenta_PUnit{
+    width: 10%;
+    font-size: 12px !important;
+    text-align: right;
+}
+
+.tblVenta_Stock{
+    width: 10%;
+    font-size: 12px !important;
+    text-align: right;
+}
+.tblVenta_Total{
+    width: 10%;
+    font-size: 12px !important;
+    text-align: right;
+}
+.tblVenta_Borrar{
+    width: 40px;
+    text-align: right;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.tblVenta_Borrar button{
+    border-radius: 5px !important;
+    width: 40px !important;
+    height: 35px !important;
+}
+
+.tblVenta_Borrar button{
+    border-radius: 5px !important;
+    width: 50px !important;
+    height: 40px !important;
+}
+
+.tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {
+    height: calc(88vh - 284px);
+    background-color: #D6DBDF; 
+}

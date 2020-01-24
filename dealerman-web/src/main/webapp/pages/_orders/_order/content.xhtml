@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui">
+    <p:outputPanel id="contenido">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <!--Tipo de Identificación-->
+                <div class="ui-g">
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:outputLabel for="codProvince" 
+                                       value="Código provincia"
+                                       />
+                    </div>
+                    <div class="ui-inputgroup ui-g-12 itemDetalle">
+                        <p:inputText value="#{cantonsDM.canton.provinceId}" 
+                                     autocomplete="off"
+                                     id="codProvince" 
+                                     maxlength="2" 
+                                     style="width: 100%;"
+                                     required="true"/>
+                    </div>
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:outputLabel for="codCanton" 
+                                       value="Código cantón"
+                                       />
+                    </div>
+                    <div class="ui-inputgroup ui-g-12 itemDetalle">
+                        <p:inputText value="#{cantonsDM.canton.cantonId}" 
+                                     autocomplete="off"
+                                     id="codCanton" 
+                                     maxlength="2" 
+                                     style="width: 100%;"
+                                     required="true"/>
+                    </div>
+
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:outputLabel for="codName" 
+                                       value="Nombre cantón"
+                                       />
+                    </div>
+                    <div class="ui-inputgroup ui-g-12 itemDetalle">
+                        <p:inputText value="#{cantonsDM.canton.cantonName}" 
+                                     autocomplete="off"
+                                     id="codName" 
+                                     maxlength="50" 
+                                     style="width: 100%;"
+                                     required="true"/>
+                    </div>
+
+                    <p:commandButton value="Guardar" process="@this, form" 
+                                     update="form, message" 
+                                     class="boton" 
+                                     action="#{cantonsController.saveCantons()}" />  
+                </div>
+            </div>
+        </div>
+    </p:outputPanel>
+
+</html>

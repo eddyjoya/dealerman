@@ -1,0 +1,92 @@
+body div.ui-g-imagen{
+    width: calc(100% - 235px);
+}
+
+#tablaImpuestos .ui-datatable-scrollable-body{
+    height: calc(100vh - 220px);
+} 
+
+#tablaSecciones .ui-datatable-scrollable-body{
+    height: calc(100vh - 220px);
+} 
+
+#tablaSecciones .ui-datatable-scrollable-header{
+    display: none;
+} 
+
+.divSecundario.buscador .ui-datatable-scrollable-body{
+    height: calc(100vh - 450px);
+} 
+.divSecundario .ui-datatable-scrollable-body{
+    height: calc(100vh - 345px);
+}
+
+#tablaTarifas.divSecundario .ui-datatable-scrollable-body{
+    height: calc(100vh - 280px);
+}
+
+.tablaCombo .ui-datatable-scrollable-body{
+    height: calc(100vh - 470px);
+}
+.tablaCombo1 .ui-datatable-scrollable-body{
+    height: calc(100vh - 345px);
+}
+
+#tablaFormasPago .ui-datatable-scrollable-body{
+    height: calc(100vh - 345px);
+}
+
+#listaFormasPago_content{
+    padding: 0 !important;
+}
+
+#tablaFormasPago_head [role='columnheader']{
+    padding-top: 0 !important;
+    tablaFormaPago: 0 !important;
+}
+
+.highlight { background-color: red; }
+
+/*Numero de dias restantes licencia*/
+.apunto_caducar {
+    background-color: yellow !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+
+.caducado {
+    background-color: red !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+
+.dias_impagos {
+    background-color: yellow !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+
+@media screen and (max-width: 640px){
+    body div.ui-g-imagen{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    #tablaBusqueda.tbl-busqueda-clientes.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 360px);
+    }
+    .esframe #tablaBusqueda.tbl-busqueda-clientes.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 270px);
+    }
+}
+
+@media screen and (min-width: 960.1px) {
+    #tablaBusqueda.tbl-busqueda-clientes.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 240px);
+    }
+    
+    .esframe #tablaBusqueda.tbl-busqueda-clientes.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 140px);
+    }
+}

@@ -14,6 +14,7 @@ body .ui-inputfield[role='textbox']{
     -o-text-overflow: clip !important;
     text-overflow: clip !important;
     background: rgb(255,255,255);
+    width: 100%;
 }
 
 [role='textbox']:hover {
@@ -212,8 +213,17 @@ div[role='dialog']{
     min-width: 60px;
 }
 
+.ui-widget-content.ui-datatable-empty-message {
+    font-size: 16px;
+    color: #B5B5B5;
+    text-align: center;
+}
+
 @media screen and (max-width:480){
     /*xs*/
+    .tblBuscar.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 370px);
+    }
     .itemDetalle{
         padding-top: 8px !important;
         padding-bottom: 15px !important;
@@ -272,6 +282,9 @@ div[role='dialog']{
 }
 @media screen and (min-width:480px) and (max-width:768px){
     /*s*/
+    .tblBuscar.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 370px);
+    }
     .itemDetalle{
         padding-top: 8px !important;
         padding-bottom: 15px !important;
@@ -330,6 +343,9 @@ div[role='dialog']{
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     /*m*/
+    .tblBuscar.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 210px);
+    }
     .itemDetalle{
         padding-top: 8px !important;
         padding-bottom: 15px !important;
@@ -388,17 +404,20 @@ div[role='dialog']{
 
 @media screen and (min-width: 1025px)and (max-width: 1400px) {
     /*l*/
+    .tblBuscar.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 210px);
+    }
     .itemDetalle{
         padding-top: 8px !important;
         padding-bottom: 15px !important;
     }
     .itemDescripcion .ui-outputlabel{
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: bolder;
         color: #474747 !important;
     }
     body .ui-inputfield{
-        font-size: 14px;
+        font-size: 16px;
     }
     body .ui-inputfield[role='textbox']{
         padding: 1px 5px 1px 5px;
@@ -446,12 +465,16 @@ div[role='dialog']{
 }
 @media screen and (min-width: 1401px) { 
     /*xl*/
+    .tblBuscar.ui-datatable .ui-datatable-scrollable-body {
+        height: calc(100vh - 210px);
+    }
+
     .itemDetalle{
         padding-top: 9px !important;
         padding-bottom: 9px !important;
     }
     .itemDescripcion .ui-outputlabel{
-        font-size: 13px !important;
+        font-size: 15px !important;
         font-weight: bolder;
         color: #474747 !important;
     }
