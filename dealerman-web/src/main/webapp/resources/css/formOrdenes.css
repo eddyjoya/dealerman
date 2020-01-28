@@ -1,12 +1,13 @@
 
 body .tablaProductosVenta .ui-datatable-footer{
     padding: 0px;
-
+    width: 100%; 
 }
 
 body div.ui-widget-header{
     background-color: #09745c;
     border: 1px solid #09745c;
+    border: none !important;
 }
 .ui-datatable tbody tr td {
     line-height: 5px;

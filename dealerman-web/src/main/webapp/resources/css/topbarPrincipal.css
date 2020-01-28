@@ -14,6 +14,11 @@
     }
 }
 
+body div#divFooter{
+    display: flex;
+}
+
+
 .topbar .logo img{
     width: auto !important;
     height: 36px !important;
@@ -127,7 +132,7 @@ body .layout-wrapper .layout-main{
 
 @media screen and (max-width: 480px) {
     /*xs*/
-     .panelBotonesDer button{
+    .panelBotonesDer button{
         min-width: 45px !important;
     }
     .panelBotonesDer button .ui-icon{
@@ -138,6 +143,15 @@ body .layout-wrapper .layout-main{
     .panelBotonesDer button .ui-button-text{
         display: none !important;
     }
+    .panelBotonesDer button .ui-icon{
+        background-size: 38px 38px;
+        left: 0.8vw !important;
+        top:13px !important;
+    }
+    .panelBotonesDer button .ui-button-text{
+        display: none !important;
+    }
+
 
 }
 
@@ -154,7 +168,14 @@ body .layout-wrapper .layout-main{
     .panelBotonesDer button .ui-button-text{
         display: none !important;
     }
-
+    .panelBotonesDer button .ui-icon{
+        background-size: 38px 38px;
+        left: 1.1vw !important;
+        top:13px !important;
+    }
+    .panelBotonesDer button .ui-button-text{
+        display: none !important;
+    }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {

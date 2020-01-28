@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <p:dialog id="dlgBuscarCustomers" 
+              closeOnEscape="true" 
+              widgetVar="dlgBuscarCustomers" 
+              modal="true" 
+              responsive="true" 
+              dynamic="true">
+        <f:facet name="header">
+            <i class="fa fa-check-square-o"/>
+            <p:spacer width="15"/>
+            Buscar clientes
+        </f:facet>
+        <p:ajax event="close"
+                listener="#{orderController.closeBusquedaCustomers()}" />
+
+        <div class="ui-g-12 footer-center" style="padding: 0">
+            <div class="ui-g-4" style="padding: 0;">
+                <div class="ui-g-5" align="right">
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:outputLabel value="Busqueda por:" />
+                    </div>
+                </div>
+                <div class="ui-g-7" style="padding: 0; margin-top: -5px;">
+                    <div class="ui-g-12 itemDetalle">
+                        <p:selectOneMenu id="cbxBusqueda" required="true"
+                                         value="#{orderDM.busquedaCustomerSelect}" 
+                                         style="width: 100%;" 
+                                         >
+                            <f:selectItems value="#{orderDM.listaBusquedaCustomers}" />
+                            <p:ajax/>
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-7" style="padding: 0;">
+                <div class="ui-g-5" align="right">
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:outputLabel value="Que buscar:" />
+                    </div>
+                </div>
+                <div class="ui-g-7">
+                    <div class="ui-g-12 itemDescripcion">
+                        <p:inputText id="txtBusqueda" onclick="this.select()" 
+                                     value="#{orderDM.customerSelect.cedula}">
+                            <p:ajax event="keyup" 
+                                    process="@this, cbxBusqueda" 
+                                    update="tablaBusquedaCustomers"
+                                    listener="#{orderController.buscarCustomersAvanzado(orderDM.customerSelect.cedula)}"/>
+                        </p:inputText>
+                        <p:focus for="txtBusqueda"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-xs-12 ui-s-12 ui-m-12 ui-g-12 ui-l-12 ui-xl-12" >
+            <p:dataTable value="#{orderDM.listCustomers}"
+                         var="customer" 
+                         id="tablaBusquedaCustomers" 
+                         emptyMessage="No se ha encontrado registros"
+                         selectionMode="single"  
+                         rowKey="#{customer.customerId}"                         
+                         scrollable="true" 
+                         scrollRows="20" 
+                         liveScroll="true"
+                         class="tblBuscar"
+                         >
+
+                <p:ajax event="rowSelect"
+                        listener="#{orderController.onRowSelectCustomers}"
+                        update="pnlDatosCliente" 
+                        oncomplete="PF('dlgBuscarCustomers').hide();" />
+
+                <p:column headerText="Cédula o Ruc" colspan="2" style="background-color: #FFE5CC">
+                    <span style="font-size: 1.7vh; ">
+                        <h:outputText value="#{customer.cedula}" />
+                    </span>
+                </p:column>
+
+                <p:column headerText="Razón social" 
+                          sortBy="#{customer.companyName}" 
+                          colspan="3" >
+                    <span style="font-size:  1.7vh; font-weight: bold;">
+                        <h:outputText value="#{customer.companyName}" />
+                    </span>
+                </p:column>
+                <p:column headerText="Dirección" colspan="2" >
+                    <span style="font-size:  1.7vh;">
+                        <h:outputText value=" #{customer.address}" />
+                    </span>
+                </p:column>
+                <p:column headerText="Ciudad" colspan="1" >
+                    <span style="font-size:  1.7vh;">
+                        <h:outputText value=" #{customer.city}" />
+                    </span>
+                </p:column>
+                <p:column headerText="Deuda" colspan="1" >
+                    <span style="font-size:  1.7vh;">
+                        <h:outputText value="" />
+                    </span>
+                </p:column>
+            </p:dataTable>
+        </div> 
+
+        <div class="ui-g-12 footer-center">
+            <p:commandButton value="Aceptar" process="@this" 
+                             update="form, message" 
+                             icon="icon-aceptar"
+                             class="boton botonAceptar"/>  
+
+            <p:spacer width="15"/>
+            <p:commandButton value="Cancelar" process="@this" 
+                             icon="icon-cerrar"
+                             class="boton botonCancelar"
+                             onclick="PF('dlgBuscarCustomers').hide()"  />  
+        </div>
+    </p:dialog>
+</html>

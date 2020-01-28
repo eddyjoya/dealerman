@@ -106,102 +106,113 @@
 
 
             <f:facet name="footer">
-                <p:outputPanel styleClass="footer-productos-venta ui-g-12 ui-g-nopad" 
-                               style="height: 80%; width: calc(100% - 5px); display: inline-block;">
+                <p:outputPanel styleClass="ui-g-12 ui-g-nopad" 
+                               style=" 
+                               background-color: #09745c;
+                               border-style: ridge;
+                               display: inline-table;">
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
-                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important;">
                             <p:outputLabel style="color: black !important" value="Valor bruto" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
                                 <f:convertNumber pattern="#0.00######" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
-                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important" value="Descuento" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
                                 <f:convertNumber pattern="#0.00######" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
-                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important" value="SubTotal" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
                                 <f:convertNumber pattern="#0.00######" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
-                                      <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
-                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 65px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
+       
+                        </div>
+                    </div>
+
+                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important" value="Gravado" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
                                 <f:convertNumber pattern="#0.00######" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
+
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
-                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important; " value="IVA Total" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
                                 <f:convertNumber pattern="#0.00######" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
 
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 120px;">
-                        <div class="ui-g-12 itemDescripcion" style="margin-top: 2px !important">
+                        <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important" value="IVA Servicios" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: black !important">
+                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
                                 <f:convertNumber pattern="#0.00######" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
-                    <div class="ui-g-6 ui-g-nopad" style="height: 100%; max-width: 60px; float: right">
 
-                        <div class="ui-g-12 ui-g-nopad" 
-                             style="font-family: 'Lucida Console', Monaco, monospace; 
-                             font-size:25px;
-                             height: 27px;
-                             text-align: right;
-                             color: black !important;
-                             line-height: 22px;
-                             ">
-                            <p:outputLabel value="Total" />
-                            <div style="float: right; color: black;">
-                                <h:outputText
-                                    value="0.00">
-                                    <f:convertNumber pattern="#0.00###########"  locale="us" />
-                                </h:outputText>
-                            </div>
-
-                        </div>                   
+                    <div class="ui-g-6 ui-g-nopad"  style="height: 100%; width: 100px; float: right;">
+                        <div class="ui-g-12 ui-g-nopad" style="
+                             font-family: 'Lucida Console', Monaco, monospace; 
+                             font-size:1.9em;
+                             font-weight: bolder; 
+                             text-align: center;
+                             color: black !important;">
+                            <p:outputLabel style="color: black !important" value="TOTAL" />
+                        </div>
+                        <div class="ui-g-12 ui-g-nopad" style="margin-top: -6px !important;
+                             font-family: 'Lucida Console', Monaco, monospace; 
+                             font-size:1.9em;
+                             font-weight: bolder; 
+                             text-align: center;
+                             color: black !important;">
+                            <p:outputLabel value="0.00" style="color: white !important">
+                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            </p:outputLabel>
+                        </div> 
                     </div>
-                    
+
                 </p:outputPanel>
 
             </f:facet>
 
         </p:dataTable>
-        
+
     </p:outputPanel>
 
 </html>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dealerman.orders;
 
 import com.dealerman.configuration.CategoryDeudor;
@@ -531,10 +526,18 @@ public class Customers implements Serializable {
         if (!Objects.equals(this.CantonsProvinceFK, other.CantonsProvinceFK)) {
             return false;
         }
-        if (!Objects.equals(this.citiesFK, other.citiesFK)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.citiesFK, other.citiesFK);
+    }
+
+    public Customers(String customerId, String companyName) {
+        this.customerId = customerId;
+        this.companyName = companyName;
+    }
+
+    public Customers(String customerId, String companyName, String contactName) {
+        this.customerId = customerId;
+        this.companyName = companyName;
+        this.contactName = contactName;
     }
 
     public String getCompanyId() {

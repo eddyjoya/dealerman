@@ -124,6 +124,11 @@ body .ui-dialog .ui-dialog-content{
     padding: 5px;
 }
 
+.footer-center{
+    background-color: #BDC7C7; 
+    text-align: center;
+}
+
 .ui-dialog-titlebar-icon.ui-dialog-titlebar-close, .ui-lightbox .ui-lightbox-caption a.ui-lightbox-close{
     display: block;
     width: 40px;
@@ -200,9 +205,13 @@ div[role='dialog']{
     width: calc( 100% - 42px );
     padding-left: 40px !important; 
     padding-top: 8px !important; 
-    font-size: 1.25vw !important; 
+    font-size: 1.15vw !important; 
 }
 
+.boton .ui-icon {
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+}
 .boton{
     width: 10vw !important;
     height: 46px !important;
@@ -213,6 +222,41 @@ div[role='dialog']{
     min-width: 60px;
 }
 
+
+
+button .icon-aceptar{
+    background-image: url("#{resource['images/button/icon-aceptar.png']}") !important;
+}
+button:hover .icon-aceptar{
+    background-image: url("#{resource['images/button/icon-aceptar.png']}") !important;
+}
+
+button .icon-cerrar{
+    background-image: url("#{resource['images/button/icon-cerrar.png']}") !important;
+}
+button:hover .icon-cerrar{
+    background-image: url("#{resource['images/button/icon-cerrar.png']}") !important;
+}
+
+.boton.botonEliminar, .boton.botonCancelar {
+    background-color:  rgb(165, 83, 1) !important;
+}
+.boton.botonEliminar:hover, .boton.botonCancelar:hover {
+    background-color: rgb(106, 53, 1) !important;
+}
+
+.boton.botonGuardar, .boton.botonAceptar {
+    background-color:  rgb(27, 129, 0) !important;
+}
+.boton.botonGuardar:hover, .boton.botonAceptar:hover {
+    background-color: rgb(23, 97, 3) !important;
+}
+
+
+
+body:after{
+    display: none; url("#{resource['images/button/icon-aceptar.png']}") background-image: url("#{resource['images/button/icon-cerrar.png']}");
+}
 .ui-widget-content.ui-datatable-empty-message {
     font-size: 16px;
     color: #B5B5B5;
@@ -226,7 +270,7 @@ div[role='dialog']{
     }
     .itemDetalle{
         padding-top: 8px !important;
-        padding-bottom: 15px !important;
+        padding-bottom: 5px !important;
     }
     body .ui-inputfield{
         font-size: 11.5px;
@@ -237,7 +281,7 @@ div[role='dialog']{
         color: #474747 !important;
     }
     body .ui-inputfield[role='textbox']{
-        padding: 3px 5px 3px 5px;
+        padding: 1px 8px 5px 8px;
     }
     [role='combobox']{
         padding: 2px 0px 2px 5px !important;
@@ -287,7 +331,7 @@ div[role='dialog']{
     }
     .itemDetalle{
         padding-top: 8px !important;
-        padding-bottom: 15px !important;
+        padding-bottom: 5px !important;
     }
     .itemDescripcion .ui-outputlabel{
         font-size: 10px !important;
@@ -298,7 +342,7 @@ div[role='dialog']{
         font-size: 12px;
     }
     body .ui-inputfield[role='textbox']{
-        padding: 3px 5px 3px 5px;
+        padding: 1px 8px 5px 5px;
     }
     [role='combobox']{
         padding: 2px 0px 2px 5px !important;
@@ -348,18 +392,19 @@ div[role='dialog']{
     }
     .itemDetalle{
         padding-top: 8px !important;
-        padding-bottom: 15px !important;
+        padding-bottom: 5px !important;
     }
     .itemDescripcion .ui-outputlabel{
         font-size: 13px !important;
         font-weight: bolder;
         color: #474747 !important;
     }
+
     body .ui-inputfield{
-        font-size: 15px;
+        font-size: 12px;
     }
-    boy .ui-inputfield[role='textbox']{
-        padding: 0px 5px 0px 5px;
+    body .ui-inputfield[role='textbox']{
+        padding: 1px 8px 5px 5px;
     }
     [role='combobox']{
         padding: 2px 0px 2px 5px !important;
@@ -409,7 +454,7 @@ div[role='dialog']{
     }
     .itemDetalle{
         padding-top: 8px !important;
-        padding-bottom: 15px !important;
+        padding-bottom: 5px !important;
     }
     .itemDescripcion .ui-outputlabel{
         font-size: 15px !important;
@@ -420,7 +465,7 @@ div[role='dialog']{
         font-size: 16px;
     }
     body .ui-inputfield[role='textbox']{
-        padding: 1px 5px 1px 5px;
+        padding: 1px 8px 1px 5px;
     }
     [role='combobox']{
         padding: 2px 0px 2px 5px !important;
@@ -471,7 +516,7 @@ div[role='dialog']{
 
     .itemDetalle{
         padding-top: 9px !important;
-        padding-bottom: 9px !important;
+        padding-bottom: 5px !important;
     }
     .itemDescripcion .ui-outputlabel{
         font-size: 15px !important;
@@ -479,7 +524,7 @@ div[role='dialog']{
         color: #474747 !important;
     }
     body .ui-inputfield[role='textbox']{
-        padding: 2px 5px 2px 5px;
+        padding: 1px 8px 5px 6px;
     }
     [role='combobox']{
         padding: 2px 0px 2px 5px !important;
