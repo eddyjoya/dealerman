@@ -2,76 +2,149 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:outputPanel id="pnlDatosCliente" class="ui-g-12" style="padding: 0; margin-top: -5px; height: 75px;">
-        <div class="ui-g-2" align="left">
+    <p:outputPanel id="pnlDatosCliente" class="ui-g-12" 
+                   style="padding: 0; margin-top: 4px; height: 71px; width: 110%;">
+        <div class="ui-g-2" align="center" style="width: 13%">            
             <div class="ui-g-12 itemDescripcion">
                 <p:outputLabel value="Fecha"/>
             </div>
             <div class="ui-g-12 itemDetalle">
-                <p:inputText style="color: black !important; width: 100%" 
+                <p:inputText style="color: black !important; width: 100%; text-align: center;" 
                              disabled="true"
                              value="#{orderDM.order.orderDate}">
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </p:inputText>
             </div>
         </div>
-        <div class="ui-g-10" style=" padding: 0; height: 100%; border: 1px  rgb(200,200,200) solid">  
-            <div id="datosCliente_content"  class="ui-g ui-g-nopad"
-                 style="height: 100%;">
-                <div class="ui-g-12" style="height: calc(100% / 3); padding-top: 0px; margin-top: -8px; ">
-                    <div class="ui-g-3 itemDescripcion" align="center">
-                        <br/>
-                        <p:outputLabel style="font-weight: bold; padding: 0" value="Cédula o ruc"/>
-                    </div>
-                    <div class="ui-g-6">
-                        <p:inputText  value="#{orderDM.customerSelect.companyName}"/> 
-                    </div>
-                    <div class="ui-g-3">
-                        <p:inputText  value="#{orderDM.customerSelect.city}"/> 
-                    </div>
-                </div>
-                <div class="ui-g-12" style="height: calc(100% / 3); padding-top: 0; margin-top: -12px;">
-                    <div class="ui-g-3">
-                        <p:inputText id="txtRuc" 
-                                     value="#{orderDM.customerSelect.cedula}"
-                                     onkeypress="if (event.keyCode === 13) {
-                                                 $('#btnBuscarCustomersDialogo').click();
-                                                 $('#tablaBusquedaCustomers').focus();
-                                                 return false;
-                                             }"  />
-                        <p:commandLink id="btnBuscarCustomersDialogo"   
-                                       update="dlgBuscarCustomers" 
-                                       process="@this, txtRuc"
-                                       action="#{orderController.buscarCustomers(orderDM.customerSelect.cedula)}"/>
-                    </div>
-                    <div class="ui-g-6">
-                        <p:inputText  value="#{orderDM.customerSelect.address}"/> 
-                    </div>
-                    <div class="ui-g-3">
-                        <p:inputText  value="#{orderDM.customerSelect.country}"/> 
-                    </div>
-                </div>
-
-                <div class="ui-g-12" style="height: calc(100% / 3); padding-top: 0px; margin-top:-13px;">
-                    <div class="ui-g-3">
-                        <p:inputText  value="#{orderDM.customerSelect.customerId}"/> 
-                    </div>
-                    <div class="ui-g-9">
-                        <p:inputText  value="#{orderDM.customerSelect.eMaile}"/> 
-                    </div>
+        <div class="ui-g-10" style=" padding: 0; 
+             height: 100%; border: 1px  rgb(62,65,65) solid;
+             background-color: #C9CFCF;">  
+            <div class="ui-g-1" style="padding: 0; width: 6%;">
+                <div id="datosCliente_content" 
+                     class="ui-g ui-g-nopad" 
+                     style="width: calc(115%); margin-top: 7px;" align="center">
+                    <div class=" ui-g-12 icon-user" />
                 </div>
             </div>
-            <div class="ui-g-12 ui-g-nopad" style="height: 100%;">
+            <div class="ui-g-9" style="padding: 0; width: 94%;" >
+                <div id="datosCliente_content"  class="ui-g ui-g-nopad"
+                     style="height: 100%; margin-left: -1px; ">
+                    <div class="ui-g-12" style="height: calc(100% / 3); 
+                         padding: 0px; margin-top: -5px; width: 100% ">
+                        <div class="ui-g-3 itemDescripcion" align="center" style="width: 18%">
+                            <br/>
+                            <p:outputLabel style="font-weight: bold; padding: 0" value="Código cliente"/>
+                        </div>
+                        <div class="ui-g-6" style="width: 61%;" >
+                            <p:inputText 
+                                onkeypress="if (event.keyCode === 13) {
+                                            $('#btnGuardarCustomers').click();
+                                            return false;
+                                        }"
+                                tabindex="2"
+                                disabled="#{orderDM.editCustomers}"  
+                                style="font-weight: bold; color: black !important; "
+                                placeholder="Nombre cliente"
+                                required="true"
+                                value="#{orderDM.customerSelect.companyName}"/> 
+                        </div>
+                        <div class="ui-g-3" style="width: 19.5%">
+                            <p:inputText 
+                                onkeypress="if (event.keyCode === 13) {
+                                            $('#btnGuardarCustomers').click();
+                                            return false;
+                                        }"
+                                style="color: black !important;" 
+                                disabled="#{orderDM.editCustomers}"  
+                                placeholder="Ciudad" 
+                                value="#{orderDM.customerSelect.city}"/> 
+                        </div>
+                    </div>
+                    <div class="ui-g-12" style="height: calc(100% / 3); 
+                         padding: 0px;  margin-top: -18px; width: 100%;">
+                        <div class="ui-g-3"  style="width: 18%">
+                            <p:inputText id="txtRuc" 
+                                         value="#{orderDM.customerSelect.customerId}"
+                                         placeholder="Código" 
+                                         autocomplete="false" 
+                                         required="true" 
+                                         tabindex="1"
+                                         onkeypress="if (event.keyCode === 13) {
+                                                     $('#btnBuscarCustomersDialogo').click();
+                                                     $('#tablaBusquedaCustomers').focus();
+                                                     return false;
+                                                 }"  />
+                            <p:commandLink id="btnBuscarCustomersDialogo"   
+                                           update="dlgBuscarCustomers, message" 
+                                           process="@this, txtRuc"
+                                           action="#{orderController.buscarCustomers(orderDM.customerSelect.customerId)}"/>
+                        </div>
+                        <div class="ui-g-6" style="width: 61%">
+                            <p:inputText  
+                                onkeypress="if (event.keyCode === 13) {
+                                            $('#btnGuardarCustomers').click();
+                                            return false;
+                                        }"
+                                tabindex="3"
+                                style="color: black !important;" 
+                                disabled="#{orderDM.editCustomers}"
+                                required="true"
+                                placeholder="Dirección" 
+                                value="#{orderDM.customerSelect.address}"/> 
+                        </div>
+                        <div class="ui-g-3" style="width: 19.5%">
+                            <p:inputText  
+                                onkeypress="if (event.keyCode === 13) {
+                                            $('#btnGuardarCustomers').click();
+                                            return false;
+                                        }"
+                                style="color: black !important;" 
+                                disabled="#{orderDM.editCustomers}"  
+                                placeholder="Pais"
+                                value="#{orderDM.customerSelect.country}"/> 
+                        </div>
+                    </div>
 
+                    <div class="ui-g-12" style="height: calc(100% / 3); 
+                         padding: 0px; margin-top:-18px;">
+                        <div class="ui-g-3" style="width: 18%">
+                            <p:inputText 
+                                required="true" 
+                                disabled="true"
+                                placeholder="Cédula o Ruc" 
+                                style=" font-weight: bolder; color: black !important;"
+                                value="#{orderDM.customerSelect.cedula}"/> 
+                        </div>
+                        <div class="ui-g-9" style="width: 61%">
+                            <p:inputText style="color: black !important;" 
+                                         onkeypress="if (event.keyCode === 13) {
+                                                     $('#btnGuardarCustomers').click();
+                                                     return false;
+                                                 }"
+                                         tabindex="4"
+                                         placeholder="Correo electrónico" 
+                                         required="true" 
+                                         disabled="#{orderDM.editEmail}"  
+                                         value="#{orderDM.customerSelect.eMail}"/> 
 
+                        </div>
+                        <div class="ui-g-3" style="width: 19.5%">
+                            <p:inputText  style="color: black !important;"
+                                          onkeypress="if (event.keyCode === 13) {
+                                                      $('#btnGuardarCustomers').click();
+                                                      return false;
+                                                  }"
+                                          placeholder="Teléfono" 
+                                          tabindex="5" 
+                                          required="true" 
+                                          disabled="#{orderDM.editCustomers}"  
+                                          value="#{orderDM.customerSelect.phone}"/> 
+                        </div>
+                    </div>
+                </div>   
             </div>
         </div>  
-        <div class="ui-g-12 ui-g-nopad" style="width: 50px; float: right;">
-
-        </div>
-        <div class="ui-g-12 ui-g-nopad" style="width: 50px; float: right;">
-
-        </div>
 
     </p:outputPanel>  
+
 </html>

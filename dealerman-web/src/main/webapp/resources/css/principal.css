@@ -85,8 +85,9 @@ body div.ui-g-imagen{
     #tablaBusqueda.tbl-busqueda-clientes.ui-datatable .ui-datatable-scrollable-body {
         height: calc(100vh - 240px);
     }
-    
+
     .esframe #tablaBusqueda.tbl-busqueda-clientes.ui-datatable .ui-datatable-scrollable-body {
         height: calc(100vh - 140px);
     }
 }
+

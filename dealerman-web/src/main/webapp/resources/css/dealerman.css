@@ -17,6 +17,17 @@ body .ui-inputfield[role='textbox']{
     width: 100%;
 }
 
+.icon-user {
+    width: 50px;
+    height: 50px;
+    background-color: #2D5C5C;
+    -webkit-mask: url("#{resource['images/user.svg']}");
+    mask: url("#{resource['images/user.svg']}");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+
 [role='textbox']:hover {
     background: rgba(252,252,252,1);
     -webkit-box-shadow: 0 0 1px 0 rgba(0,0,0,0.74) inset;
@@ -144,6 +155,9 @@ body .ui-dialog .ui-dialog-content{
 .ui-calendar input{
     width: 95% !important;
 }
+body .ui-inputfield{
+    font-size: 11.5px;
+}
 
 .tituloGris{
     padding: 0 !important;
@@ -198,6 +212,7 @@ div[role='dialog']{
     width: 42px;
     height: 42px;
     top: 12px !important;
+    left: 18px;
 }
 
 .boton .ui-button-text{
@@ -401,7 +416,7 @@ body:after{
     }
 
     body .ui-inputfield{
-        font-size: 12px;
+        font-size: 13px;
     }
     body .ui-inputfield[role='textbox']{
         padding: 1px 8px 5px 5px;
@@ -462,7 +477,7 @@ body:after{
         color: #474747 !important;
     }
     body .ui-inputfield{
-        font-size: 16px;
+        font-size: 14px;
     }
     body .ui-inputfield[role='textbox']{
         padding: 1px 8px 1px 5px;

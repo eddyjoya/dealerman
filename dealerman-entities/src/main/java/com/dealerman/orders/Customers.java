@@ -102,7 +102,7 @@ public class Customers implements Serializable {
     @Column(name = "fax", columnDefinition = "varchar(24)", nullable = true)
     private String fax;
     @Column(name = "e_maile", columnDefinition = "text", nullable = true)
-    private String eMaile;
+    private String eMail;
     @Column(name = "e_mail1", columnDefinition = "text", nullable = true)
     private String eMail1;
     @Column(name = "e_mail2", columnDefinition = "text", nullable = true)
@@ -254,7 +254,7 @@ public class Customers implements Serializable {
         hash = 29 * hash + Objects.hashCode(this.country);
         hash = 29 * hash + Objects.hashCode(this.phone);
         hash = 29 * hash + Objects.hashCode(this.fax);
-        hash = 29 * hash + Objects.hashCode(this.eMaile);
+        hash = 29 * hash + Objects.hashCode(this.eMail);
         hash = 29 * hash + Objects.hashCode(this.eMail1);
         hash = 29 * hash + Objects.hashCode(this.eMail2);
         hash = 29 * hash + Objects.hashCode(this.description);
@@ -373,7 +373,7 @@ public class Customers implements Serializable {
         if (!Objects.equals(this.fax, other.fax)) {
             return false;
         }
-        if (!Objects.equals(this.eMaile, other.eMaile)) {
+        if (!Objects.equals(this.eMail, other.eMail)) {
             return false;
         }
         if (!Objects.equals(this.eMail1, other.eMail1)) {
@@ -529,9 +529,9 @@ public class Customers implements Serializable {
         return Objects.equals(this.citiesFK, other.citiesFK);
     }
 
-    public Customers(String customerId, String companyName) {
+    public Customers(String customerId, String cedula) {
         this.customerId = customerId;
-        this.companyName = companyName;
+        this.cedula = cedula;
     }
 
     public Customers(String customerId, String companyName, String contactName) {
@@ -788,12 +788,12 @@ public class Customers implements Serializable {
         this.fax = fax;
     }
 
-    public String geteMaile() {
-        return eMaile;
+    public String geteMail() {
+        return eMail;
     }
 
-    public void seteMaile(String eMaile) {
-        this.eMaile = eMaile;
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     public String geteMail1() {

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui">
+    <p:outputPanel id="botonesCustomers"  class="ui-g-12" > 
+        <div class="ui-g-6" align="right">
+            <p:commandButton  rendered="#{!orderDM.editCustomers}"
+                              id="btnGuardarCustomers"
+                              style="width: 10% !important" 
+                              process="@this, pnlDatosCliente" 
+                              update="pnlDatosCliente,botonesCustomers, message" 
+                              icon="icon-aceptar"
+                              action="#{orderController.guardarCustomers()}"
+                              class="boton botonAceptar"/> 
+            <p:tooltip for="btnGuardarCustomers" 
+                       value="Guardar nuevo cliente" 
+                       showEffect="clip" hideEffect="explode" position="right"/>
+        </div>
+        <div class="ui-g-6" align="left">
+            <p:commandButton  rendered="#{!orderDM.editCustomers}"
+                              id="btnCancelarCustomers"
+                              style="width: 10% !important" 
+                              process="@this" 
+                              update="pnlDatosCliente, botonesCustomers" 
+                              icon="icon-cerrar"
+                              resetValues="true" 
+                              action="#{orderController.cancelarCustomers()}"
+                              class="boton botonCancelar"/> 
+            <p:tooltip for="btnCancelarCustomers" 
+                       value="Cancelar ingreso de nuevo cliente" 
+                       showEffect="clip" hideEffect="explode" position="right"/>
+        </div>
+    </p:outputPanel>
+</html>

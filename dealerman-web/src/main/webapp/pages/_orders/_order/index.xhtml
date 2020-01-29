@@ -34,17 +34,20 @@
                         <ui:include src="topbar.xhtml" />
                     </div>
                     <p:outputPanel class="ui-g" style="background-color: #BDE9EE;" id="content">
-                        <p:outputPanel class="ui-g-12">
-                            <div class="ui-g">
+                        <p:outputPanel class="ui-g-12" style="padding: 0">
+                            <div class="ui-g" >
                                 <p:outputPanel class="ui-g-7 ui-l-7 ui-m-7 ui-xl-7 ui-s-7 ui-xs-7 ui-g-nopad">
                                     <ui:include src="infoCliente.xhtml"/> 
                                 </p:outputPanel>
-                                <p:outputPanel class="ui-g-2 ui-l-2 ui-m-2 ui-xl-2 ui-s-2 ui-xs-2 ui-g-nopad">
-
+                                <p:outputPanel class="ui-g-2 ui-l-2 ui-m-2 ui-xl-2 ui-s-2 ui-xs-2 ui-g-nopad"
+                                               style="margin-left: 10px;">
+                                    <div class="ui-g">
+                                        <ui:include src="_botones/botonesCustomers.xhtml"/> 
+                                    </div>
                                 </p:outputPanel>  
-                                <p:outputPanel class="ui-g-3 ui-l-3 ui-m-3 ui-xl-3 ui-s-3 ui-xs-3 ui-g-nopad">
+                                <p:outputPanel style="margin-left: -10px;" class="ui-g-3 ui-l-3 ui-m-3 ui-xl-3 ui-s-3 ui-xs-3 ui-g-nopad" >
                                     <div class="ui-g-12" style="height: calc(100% / 2); width: 100%; 
-                                         padding: 0; margin-top: -13px; ">
+                                         padding: 0; margin-top: -6px; ">
                                         <div class="ui-g-3 itemDescripcion" style="padding: 0;" align="right">
                                             <br/>
                                             <p:outputLabel style="font-weight: bold; padding: 0" value="Número"/>
@@ -61,7 +64,7 @@
                                         </div>
                                     </div>
                                     <div class="ui-g-12" style="height: calc(100% / 2); 
-                                         padding: 0; margin-top: -12px; ">
+                                         padding: 0; margin-top: -18px; ">
                                         <div class="ui-g-7 itemDescripcion" style="padding: 0;" align="right">
                                             <br/>
                                             <p:outputLabel style="font-weight: bold; padding: 0" value="Pedido Nº "/>
@@ -101,7 +104,7 @@
                                 </p:outputPanel>
                             </div>
                             <div class="ui-g">
-                                <p:outputPanel class="ui-g-8 ui-l-8 ui-m-8 ui-xl-8 ui-s-8 ui-xs-8 ui-g-nopad">
+                                <p:outputPanel class="ui-g-9 ui-l-9 ui-m-9 ui-xl-9 ui-s-9 ui-xs-9 ui-g-nopad">
                                     <ui:include src="tablaOrders.xhtml"/>
                                     <ui:include src="infoNotas.xhtml"/>
                                 </p:outputPanel>

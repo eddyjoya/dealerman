@@ -45,11 +45,11 @@
                 <div class="ui-g-7">
                     <div class="ui-g-12 itemDescripcion">
                         <p:inputText id="txtBusqueda" onclick="this.select()" 
-                                     value="#{orderDM.customerSelect.cedula}">
+                                     value="#{orderDM.customerSelect.customerId}">
                             <p:ajax event="keyup" 
                                     process="@this, cbxBusqueda" 
                                     update="tablaBusquedaCustomers"
-                                    listener="#{orderController.buscarCustomersAvanzado(orderDM.customerSelect.cedula)}"/>
+                                    listener="#{orderController.buscarCustomersAvanzado(orderDM.customerSelect.customerId)}"/>
                         </p:inputText>
                         <p:focus for="txtBusqueda"/>
                     </div>
@@ -72,7 +72,7 @@
 
                 <p:ajax event="rowSelect"
                         listener="#{orderController.onRowSelectCustomers}"
-                        update="pnlDatosCliente" 
+                        update="pnlDatosCliente, message" 
                         oncomplete="PF('dlgBuscarCustomers').hide();" />
 
                 <p:column headerText="Cédula o Ruc" colspan="2" style="background-color: #FFE5CC">

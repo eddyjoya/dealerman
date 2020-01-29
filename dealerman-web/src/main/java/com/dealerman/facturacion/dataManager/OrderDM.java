@@ -20,6 +20,24 @@ public class OrderDM {
     private Customers customerSelect;
     private BusquedaCustomers[] listaBusquedaCustomers;
     private BusquedaCustomers busquedaCustomerSelect;
+    private boolean editCustomers = true;
+    private boolean editEmail = true;
+
+    public boolean isEditCustomers() {
+        return editCustomers;
+    }
+
+    public void setEditCustomers(boolean editCustomers) {
+        this.editCustomers = editCustomers;
+    }
+
+    public boolean isEditEmail() {
+        return editEmail;
+    }
+
+    public void setEditEmail(boolean editEmail) {
+        this.editEmail = editEmail;
+    }
 
     public Orders getOrder() {
         return order;
