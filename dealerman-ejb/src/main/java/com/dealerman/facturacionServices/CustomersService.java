@@ -1,9 +1,22 @@
 package com.dealerman.facturacionServices;
 
+import com.dealerman.configuration.CategoryDeudor;
+import com.dealerman.configurationDaoUI.ICategoryDeudorDao;
+import com.dealerman.enumerator.BusquedaCustomersEnum;
+import com.dealerman.enumerator.CategoryDeudorEnum;
+import com.dealerman.enumerator.CreditTermsEnum;
 import com.dealerman.exceptions.EntidadNoGrabadaException;
 import com.dealerman.facturacionDaoUI.ICustomersDao;
+import com.dealerman.facturacionDaoUI.ISalesmenDao;
 import com.dealerman.orders.Customers;
 import com.dealerman.facturacionServicesUI.ICustomersService;
+import com.dealerman.general.CreditTerms;
+import com.dealerman.generalDaoUI.ICreditTermsDao;
+import com.dealerman.orders.Salesmen;
+import com.dealerman.utils.UtilsGlobal;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,6 +30,12 @@ public class CustomersService implements ICustomersService {
 
     @EJB
     ICustomersDao customersDao;
+    @EJB
+    ICategoryDeudorDao categoryDeudorDao;
+    @EJB
+    ISalesmenDao salesmenDao;
+    @EJB
+    ICreditTermsDao creditTermsDao;
 
     @Override
     public List<Customers> buscar(Customers customers) {
@@ -40,6 +59,37 @@ public class CustomersService implements ICustomersService {
     @Override
     public void guardarCustomers(Customers customer) throws EntidadNoGrabadaException {
         validateInfoCustomers(customer);
+        CategoryDeudor categoryDeudorEncontrado = categoryDeudorDao.buscar(new CategoryDeudor(CategoryDeudorEnum.CLIENTES.getAplicacion(), CategoryDeudorEnum.CLIENTES.getNombre())).get(0);
+        Salesmen salesmenEncontrado = salesmenDao.buscar(new Salesmen()).get(0);//??
+        CreditTerms crediTermsEncontrado = creditTermsDao.buscar(new CreditTerms(CreditTermsEnum.CONTADO.getNombre())).get(0);
+
+        customer.setCategoryId(categoryDeudorEncontrado.getCategoryId());
+        customer.setAplicacion(categoryDeudorEncontrado.getAplicacion());
+        customer.setCarNumber(BigDecimal.ZERO);
+        customer.setLocalId(customer.getBranchSelect().getLocalId());//?
+        customer.setIssueId(customer.getBranchSelect().getIssueId());//?
+        customer.setCompanyId(customer.getBranchSelect().getCompany().getCompanyId());
+        customer.setCreated(new Date());
+        customer.setDemanda(BigDecimal.ZERO);
+        customer.setMaximun(BigDecimal.ZERO);
+        customer.setMinimun(BigDecimal.ZERO);
+        customer.setUnlocked(true);
+        customer.setCompany(false);
+        customer.setPassport(false);
+        customer.setShipToNo(BigDecimal.ONE);
+        customer.setCreditCard(false);
+        customer.setSupplierTerms(BigDecimal.ZERO);
+        customer.setMaxOrderAmt(BigDecimal.ZERO);
+        customer.setMinOrderAmt(BigDecimal.ZERO);
+        customer.setPriceType(BigDecimal.ONE);
+        customer.setPayTax(true);
+        customer.setDiscount(BigDecimal.ZERO);
+        customer.setDollarsDebt(BigDecimal.ZERO);
+        customer.setEmployeeId(customer.getEmployeeSelect().getEmployeeId());
+        customer.setSalesmen(salesmenEncontrado);//?
+        customer.setCreditTerms(crediTermsEncontrado);
+        customer.setCtype(BigDecimal.ONE); //?
+
         create(customer);
     }
 
@@ -50,6 +100,47 @@ public class CustomersService implements ICustomersService {
         }
         if ((customer.geteMail() == null) || (customer.geteMail().trim().isEmpty())) {
             throw new EntidadNoGrabadaException("Ingrese un correo válido");
+        }
+    }
+
+    @Override
+    public List<Customers> busquedaCoinciendia(String buscar) throws EntidadNoGrabadaException {
+        buscar = buscar.trim();
+        List<Customers> lista = null;
+        if (UtilsGlobal.isNumeric(buscar)) {
+            if (buscar.length() < 10) { // Busca por codigo del cliente
+                lista = customersDao.buscar(new Customers(buscar, null));
+                if (lista.isEmpty()) {
+                    throw new EntidadNoGrabadaException("¡Código no existente!");
+                }
+            }
+            if ((buscar.length() >= 10) && (buscar.length() <= 13)) { // Valida y busca por cédula o ruc
+                lista = customersDao.buscar(new Customers(null, buscar));
+                if (lista.isEmpty()) {
+                    try {
+                        if (UtilsGlobal.validadorDeCedula(buscar)) { //En el que caso que no exista procede a crear un nuevo cliente
+                            return null;
+                        }
+                    } catch (EntidadNoGrabadaException ex) {
+                        throw new EntidadNoGrabadaException(ex.getMessage());
+                    }
+                }
+            }
+        } else if (buscar.length() > 0) { // Busca coincidencias por nombres
+            lista = customersDao.buscar(new Customers(null, buscar, null));
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Customers> buscarFiltroCoinciendia(String buscar, BusquedaCustomersEnum filtro) {
+        switch (filtro) {
+            case Nombre:
+                return customersDao.buscar(new Customers(null, buscar, null));
+            case Contacto:
+                return customersDao.buscar(new Customers(null, null, buscar));
+            default:
+                return new ArrayList<>();
         }
     }
 

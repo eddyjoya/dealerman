@@ -1,6 +1,8 @@
 package com.dealerman.orders;
 
 import com.dealerman.configuration.CategoryDeudor;
+import com.dealerman.configuration.Employee;
+import com.dealerman.general.Branches;
 import com.dealerman.general.Cantons;
 import com.dealerman.general.ChainMaster;
 import com.dealerman.general.Cities;
@@ -23,7 +25,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -101,10 +105,13 @@ public class Customers implements Serializable {
     private String phone;
     @Column(name = "fax", columnDefinition = "varchar(24)", nullable = true)
     private String fax;
+    @Email
     @Column(name = "e_maile", columnDefinition = "text", nullable = true)
     private String eMail;
+    @Email
     @Column(name = "e_mail1", columnDefinition = "text", nullable = true)
     private String eMail1;
+    @Email
     @Column(name = "e_mail2", columnDefinition = "text", nullable = true)
     private String eMail2;
     @Column(name = "description", columnDefinition = "text", nullable = true)
@@ -223,6 +230,11 @@ public class Customers implements Serializable {
           @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     })
     private Cities citiesFK;
+
+    @Transient
+    private Branches branchSelect;
+    @Transient
+    private Employee employeeSelect;
 
     public Customers() {
     }
@@ -996,6 +1008,14 @@ public class Customers implements Serializable {
         this.supplierTerms = supplierTerms;
     }
 
+    public Employee getEmployeeSelect() {
+        return employeeSelect;
+    }
+
+    public void setEmployeeSelect(Employee employeeSelect) {
+        this.employeeSelect = employeeSelect;
+    }
+
     public Boolean getCreditCard() {
         return creditCard;
     }
@@ -1106,6 +1126,14 @@ public class Customers implements Serializable {
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
+    }
+
+    public Branches getBranchSelect() {
+        return branchSelect;
+    }
+
+    public void setBranchSelect(Branches branchSelect) {
+        this.branchSelect = branchSelect;
     }
 
 }

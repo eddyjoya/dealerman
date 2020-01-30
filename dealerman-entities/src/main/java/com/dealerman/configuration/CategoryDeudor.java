@@ -51,6 +51,11 @@ public class CategoryDeudor implements Serializable {
     public CategoryDeudor() {
     }
 
+    public CategoryDeudor(String aplicacion, String categoryName) {
+        this.aplicacion = aplicacion;
+        this.categoryName = categoryName;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

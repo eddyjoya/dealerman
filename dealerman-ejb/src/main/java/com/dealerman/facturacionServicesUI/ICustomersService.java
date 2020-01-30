@@ -1,5 +1,6 @@
 package com.dealerman.facturacionServicesUI;
 
+import com.dealerman.enumerator.BusquedaCustomersEnum;
 import com.dealerman.exceptions.EntidadNoGrabadaException;
 import com.dealerman.orders.Customers;
 import java.util.List;
@@ -17,4 +18,8 @@ public interface ICustomersService {
     public void guardarCustomers(Customers customer) throws EntidadNoGrabadaException;
 
     public void actualizarCustomers(Customers customer) throws EntidadNoGrabadaException;
+
+    public List<Customers> busquedaCoinciendia(String buscar) throws EntidadNoGrabadaException;
+
+    public List<Customers> buscarFiltroCoinciendia(String buscar, BusquedaCustomersEnum filtro);
 }

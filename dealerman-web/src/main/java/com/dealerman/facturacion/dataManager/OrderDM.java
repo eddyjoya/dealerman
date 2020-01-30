@@ -1,8 +1,10 @@
 package com.dealerman.facturacion.dataManager;
 
-import com.dealerman.enumerator.BusquedaCustomers;
+import com.dealerman.enumerator.BusquedaCustomersEnum;
+import com.dealerman.general.CreditTerms;
 import com.dealerman.orders.Customers;
 import com.dealerman.orders.Orders;
+import com.dealerman.orders.Salesmen;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -17,11 +19,29 @@ public class OrderDM {
 
     private Orders order = new Orders();
     private List<Customers> listCustomers;
+    private List<CreditTerms> listCreditTermis;
+    private List<Salesmen> listSalesmen;
     private Customers customerSelect;
-    private BusquedaCustomers[] listaBusquedaCustomers;
-    private BusquedaCustomers busquedaCustomerSelect;
+    private BusquedaCustomersEnum[] listaBusquedaCustomers;
+    private BusquedaCustomersEnum busquedaCustomerSelect;
     private boolean editCustomers = true;
     private boolean editEmail = true;
+
+    public List<CreditTerms> getListCreditTermis() {
+        return listCreditTermis;
+    }
+
+    public List<Salesmen> getListSalesmen() {
+        return listSalesmen;
+    }
+
+    public void setListSalesmen(List<Salesmen> listSalesmen) {
+        this.listSalesmen = listSalesmen;
+    }
+
+    public void setListCreditTermis(List<CreditTerms> listCreditTermis) {
+        this.listCreditTermis = listCreditTermis;
+    }
 
     public boolean isEditCustomers() {
         return editCustomers;
@@ -43,19 +63,19 @@ public class OrderDM {
         return order;
     }
 
-    public BusquedaCustomers[] getListaBusquedaCustomers() {
+    public BusquedaCustomersEnum[] getListaBusquedaCustomers() {
         return listaBusquedaCustomers;
     }
 
-    public void setListaBusquedaCustomers(BusquedaCustomers[] listaBusquedaCustomers) {
+    public void setListaBusquedaCustomers(BusquedaCustomersEnum[] listaBusquedaCustomers) {
         this.listaBusquedaCustomers = listaBusquedaCustomers;
     }
 
-    public BusquedaCustomers getBusquedaCustomerSelect() {
+    public BusquedaCustomersEnum getBusquedaCustomerSelect() {
         return busquedaCustomerSelect;
     }
 
-    public void setBusquedaCustomerSelect(BusquedaCustomers busquedaCustomerSelect) {
+    public void setBusquedaCustomerSelect(BusquedaCustomersEnum busquedaCustomerSelect) {
         this.busquedaCustomerSelect = busquedaCustomerSelect;
     }
 

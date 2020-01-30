@@ -1,6 +1,7 @@
 package com.dealerman.utils;
 
 import com.dealerman.exceptions.EntidadNoGrabadaException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 
 /**
@@ -38,7 +39,9 @@ public class UtilsGlobal {
                     }
                     if ((suma % 10 == 0) && (suma % 10 == verificador)) {
                         cedulaCorrecta = true;
-                    } else cedulaCorrecta = (10 - (suma % 10)) == verificador;
+                    } else {
+                        cedulaCorrecta = (10 - (suma % 10)) == verificador;
+                    }
                 }
 
             } else {
@@ -56,5 +59,14 @@ public class UtilsGlobal {
             throw new EntidadNoGrabadaException("Cédula o ruc ingresados incorrectos");
         }
         return cedulaCorrecta;
+    }
+
+    public static boolean isNumeric(String cadena) {
+        try {
+            BigDecimal bigDecimal = new BigDecimal(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
     }
 }

@@ -107,6 +107,12 @@ public class Salesmen implements Serializable {
     public Salesmen() {
     }
 
+    public Salesmen(String companyId, String lastName, String firstName) {
+        this.companyId = companyId;
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+
     public String getCompanyId() {
         return companyId;
     }
