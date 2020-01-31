@@ -53,14 +53,21 @@
                                             <p:outputLabel style="font-weight: bold; padding: 0" value="Número"/>
                                         </div>
                                         <div class="ui-g-2" >
-                                            <p:inputText value="#{orderDM.order.customerId}"/> 
+                                            <p:inputText disabled="true" 
+                                                         style="color: black !important;"
+                                                         value="#{orderDM.order.localId}"/> 
                                         </div>
                                         <div class="ui-g-2">
-                                            <p:inputText value="#{orderDM.order.customerId}"/> 
+                                            <p:inputText disabled="true"
+                                                         style="color: black !important;"
+                                                         value="#{orderDM.order.issueId}"/> 
                                         </div>
                                         <div class="ui-g-5">
-                                            <p:inputText style="font-weight: bold;" 
-                                                         value="#{orderDM.order.customerId}"/> 
+                                            <p:inputText disabled="true" 
+                                                         style=" font-weight: bolder; color: black !important;" 
+                                                         value="#{orderDM.order.orderNumber}">
+                                                <f:convertNumber pattern="0000000000" locale="us" />
+                                            </p:inputText>
                                         </div>
                                     </div>
                                     <div class="ui-g-12" style="height: calc(100% / 2); 
@@ -105,7 +112,7 @@
                             </div>
                             <div class="ui-g">
                                 <p:outputPanel class="ui-g-9 ui-l-9 ui-m-9 ui-xl-9 ui-s-9 ui-xs-9 ui-g-nopad">
-                            
+
                                     <ui:include src="tablaOrders.xhtml"/>
                                     <ui:include src="infoNotas.xhtml"/>
                                 </p:outputPanel>
@@ -113,6 +120,7 @@
                         </p:outputPanel>
                         <p:outputPanel id="dialogos">
                             <ui:include src="_dialogos/dlgBuscarCustomers.xhtml" />
+                            <ui:include src="_dialogos/dlgBuscarProducts.xhtml" />
                         </p:outputPanel>
                     </p:outputPanel>
                 </h:form>

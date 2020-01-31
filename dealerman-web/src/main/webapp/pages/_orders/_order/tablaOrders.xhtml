@@ -2,106 +2,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:outputPanel class="ui-g-12 ui-g-nopad" style="padding: 15px 10px;">
-        <p:dataTable value="#{ventaDM.listaDetalleOrdenVentaCreacion}" 
-                     var="productoVenta" 
+        <p:dataTable id="tablaOrderItems" value="#{orderDM.listOrderLineItems}" 
+                     var="orderItem" 
                      emptyMessage="Agregue un producto" 
-                     selectionMode="single" 
                      styleClass="tablaProductosVenta"
-                     style="border:1px solid #d8d8d8; border-bottom: 0px;" 
-                     scrollable="true"  
-                     disabledTextSelection="true"
-                     >
+                     style="border:1px solid #d8d8d8; border-bottom: 0px; padding: 0 !important" 
+                     scrollable="true"                        
+                     disabledTextSelection="true">
 
             <p:ajax event="rowSelect" 
                     process="@this" 
                     listener="#{ventaController.onRowSelectEditProducto}" />
 
-            <p:column headerText="Cant." 
-                      class="tblVenta_Cantidad"
-                      >
-                <p:inputNumber value="#{productoVenta.cantidadVendida}" 
-                               id="txtCantidadProducto"
-                               decimalPlaces="#{productoVenta.cantidadDecimales}"
-                               size="8"
-                               maxValue="999999999"
-                               thousandSeparator=""
-                               >
-                    <f:attribute name="detalle" value="#{productoVenta}" />
-                    <p:ajax event="keyup"
-                            process="@this"
-                            listener="#{ventaController.actualizarCantidad}" />
-                </p:inputNumber>
+            <p:column headerText="Código" class="tblVenta_Cantidad" colspan="2" >
+                <p:inputText style="padding: 0!important" id="txtProductId" 
+                             value="#{orderItem.product.productId}" >
+                </p:inputText>
             </p:column> 
             <p:column headerText="Detalle" 
-                      class="tblVenta_Detalle">
+                      class="tblVenta_Cantidad" 
+                      colspan="5" >
                 <span>
-                    <h:outputText value="#{productoVenta.producto.nombre}"/>
-
-                    <h:outputText style="color: #007bff"
-                                  value=" - #{productoVenta.productoPadre.nombre}"/>
-
-                    <h:outputText style="color: #007bff"
-                                  value="  #{productoVenta.nombreTarifaVenta}"/>
-
+                    <p:inputText style="padding: 0!important" value="#{orderItem.product.productName}"/>
                 </span>
 
             </p:column>
 
-            <p:column headerText="Stock"
-                      class="tblVenta_Stock"
-                      style=" padding: 3px 3px;"
-                      >
+            <p:column headerText="E" style="padding: 0px 2px 0px 0px;">
                 <span>
-                    <h:outputText  value="#{productoVenta.stockDisponible}" style="color:#{productoVenta.stockDisponible eq 0?'ff0000':'000'}">
-                        <f:convertNumber pattern="#0.00###########"  locale="us" />
-                    </h:outputText>
 
                 </span>
             </p:column>
-
-
-            <p:column headerText="P.Unit"
-                      class="tblVenta_PUnit"
-                      style=" padding: 3px 3px;"
-                      >
+            <p:column headerText="Cantidad" colspan="1" class="tblVenta_Cantidad">
+                <p:inputText style="text-align: right;"  value="#{orderItem.quantity?orderItem.quantity:0}">
+                    <f:convertNumber pattern="#0.00###########"  locale="us" />
+                </p:inputText>
+            </p:column>
+            <p:column headerText="% D" style="padding: 0px 2px 0px 0px;">
                 <span>
-                    <h:outputText value="#{productoVenta.precioUnitario}">
+
+                </span>
+            </p:column>
+            <p:column headerText="P.Unit" colspan="1"  class="tblVenta_Cantidad">
+                <span>
+                    <p:inputText style="text-align: right;" value="#{orderItem.unitPrice?orderItem.unitPrice:0}">
                         <f:convertNumber pattern="#0.00###########" locale="us" />
-                    </h:outputText>
+                    </p:inputText>
                 </span>
             </p:column>
-            <p:column headerText="Total" 
-                      class="tblVenta_Total"
-                      >
-
-                <p:outputPanel style="color: red; font-style: italic"
-                               >
-                    Dsc.
-                    <p:outputLabel value="#{productoVenta.descuento}"
-                                   rendered="#{productoVenta.descuento > 0.00}">
-
-                    </p:outputLabel>
-                </p:outputPanel>
+            <p:column headerText="%I" style="padding: 0px 2px 0px 0px;">
+            </p:column>
+            <p:column headerText="Total" class="tblVenta_Cantidad" >
                 <strong> 
-                    <h:outputText id="lblTotalIncImpuestos" value="#{productoVenta.totalImpuestosAux.add(productoVenta.precioTotalAux)}">
+                    <p:inputText id="lblTotalIncImpuestos"
+                                 style="text-align: right; font-weight: bolder;"
+                                 value="#{orderItem.totalPrice?orderItem.totalPrice:0}">
                         <f:convertNumber pattern="#0.00" locale="us" />
-                    </h:outputText>
+                    </p:inputText>
                 </strong>
-
             </p:column>
 
             <p:column class="tblVenta_Borrar" >
-
                 <p:commandButton process="@this" 
                                  icon="ui-icon-trash" 
-                                 styleClass="red-btn flat"
-                                 disabled="#{ventaDM.ordenVenta.estadoVenta eq 'GENERADA' or ventaDM.ordenVenta.estadoVenta eq 'ANULADO'}" 
-                                 action="#{ventaController.eliminarDetalleOrdenVenta(productoVenta)}" 
-                                 />
+                                 styleClass="red-btn flat"                              
+                                 action="#{ventaController.eliminarDetalleOrdenVenta(productoVenta)}"   />
             </p:column>
 
 
@@ -146,7 +114,7 @@
                     </div>
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 65px;">
                         <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
-       
+
                         </div>
                     </div>
 
@@ -206,14 +174,9 @@
                             </p:outputLabel>
                         </div> 
                     </div>
-
                 </p:outputPanel>
-
             </f:facet>
-
         </p:dataTable>
-
     </p:outputPanel>
-
 </html>
 

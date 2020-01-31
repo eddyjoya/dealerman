@@ -53,44 +53,52 @@ public class CustomersService implements ICustomersService {
         customers.setDiscontinued(false);
         customers.setAdded(false);
         customers.setModified(true);
-        customersDao.create(customers);
+        customersDao.update(customers);
     }
 
     @Override
     public void guardarCustomers(Customers customer) throws EntidadNoGrabadaException {
-        validateInfoCustomers(customer);
-        CategoryDeudor categoryDeudorEncontrado = categoryDeudorDao.buscar(new CategoryDeudor(CategoryDeudorEnum.CLIENTES.getAplicacion(), CategoryDeudorEnum.CLIENTES.getNombre())).get(0);
-        Salesmen salesmenEncontrado = salesmenDao.buscar(new Salesmen()).get(0);//??
-        CreditTerms crediTermsEncontrado = creditTermsDao.buscar(new CreditTerms(CreditTermsEnum.CONTADO.getNombre())).get(0);
+        if (customer.getAdded() == null) {
+            validateInfoCustomers(customer);
+            CategoryDeudor categoryDeudorEncontrado = categoryDeudorDao.buscar(new CategoryDeudor(CategoryDeudorEnum.CLIENTES.getAplicacion(), CategoryDeudorEnum.CLIENTES.getNombre())).get(0);
+            Salesmen salesmenEncontrado = salesmenDao.buscar(new Salesmen()).get(0);//??
+            CreditTerms crediTermsEncontrado = creditTermsDao.buscar(new CreditTerms(CreditTermsEnum.CONTADO.getNombre())).get(0);
 
-        customer.setCategoryId(categoryDeudorEncontrado.getCategoryId());
-        customer.setAplicacion(categoryDeudorEncontrado.getAplicacion());
-        customer.setCarNumber(BigDecimal.ZERO);
-        customer.setLocalId(customer.getBranchSelect().getLocalId());//?
-        customer.setIssueId(customer.getBranchSelect().getIssueId());//?
-        customer.setCompanyId(customer.getBranchSelect().getCompany().getCompanyId());
-        customer.setCreated(new Date());
-        customer.setDemanda(BigDecimal.ZERO);
-        customer.setMaximun(BigDecimal.ZERO);
-        customer.setMinimun(BigDecimal.ZERO);
-        customer.setUnlocked(true);
-        customer.setCompany(false);
-        customer.setPassport(false);
-        customer.setShipToNo(BigDecimal.ONE);
-        customer.setCreditCard(false);
-        customer.setSupplierTerms(BigDecimal.ZERO);
-        customer.setMaxOrderAmt(BigDecimal.ZERO);
-        customer.setMinOrderAmt(BigDecimal.ZERO);
-        customer.setPriceType(BigDecimal.ONE);
-        customer.setPayTax(true);
-        customer.setDiscount(BigDecimal.ZERO);
-        customer.setDollarsDebt(BigDecimal.ZERO);
-        customer.setEmployeeId(customer.getEmployeeSelect().getEmployeeId());
-        customer.setSalesmen(salesmenEncontrado);//?
-        customer.setCreditTerms(crediTermsEncontrado);
-        customer.setCtype(BigDecimal.ONE); //?
+            customer.setCategoryId(categoryDeudorEncontrado.getCategoryId());
+            customer.setAplicacion(categoryDeudorEncontrado.getAplicacion());
+            customer.setCarNumber(BigDecimal.ZERO);
+            customer.setLocalId(customer.getBranchSelect().getLocalId());//?
+            customer.setIssueId(customer.getBranchSelect().getIssueId());//?
+            customer.setCompanyId(customer.getBranchSelect().getCompany().getCompanyId());
+            customer.setCreated(new Date());
+            customer.setDemanda(BigDecimal.ZERO);
+            customer.setMaximun(BigDecimal.ZERO);
+            customer.setMinimun(BigDecimal.ZERO);
+            customer.setUnlocked(true);
+            customer.setCompany(false);
+            customer.setPassport(false);
+            customer.setShipToNo(BigDecimal.ONE);
+            customer.setCreditCard(false);
+            customer.setSupplierTerms(BigDecimal.ZERO);
+            customer.setMaxOrderAmt(BigDecimal.ZERO);
+            customer.setMinOrderAmt(BigDecimal.ZERO);
+            customer.setPriceType(BigDecimal.ONE);
+            customer.setPayTax(true);
+            customer.setDiscount(BigDecimal.ZERO);
+            customer.setDollarsDebt(BigDecimal.ZERO);
+            customer.setEmployeeId(customer.getEmployeeSelect().getEmployeeId());
+            customer.setSalesmen(salesmenEncontrado);//?
+            customer.setCreditTerms(crediTermsEncontrado);
+            customer.setCtype(BigDecimal.ONE); //?
+            create(customer);
+        } else {
+            update(customer);
+        }
+    }
 
-        create(customer);
+    @Override
+    public void actualizarCustomers(Customers customer) throws EntidadNoGrabadaException {
+        update(customer);
     }
 
     private void validateInfoCustomers(Customers customer) throws EntidadNoGrabadaException {
@@ -105,7 +113,6 @@ public class CustomersService implements ICustomersService {
 
     @Override
     public List<Customers> busquedaCoinciendia(String buscar) throws EntidadNoGrabadaException {
-        buscar = buscar.trim();
         List<Customers> lista = null;
         if (UtilsGlobal.isNumeric(buscar)) {
             if (buscar.length() < 10) { // Busca por codigo del cliente
@@ -142,11 +149,6 @@ public class CustomersService implements ICustomersService {
             default:
                 return new ArrayList<>();
         }
-    }
-
-    @Override
-    public void actualizarCustomers(Customers customer) throws EntidadNoGrabadaException {
-
     }
 
 }

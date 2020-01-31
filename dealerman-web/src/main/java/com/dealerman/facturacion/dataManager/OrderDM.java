@@ -3,6 +3,7 @@ package com.dealerman.facturacion.dataManager;
 import com.dealerman.enumerator.BusquedaCustomersEnum;
 import com.dealerman.general.CreditTerms;
 import com.dealerman.orders.Customers;
+import com.dealerman.orders.OrderLineItems;
 import com.dealerman.orders.Orders;
 import com.dealerman.orders.Salesmen;
 import java.util.List;
@@ -21,6 +22,7 @@ public class OrderDM {
     private List<Customers> listCustomers;
     private List<CreditTerms> listCreditTermis;
     private List<Salesmen> listSalesmen;
+    private List<OrderLineItems> listOrderLineItems;
     private Customers customerSelect;
     private BusquedaCustomersEnum[] listaBusquedaCustomers;
     private BusquedaCustomersEnum busquedaCustomerSelect;
@@ -29,6 +31,14 @@ public class OrderDM {
 
     public List<CreditTerms> getListCreditTermis() {
         return listCreditTermis;
+    }
+
+    public List<OrderLineItems> getListOrderLineItems() {
+        return listOrderLineItems;
+    }
+
+    public void setListOrderLineItems(List<OrderLineItems> listOrderLineItems) {
+        this.listOrderLineItems = listOrderLineItems;
     }
 
     public List<Salesmen> getListSalesmen() {

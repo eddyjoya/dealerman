@@ -4,7 +4,9 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\jav
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\facturacionDao\SalesmenDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalServices\CantonsService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalServicesUI\ICompanyService.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\inventaryDao\ProductsDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\configurationServices\CategoryDeudorService.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\inventaryServices\ProductsService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalDao\CompanyDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalServicesUI\ICantonsService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\facturacionDaoUI\ISalesmenDao.java
@@ -12,6 +14,7 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\jav
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalServicesUI\IBranchesService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalDaoUI\ICompanyDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\enumerator\BusquedaCustomersEnum.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\inventaryDaoUI\IProductsDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\utils\UtilsGlobal.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalServices\EmployeeService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalDaoUI\ICreditTermsDao.java
@@ -23,6 +26,7 @@ C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\jav
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalDaoUI\IEmployeeDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\facturacionServicesUI\ISalesmenService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\enumerator\CreditTermsEnum.java
+C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\inventaryServicesUI\IProductsService.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\exceptions\EntidadNoGrabadaException.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalDao\BranchesDao.java
 C:\Users\Usuario\Documents\NetBeansProjects\dealerman\dealerman-ejb\src\main\java\com\dealerman\generalServices\CreditTermsService.java

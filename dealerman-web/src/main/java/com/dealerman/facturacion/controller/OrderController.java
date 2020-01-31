@@ -9,9 +9,12 @@ import com.dealerman.facturacionServicesUI.ICustomersService;
 import com.dealerman.facturacionServicesUI.ISalesmenService;
 import com.dealerman.general.CreditTerms;
 import com.dealerman.generalServicesUI.ICreditTermsService;
+import com.dealerman.inventary.Products;
+import com.dealerman.orders.OrderLineItems;
 import com.dealerman.orders.Salesmen;
 import com.dealerman.utils.BaseController;
 import com.dealerman.utils.UtilVista;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -41,6 +44,20 @@ public class OrderController extends BaseController {
     public void init() {
         orderDM.setOrder(new Orders());
         orderDM.getOrder().setOrderDate(accessDM.getFechaActual());
+        orderDM.getOrder().setSourceDate(accessDM.getFechaActual());
+        orderDM.getOrder().setValidTo(accessDM.getFechaActual());
+        if (accessDM.getBranchSelect() != null) {
+            orderDM.getOrder().setLocalId(accessDM.getBranchSelect().getLocalId());
+            orderDM.getOrder().setIssueId(accessDM.getBranchSelect().getIssueId());
+        }
+        orderDM.getOrder().setOrderNumber(BigDecimal.ONE); //?
+
+        /**
+         * Instance order line items
+         */
+        orderDM.setListOrderLineItems(new ArrayList<OrderLineItems>());
+        OrderLineItems orderLine = new OrderLineItems();
+        orderDM.getListOrderLineItems().add(orderLine);
 
         //Instanciar customers
         orderDM.setCustomerSelect(new Customers());
@@ -49,6 +66,7 @@ public class OrderController extends BaseController {
 
     public void buscarCustomers(String buscar) {
         try {
+            buscar = buscar.trim();//Quita espacios en blancos
             List<Customers> listRespuesta = customersService.busquedaCoinciendia(buscar);
             if (listRespuesta == null) {//Ingreso nuevo cliente
                 ingresoCustomers(buscar);
@@ -56,7 +74,6 @@ public class OrderController extends BaseController {
                 orderDM.setCustomerSelect(listRespuesta.get(0));
                 cargarInfoAdicional();
                 validarEmail(orderDM.getCustomerSelect().geteMail());
-                PrimeFaces.current().ajax().update("pnlDatosCliente");
             } else if (!UtilVista.isNumeric(buscar)) {//Muestra pantalla de ayuda para buscar por coincidencias
                 orderDM.setListCustomers(listRespuesta);
                 PrimeFaces.current().executeScript("PF('dlgBuscarCustomers').show();");
@@ -67,7 +84,7 @@ public class OrderController extends BaseController {
     }
 
     public void buscarCustomersAvanzado(String buscar) {
-        orderDM.setListCustomers(customersService.buscarFiltroCoinciendia(buscar, orderDM.getBusquedaCustomerSelect()));
+        orderDM.setListCustomers(customersService.buscarFiltroCoinciendia(buscar.trim(), orderDM.getBusquedaCustomerSelect()));
     }
 
     private void ingresoCustomers(String ruc) {
@@ -75,14 +92,12 @@ public class OrderController extends BaseController {
         orderDM.getCustomerSelect().setCedula(ruc);
         orderDM.getCustomerSelect().setCustomerId(ruc);
         editarCustomers(false);
-        PrimeFaces.current().ajax().update("pnlDatosCliente");
-        PrimeFaces.current().ajax().update("botonesCustomers");
+        updatePanelClientes();
         addSuccessMessage("Ingreso de nuevo cliente");
     }
 
     public void guardarCustomers() {
         try {
-            orderDM.getCustomerSelect().setCompanyId(accessDM.getEmployeeSelect().getCompanyId());
             orderDM.getCustomerSelect().setBranchSelect(accessDM.getBranchSelect());
             orderDM.getCustomerSelect().setEmployeeSelect(accessDM.getEmployeeSelect());
             customersService.guardarCustomers(orderDM.getCustomerSelect());
@@ -98,7 +113,7 @@ public class OrderController extends BaseController {
         editarCustomers(true);
     }
 
-    private void editarCustomers(boolean band) {
+    public void editarCustomers(boolean band) {
         orderDM.setEditCustomers(band);
         orderDM.setEditEmail(band);
     }
@@ -108,7 +123,6 @@ public class OrderController extends BaseController {
         orderDM.getCustomerSelect().setCustomerId(orderDM.getCustomerSelect().getCustomerId().trim()); //Quita los espacios en blanco
         cargarInfoAdicional();
         validarEmail(orderDM.getCustomerSelect().geteMail());
-
     }
 
     private void cargarInfoAdicional() {
@@ -119,9 +133,16 @@ public class OrderController extends BaseController {
 
     private void validarEmail(String email) {
         if ((email == null) || (email.isEmpty())) {
-            orderDM.setEditEmail(false);
-            addErrorMessage("Debe ingresar un correo electrónico válido");
+            editarCustomers(false);
+            PrimeFaces.current().executeScript("$('#btnGuardarCustomers').click()");
+            PrimeFaces.current().focus("txtEmail");
         }
+        updatePanelClientes();
+    }
+
+    private void updatePanelClientes() {
+        PrimeFaces.current().ajax().update("pnlDatosCliente");
+        PrimeFaces.current().ajax().update("botonesCustomers");
     }
 
     public void closeBusquedaCustomers() {

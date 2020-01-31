@@ -1,11 +1,13 @@
 com\dealerman\facturacionServicesUI\ICustomersService.class
 com\dealerman\generalServicesUI\ICantonsService.class
 com\dealerman\enumerator\CreditTermsEnum.class
+com\dealerman\inventaryDaoUI\IProductsDao.class
 com\dealerman\generalDaoUI\ICreditTermsDao.class
 com\dealerman\configurationServices\CategoryDeudorService.class
 com\dealerman\generalDaoUI\IBranchesDao.class
 com\dealerman\generalServices\EmployeeService.class
 com\dealerman\generalServicesUI\IEmployeeService.class
+com\dealerman\inventaryDao\ProductsDao.class
 com\dealerman\generalServices\CantonsService.class
 com\dealerman\generalDaoUI\IEmployeeDao.class
 com\dealerman\facturacionServicesUI\ISalesmenService.class
@@ -14,9 +16,11 @@ com\dealerman\generalDaoUI\ICompanyDao.class
 com\dealerman\generalServices\CreditTermsService.class
 com\dealerman\generalServicesUI\IBranchesService.class
 com\dealerman\generalDao\EmployeeDao.class
+com\dealerman\inventaryServices\ProductsService.class
 com\dealerman\facturacionDao\SalesmenDao.class
 com\dealerman\generalDao\CreditTermsDao.class
 com\dealerman\enumerator\BusquedaCustomersEnum.class
+com\dealerman\inventaryServicesUI\IProductsService.class
 com\dealerman\generalServicesUI\ICompanyService.class
 com\dealerman\facturacionServices\SalesmenService.class
 com\dealerman\generalDao\BranchesDao.class

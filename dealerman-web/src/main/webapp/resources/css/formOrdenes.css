@@ -11,6 +11,8 @@ body div.ui-widget-header{
 }
 .ui-datatable tbody tr td {
     line-height: 5px;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 /*
 #eddie
@@ -26,15 +28,15 @@ body div.ui-widget-header{
     padding-top: 0;
 }
 #tablaProductos.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td, .tablaProductosVenta.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td, #tablaProductosCompra.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td{
-    font-size: 16px;
+    font-size: 14px;
     color: #B5B5B5;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 12px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 .ui-datatable tbody tr td {
-    line-height: 15px;
+    line-height: 5px;
 }
 .ui-datatable-scrollable-theadclone{
     display: none !important;
@@ -172,7 +174,7 @@ body div.ui-widget-header{
         width: 70% !important;
         height: 20px !important;
         font-size: 10px !important;
-        text-align: right;
+        text-align: left;
     }
     .tblVenta_Detalle{
         width: 60%;
@@ -527,41 +529,11 @@ body .tblProductos_Boton button.ui-button{
 
 
 /**/
-.tblVenta_Cantidad{
-    width: 10%;
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    padding-top:  0 !important;
-    padding-bottom: 0 !important;
-}
 .tblVenta_Cantidad input{
-    width: 70% !important;
-    height: 25px !important;
-    font-size: 12px !important;
-    text-align: right;
-}
-.tblVenta_Detalle{
-    width: 60%;
-    line-height: 12px !important;
-    padding: 2px 2px !important;
-    font-size: 12px !important;
-}
-.tblVenta_PUnit{
-    width: 10%;
-    font-size: 12px !important;
-    text-align: right;
+    height: 20px !important;
+    padding: 0!important;
 }
 
-.tblVenta_Stock{
-    width: 10%;
-    font-size: 12px !important;
-    text-align: right;
-}
-.tblVenta_Total{
-    width: 10%;
-    font-size: 12px !important;
-    text-align: right;
-}
 .tblVenta_Borrar{
     width: 40px;
     text-align: right;

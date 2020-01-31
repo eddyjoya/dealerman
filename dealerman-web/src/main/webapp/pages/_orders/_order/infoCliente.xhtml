@@ -113,24 +113,26 @@
                     <div class="ui-g-12" style="height: calc(100% / 3); 
                          padding: 0px; margin-top:-18px;">
                         <div class="ui-g-3" style="width: 18%">
-                            <p:inputText 
-                                required="true" 
-                                disabled="true"
-                                placeholder="Cédula o Ruc" 
-                                style=" font-weight: bolder; color: black !important;"
-                                value="#{orderDM.customerSelect.cedula}"/> 
+                            <p:inputText required="true" 
+                                         disabled="true"
+                                         placeholder="Cédula o Ruc" 
+                                         style=" font-weight: bolder; color: black !important;"
+                                         value="#{orderDM.customerSelect.cedula}"/> 
+                            <p:focus id="focusID" for="txtEmail" />
                         </div>
                         <div class="ui-g-9" style="width: 61%">
-                            <p:inputText style="color: black !important;" 
+                            <p:inputText id="txtEmail" 
+                                         style="color: black !important;" 
                                          onkeypress="if (event.keyCode === 13) {
-                                                     $('#btnGuardarCustomers').click();
-                                                     return false;
-                                                 }"
+                                            $('#btnGuardarCustomers').click();
+                                            return false;
+                                        }"                                         
                                          tabindex="4"
                                          placeholder="Correo electrónico" 
                                          required="true" 
                                          disabled="#{orderDM.editEmail}"  
-                                         value="#{orderDM.customerSelect.eMail}"/> 
+                                         value="#{orderDM.customerSelect.eMail}"> 
+                            </p:inputText>
 
                         </div>
                         <div class="ui-g-3" style="width: 19.5%">
