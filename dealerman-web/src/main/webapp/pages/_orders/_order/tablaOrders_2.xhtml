@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <p:outputPanel id="pnlOrdenVenta" class="ui-g-12 ui-g-nopad" style="padding: 15px 10px;">
+        <p:dataTable id="tablaOrderItems" value="#{orderDM.listOrderLineItems}" 
+                     var="orderItem" 
+                     editable="true"
+                     editMode="cell"
+                     disabledTextSelection="false"                        
+                     widgetVar="tablaOrderItems" 
+                     emptyMessage="Agregue un producto" 
+                     styleClass="tablaProductosVenta"
+                     style="border:1px solid #d8d8d8; 
+                     border-bottom: 0px; padding: 0 !important;" 
+                     scrollable="true"   >
+            <p:column headerText="Código" colspan="2"
+                      style="padding: 0 0.25% 0 0 !important;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{orderItem.product.productId}" ></h:outputText></f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="txtProductId" 
+                                     value="#{orderItem.product.productId}"
+                                     placeholder="Código" 
+                                     autocomplete="false" 
+                                     required="true" 
+                                     tabindex="1"
+                                     onkeyup="if (event.keyCode === 13) {
+                                                 alert('fff');
+                                                 onchange();
+                                                 return false;
+                                             }" 
+                                     onclick="this.select()" >
+
+                            <p:ajax event="change" update="dlgBuscarProducts, message" 
+                                    process="@this, txtProductId"                                      
+                                    listener="#{orderController.buscarProducts(orderItem.product.productId)}">
+
+                            </p:ajax>
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Descripción" colspan="5"
+                      style="padding: 0 0.25% 0 0 !important;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{orderItem.product.productName}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{orderItem.product.productName}" label="Descripción"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="E" colspan="1"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{orderItem.product.alterno}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{orderItem.product.alterno}" label="E"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Cant" colspan="1"
+                      style="padding: 0 0.25% 0 0 !important; text-align: right;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{orderItem.quantity}" >
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText style="text-align: right;" value="#{orderItem.quantity}" label="Cantidad">
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="% D" colspan="1"
+                      style="padding: 0 0.25% 0 0 !important; text-align: right;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{orderItem.quantity}" >
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText style="text-align: right;" value="#{orderItem.quantity}" label="Cantidad">
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="P. U" colspan="1"
+                      style="padding: 0 0.25% 0 0 !important; text-align: right;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{orderItem.unitPrice}" >
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText style="text-align: right;" value="#{orderItem.unitPrice}" label="Precio U">
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="% I" colspan="1"
+                      style="padding: 0 0.25% 0 0 !important; text-align: right;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{orderItem.quantity}" >
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText style="text-align: right;" value="#{orderItem.quantity}" label="Cantidad">
+                            <f:convertNumber pattern="#####0.00####"  locale="us" />
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Total" colspan="1"
+                      style="padding: 0 0.25% 0 0 !important; text-align: right;"
+                      class="tblVenta_Cantidad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText style="text-align: right; font-weight: bolder;" 
+                                      value="#{orderItem.totalPrice}" >
+                            <f:convertNumber pattern="######.00####"  locale="us" />
+                        </h:outputText>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText style="text-align: right; font-weight: bolder;" 
+                                     value="#{orderItem.totalPrice}" label="Total">
+                            <f:convertNumber pattern="######.00####"  locale="us" />
+                        </p:inputText>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+        </p:dataTable>
+    </p:outputPanel>
+</html>
+

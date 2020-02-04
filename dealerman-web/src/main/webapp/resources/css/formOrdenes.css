@@ -10,8 +10,7 @@ body div.ui-widget-header{
     border: none !important;
 }
 .ui-datatable tbody tr td {
-    line-height: 5px;
-    padding: 0 !important;
+    line-height: 15px;
     margin: 0 !important;
 }
 /*
@@ -28,15 +27,15 @@ body div.ui-widget-header{
     padding-top: 0;
 }
 #tablaProductos.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td, .tablaProductosVenta.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td, #tablaProductosCompra.ui-datatable tbody tr.ui-widget-content.ui-datatable-empty-message td{
-    font-size: 14px;
+    font-size: 16px;
     color: #B5B5B5;
     text-align: center;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding-top: 10px;
+    padding-bottom: 12px;
 }
 
 .ui-datatable tbody tr td {
-    line-height: 5px;
+    line-height: 15px;
 }
 .ui-datatable-scrollable-theadclone{
     display: none !important;
@@ -198,20 +197,6 @@ body div.ui-widget-header{
         font-size: 10px !important;
         text-align: right;
     }
-    .tblVenta_Borrar{
-        width: 35px;
-        text-align: right;
-        padding-right: 0 !important;
-        padding-left: 0 !important;
-        padding-top: 2px !important;
-        padding-bottom: 2px !important;
-    }
-
-    .tblVenta_Borrar button{
-        border-radius: 5px !important;
-        width: 35px !important;
-        height: 25px !important;
-    }
 
     .reversar {
         display: flex;
@@ -372,20 +357,6 @@ body div.ui-widget-header{
         font-size: 10px !important;
         text-align: right;
     }
-    .tblVenta_Borrar{
-        width: 35px;
-        text-align: right;
-        padding-right: 0 !important;
-        padding-left: 0 !important;
-        padding-top: 2px !important;
-        padding-bottom: 2px !important;
-    }
-
-    .tblVenta_Borrar button{
-        border-radius: 5px !important;
-        width: 35px !important;
-        height: 25px !important;
-    }
 
     .reversar {
         display: flex;
@@ -422,7 +393,6 @@ body div.ui-widget-header{
         width: calc(100% - 200px);
     }
 }
-
 
 
 .tblVenta_Borrar button{
@@ -493,13 +463,12 @@ body .tblProductos_Boton button.ui-button{
     height: 38px ;
 }
 
-
-
-
 .tblVenta_Borrar button{
     border-radius: 5px !important;
-    width: 40px !important;
-    height: 35px !important;
+    text-align: center !important; 
+    margin: 0px!important; 
+    width: 30px !important;
+    height: 23px !important;
 }
 #tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {
     height: calc(100vh - 281px);
@@ -535,24 +504,9 @@ body .tblProductos_Boton button.ui-button{
 }
 
 .tblVenta_Borrar{
-    width: 40px;
-    text-align: right;
+    text-align: center;
     padding-right: 0 !important;
     padding-left: 0 !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
-
-.tblVenta_Borrar button{
-    border-radius: 5px !important;
-    width: 40px !important;
-    height: 35px !important;
-}
-
-.tblVenta_Borrar button{
-    border-radius: 5px !important;
-    width: 50px !important;
-    height: 40px !important;
 }
 
 .tablaProductosVenta.ui-datatable .ui-datatable-scrollable-body {

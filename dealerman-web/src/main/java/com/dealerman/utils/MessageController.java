@@ -24,7 +24,7 @@ public abstract class MessageController {
     }
 
     protected void addErrorMessage(final String message) {
-        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", message);
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Advertencia", message);
         FacesContext.getCurrentInstance().addMessage(null, facesMsg);
     }
 

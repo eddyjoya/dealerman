@@ -27,14 +27,13 @@ public class ProductsDao extends GenericDao<Products, Long>
         HashMap<Object, Object> parametros = new HashMap();
         sql.append("Select t from Products t where 1=1");
         if (product.getProductId() != null) {
-            sql.append(" and t.productId = :productId");
-            parametros.put("productId", product.getProductId());
+            sql.append(" and LOWER(t.productId) = :productId");
+            parametros.put("productId", product.getProductId().toLowerCase());
         }
         if (product.getAlterno() != null) {
             sql.append(" and t.alterno = :alterno");
             parametros.put("alterno", product.getAlterno());
         }
-
         if (product.getProductName() != null) {
             sql.append(" and LOWER(t.productName) like :productName");
             parametros.put("productName", "%" + product.getProductName() + "%".toLowerCase());
@@ -48,8 +47,8 @@ public class ProductsDao extends GenericDao<Products, Long>
         try {
             return q.getResultList();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ArrayList<>();
         }
     }
-
 }

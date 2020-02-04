@@ -4,12 +4,13 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:outputPanel class="ui-g-12 ui-g-nopad" style="padding: 15px 10px;">
+    <p:outputPanel id="pnlOrdenVenta" class="ui-g-12 ui-g-nopad" style="padding: 15px 10px;">
         <p:dataTable id="tablaOrderItems" value="#{orderDM.listOrderLineItems}" 
                      var="orderItem" 
                      emptyMessage="Agregue un producto" 
                      styleClass="tablaProductosVenta"
-                     style="border:1px solid #d8d8d8; border-bottom: 0px; padding: 0 !important" 
+                     style="border:1px solid #C6C4C4; 
+                     border-bottom: 0px; padding: 0 !important;" 
                      scrollable="true"                        
                      disabledTextSelection="true">
 
@@ -17,62 +18,146 @@
                     process="@this" 
                     listener="#{ventaController.onRowSelectEditProducto}" />
 
-            <p:column headerText="Código" class="tblVenta_Cantidad" colspan="2" >
-                <p:inputText style="padding: 0!important" id="txtProductId" 
-                             value="#{orderItem.product.productId}" >
+            <p:column style="padding: 0 0.25% 0 0 !important;" 
+                      headerText="Código" class="tblVenta_Cantidad" colspan="4" >
+                <p:inputText style="padding: 0!important; 
+                             border: none !important;
+                             color: #252424 !important; " id="txtProductId" 
+                             value="#{orderItem.product.productId}"
+                             placeholder="Código" 
+                             autocomplete="false" 
+                             required="true" 
+                             onclick="this.select()" 
+                             onkeypress="if (event.keyCode === 13) {
+                                         onchange();
+                                         return false;
+                                     }" >
+                    <p:ajax event="change" update="dlgBuscarProducts, message" 
+                            process="@this, txtProductId"
+                            listener="#{orderController.buscarProducts(orderItem.product.productId)}"/> 
                 </p:inputText>
             </p:column> 
-            <p:column headerText="Detalle" 
+            <p:column style="padding: 0 0.25% 0 0 !important;" headerText="Detalle" 
                       class="tblVenta_Cantidad" 
-                      colspan="5" >
+                      colspan="9" >
                 <span>
-                    <p:inputText style="padding: 0!important" value="#{orderItem.product.productName}"/>
+                    <p:inputText style="padding: 0!important; 
+                                 border: none !important; 
+                                 color: #252424 !important;  " 
+                                 value="#{orderItem.product.productName}"
+                                 placeholder="Producto" 
+                                 autocomplete="false" 
+                                 required="true" />
+
                 </span>
 
             </p:column>
 
-            <p:column headerText="E" style="padding: 0px 2px 0px 0px;">
+            <p:column style="padding: 0 0.25% 0 0 !important;" class="tblVenta_Cantidad"
+                      headerText="E" >
                 <span>
-
+                    <p:inputText style="padding: 0!important;
+                                 border: none !important;
+                                 color: #252424 !important; " 
+                                 required="true" 
+                                 value="#{orderItem.notes}"/>
                 </span>
             </p:column>
-            <p:column headerText="Cantidad" colspan="1" class="tblVenta_Cantidad">
-                <p:inputText style="text-align: right;"  value="#{orderItem.quantity?orderItem.quantity:0}">
+            <p:column style="padding: 0 0.25% 0 0 !important;" 
+                      headerText="Cantidad" 
+                      colspan="2" class="tblVenta_Cantidad">
+                <p:inputText style="text-align: right; 
+                             border: none !important;
+                             color: #252424 !important; " 
+                             onclick="this.select()" 
+                             required="true" 
+                             onkeypress="if (event.keyCode === 13) {
+                                         onchange();
+                                         return false;
+                                     }" 
+                             value="#{orderItem.quantity}">
                     <f:convertNumber pattern="#0.00###########"  locale="us" />
+                    <p:ajax event="change" listener="#{orderController.calcularOrderLineItem(orderItem)}"
+                            update="pnlOrdenVenta"/>
                 </p:inputText>
             </p:column>
-            <p:column headerText="% D" style="padding: 0px 2px 0px 0px;">
+            <p:column headerText="% D"  class="tblVenta_Cantidad" 
+                      colspan="1" 
+                      style="padding: 0 0.25% 0 0 !important;">
                 <span>
-
+                    <p:inputText style="padding: 0!important; 
+                                 text-align: right; 
+                                 border: none !important;
+                                 color: #252424 !important; " 
+                                 required="true" 
+                                 onclick="this.select()" 
+                                 onkeypress="if (event.keyCode === 13) {
+                                             onchange();
+                                             return false;
+                                         }" 
+                                 value="#{orderItem.discount1}">
+                        <p:ajax event="change" listener="#{orderController.calcularOrderLineItem(orderItem)}"
+                                update="pnlOrdenVenta"/>
+                    </p:inputText>
                 </span>
             </p:column>
-            <p:column headerText="P.Unit" colspan="1"  class="tblVenta_Cantidad">
+            <p:column style="padding: 0 0.25% 0 0 !important;" 
+                      headerText="P.Unit" colspan="2" 
+                      class="tblVenta_Cantidad">
                 <span>
-                    <p:inputText style="text-align: right;" value="#{orderItem.unitPrice?orderItem.unitPrice:0}">
+                    <p:inputText style="text-align: right; 
+                                 border: none !important;
+                                 color: #252424 !important; "
+                                 onclick="this.select()" 
+                                 required="true" 
+                                 value="#{orderItem.unitPrice}">
                         <f:convertNumber pattern="#0.00###########" locale="us" />
                     </p:inputText>
                 </span>
             </p:column>
-            <p:column headerText="%I" style="padding: 0px 2px 0px 0px;">
+            <p:column style="padding: 0 0.25% 0 0 !important;"
+                      class="tblVenta_Cantidad"
+                      colspan="1" 
+                      headerText="% I">
+                <span>
+                    <p:inputText style="padding: 0!important; 
+                                 border: none !important;
+                                 color: #252424 !important; " 
+                                 required="true" 
+                                 value="#{orderItem.alicuota}"/>
+                </span>
             </p:column>
-            <p:column headerText="Total" class="tblVenta_Cantidad" >
+            <p:column style="padding: 0 0.25% 0 0 !important;"
+                      headerText="Total" class="tblVenta_Cantidad"
+                      colspan="2" >
                 <strong> 
-                    <p:inputText id="lblTotalIncImpuestos"
-                                 style="text-align: right; font-weight: bolder;"
-                                 value="#{orderItem.totalPrice?orderItem.totalPrice:0}">
+                    <p:inputText id="txtTotalItem"
+                                 style="text-align: right; 
+                                 border: none !important;
+                                 color: #252424 !important; 
+                                 opacity: 10 !important; 
+                                 font-weight: bolder !important; "
+                                 disabled="true"
+                                 value="#{orderItem.totalPrice}">
                         <f:convertNumber pattern="#0.00" locale="us" />
                     </p:inputText>
                 </strong>
             </p:column>
-
-            <p:column class="tblVenta_Borrar" >
-                <p:commandButton process="@this" 
+            <p:column style="padding: 0 0.25% 0 0 !important;
+                      text-align: center !important; " 
+                      headerText="Acción"  colspan="1"
+                      class="tblVenta_Borrar" >
+                <p:commandButton rendered="#{orderItem.product.added ne null}" 
+                                 id="iconDelete" process="@this" 
                                  icon="ui-icon-trash" 
-                                 styleClass="red-btn flat"                              
-                                 action="#{ventaController.eliminarDetalleOrdenVenta(productoVenta)}"   />
+                                 styleClass="red-btn flat"     
+                                 update="pnlOrdenVenta, message" 
+                                 action="#{orderController.removeOrderLineItem(orderItem)}" 
+                                 />
+                <p:tooltip for="iconDelete" 
+                           value="ELIMINAR #{orderItem.product.productName}" 
+                           showEffect="clip" hideEffect="explode" position="right"/>
             </p:column>
-
-
             <f:facet name="footer">
                 <p:outputPanel styleClass="ui-g-12 ui-g-nopad" 
                                style=" 

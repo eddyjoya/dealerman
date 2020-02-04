@@ -22,6 +22,14 @@ public class UtilsGlobal {
         return cedula;
     }
 
+    public static String quitarEspacios(String buscar) {
+        try {
+            return buscar.trim();
+        } catch (Exception e) {
+            return buscar;
+        }
+    }
+
     public static boolean validadorDeCedula(String cedula) throws EntidadNoGrabadaException {
         boolean cedulaCorrecta = false;
         try {
@@ -59,6 +67,15 @@ public class UtilsGlobal {
             throw new EntidadNoGrabadaException("Cédula o ruc ingresados incorrectos");
         }
         return cedulaCorrecta;
+    }
+
+    public static boolean busquedaXPunto(String cadena) {
+        try {
+            String punto = cadena.substring(0, 1);
+            return punto.equals(".");
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static boolean isNumeric(String cadena) {

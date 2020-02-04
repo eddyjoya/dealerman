@@ -1,7 +1,9 @@
 package com.dealerman.facturacion.dataManager;
 
 import com.dealerman.enumerator.BusquedaCustomersEnum;
+import com.dealerman.enumerator.BusquedaProductsEnum;
 import com.dealerman.general.CreditTerms;
+import com.dealerman.inventary.Products;
 import com.dealerman.orders.Customers;
 import com.dealerman.orders.OrderLineItems;
 import com.dealerman.orders.Orders;
@@ -23,9 +25,13 @@ public class OrderDM {
     private List<CreditTerms> listCreditTermis;
     private List<Salesmen> listSalesmen;
     private List<OrderLineItems> listOrderLineItems;
+    private String textBuscarProducto;
+    private List<Products> listProducts;
     private Customers customerSelect;
-    private BusquedaCustomersEnum[] listaBusquedaCustomers;
+    private BusquedaCustomersEnum[] listFiltroBusquedaCustomers;
     private BusquedaCustomersEnum busquedaCustomerSelect;
+    private BusquedaProductsEnum[] listFiltroBusquedaProducts;
+    private BusquedaProductsEnum busquedaProductsSelect;
     private boolean editCustomers = true;
     private boolean editEmail = true;
 
@@ -35,6 +41,14 @@ public class OrderDM {
 
     public List<OrderLineItems> getListOrderLineItems() {
         return listOrderLineItems;
+    }
+
+    public String getTextBuscarProducto() {
+        return textBuscarProducto;
+    }
+
+    public void setTextBuscarProducto(String textBuscarProducto) {
+        this.textBuscarProducto = textBuscarProducto;
     }
 
     public void setListOrderLineItems(List<OrderLineItems> listOrderLineItems) {
@@ -57,6 +71,14 @@ public class OrderDM {
         return editCustomers;
     }
 
+    public List<Products> getListProducts() {
+        return listProducts;
+    }
+
+    public void setListProducts(List<Products> listProducts) {
+        this.listProducts = listProducts;
+    }
+
     public void setEditCustomers(boolean editCustomers) {
         this.editCustomers = editCustomers;
     }
@@ -73,12 +95,28 @@ public class OrderDM {
         return order;
     }
 
-    public BusquedaCustomersEnum[] getListaBusquedaCustomers() {
-        return listaBusquedaCustomers;
+    public BusquedaCustomersEnum[] getListFiltroBusquedaCustomers() {
+        return listFiltroBusquedaCustomers;
     }
 
-    public void setListaBusquedaCustomers(BusquedaCustomersEnum[] listaBusquedaCustomers) {
-        this.listaBusquedaCustomers = listaBusquedaCustomers;
+    public void setListFiltroBusquedaCustomers(BusquedaCustomersEnum[] listFiltroBusquedaCustomers) {
+        this.listFiltroBusquedaCustomers = listFiltroBusquedaCustomers;
+    }
+
+    public BusquedaProductsEnum[] getListFiltroBusquedaProducts() {
+        return listFiltroBusquedaProducts;
+    }
+
+    public void setListFiltroBusquedaProducts(BusquedaProductsEnum[] listFiltroBusquedaProducts) {
+        this.listFiltroBusquedaProducts = listFiltroBusquedaProducts;
+    }
+
+    public BusquedaProductsEnum getBusquedaProductsSelect() {
+        return busquedaProductsSelect;
+    }
+
+    public void setBusquedaProductsSelect(BusquedaProductsEnum busquedaProductsSelect) {
+        this.busquedaProductsSelect = busquedaProductsSelect;
     }
 
     public BusquedaCustomersEnum getBusquedaCustomerSelect() {

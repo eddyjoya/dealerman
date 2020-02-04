@@ -7,7 +7,7 @@
                               id="btnGuardarCustomers"
                               style="width: 10% !important" 
                               process="@this, pnlDatosCliente" 
-                              update="pnlDatosCliente,botonesCustomers, message" 
+                              update="pnlDatosCliente,pnlDatosAdicional,botonesCustomers, message" 
                               icon="icon-aceptar"
                               action="#{orderController.guardarCustomers()}"
                               class="boton botonAceptar"/> 
@@ -20,7 +20,7 @@
                               id="btnCancelarCustomers"
                               style="width: 10% !important" 
                               process="@this" 
-                              update="pnlDatosCliente, botonesCustomers" 
+                              update="pnlDatosCliente, pnlDatosAdicional, botonesCustomers" 
                               icon="icon-cerrar"
                               resetValues="true" 
                               action="#{orderController.cancelarCustomers()}"
@@ -28,6 +28,11 @@
             <p:tooltip for="btnCancelarCustomers" 
                        value="Cancelar ingreso de nuevo cliente" 
                        showEffect="clip" hideEffect="explode" position="right"/>
+        </div>
+    </p:outputPanel>
+    <p:outputPanel id="botonesProducts"  class="ui-g-12" > 
+        <div class="ui-g-6" align="right">
+
         </div>
     </p:outputPanel>
 </html>

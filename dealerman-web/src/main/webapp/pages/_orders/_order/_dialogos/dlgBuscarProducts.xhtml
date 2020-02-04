@@ -4,7 +4,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <p:dialog id="dlgBuscarProducts" 
-              closeOnEscape="true" 
+              closeOnEscape="true"
               widgetVar="dlgBuscarProducts" 
               modal="true" 
               responsive="true" 
@@ -12,11 +12,8 @@
         <f:facet name="header">
             <i class="fa fa-check-square-o"/>
             <p:spacer width="15"/>
-            Buscar clientes
+            Buscar productos
         </f:facet>
-        <p:ajax event="close"
-                listener="#{orderController.closeBusquedaCustomers()}" />
-
         <div class="ui-g-12 footer-center" style="padding: 0">
             <div class="ui-g-4" style="padding: 0;">
                 <div class="ui-g-5" align="right">
@@ -26,11 +23,11 @@
                 </div>
                 <div class="ui-g-7" style="padding: 0; margin-top: -5px;">
                     <div class="ui-g-12 itemDetalle">
-                        <p:selectOneMenu required="true"
-                                         value="#{orderDM.busquedaCustomerSelect}" 
+                        <p:selectOneMenu id="cbxBusquedaProducts" required="true"
+                                         value="#{orderDM.busquedaProductsSelect}" 
                                          style="width: 100%;" 
                                          >
-                            <f:selectItems value="#{orderDM.listaBusquedaCustomers}" />
+                            <f:selectItems value="#{orderDM.listFiltroBusquedaProducts}" />
                             <p:ajax/>
                         </p:selectOneMenu>
                     </div>
@@ -45,11 +42,11 @@
                 <div class="ui-g-7">
                     <div class="ui-g-12 itemDescripcion">
                         <p:inputText id="txtBusquedaProduct" onclick="this.select()" 
-                                     value="#{orderDM.customerSelect.customerId}">
+                                     value="#{orderDM.textBuscarProducto}">
                             <p:ajax event="keyup" 
-                                    process="@this, cbxBusqueda" 
-                                    update="tablaBusquedaCustomers"
-                                    listener="#{orderController.buscarCustomersAvanzado(orderDM.customerSelect.customerId)}"/>
+                                    process="@this, cbxBusquedaProducts" 
+                                    update="tablaBusquedaProducts"
+                                    listener="#{orderController.buscarProductsAvanzado(orderDM.textBuscarProducto)}"/>
                         </p:inputText>
                         <p:focus for="txtBusquedaProduct"/>
                     </div>
@@ -58,12 +55,12 @@
         </div>
 
         <div class="ui-xs-12 ui-s-12 ui-m-12 ui-g-12 ui-l-12 ui-xl-12" >
-            <p:dataTable value="#{orderDM.listCustomers}"
-                         var="customer" 
+            <p:dataTable value="#{orderDM.listProducts}"
+                         var="product" 
                          id="tablaBusquedaProducts" 
                          emptyMessage="No se ha encontrado registros"
                          selectionMode="single"  
-                         rowKey="#{customer.customerId}"                         
+                         rowKey="#{product.productId}"                         
                          scrollable="true" 
                          scrollRows="20" 
                          liveScroll="true"
@@ -71,36 +68,36 @@
                          >
 
                 <p:ajax event="rowSelect"
-                        listener="#{orderController.onRowSelectCustomers}"
+                        listener="#{orderController.onRowSelectProducts}"
                         update="tablaOrderItems, message" 
-                        oncomplete="PF('dlgBuscarCustomers').hide();" />
+                        oncomplete="PF('dlgBuscarProducts').hide();" />
 
-                <p:column headerText="Cédula o Ruc" colspan="2" style="background-color: #FFE5CC">
+                <p:column headerText="Código" colspan="2" style="background-color: #FFE5CC">
                     <span style="font-size: 1.7vh; ">
-                        <h:outputText value="#{customer.cedula}" />
+                        <h:outputText value="#{product.productId}" />
                     </span>
                 </p:column>
 
-                <p:column headerText="Razón social" 
-                          sortBy="#{customer.companyName}" 
+                <p:column headerText="Producto" 
+                          sortBy="#{product.productName}" 
                           colspan="3" >
                     <span style="font-size:  1.7vh; font-weight: bold;">
-                        <h:outputText value="#{customer.companyName}" />
+                        <h:outputText value="#{product.productName}" />
                     </span>
                 </p:column>
-                <p:column headerText="Dirección" colspan="2" >
+                <p:column headerText="Stock" colspan="2" >
                     <span style="font-size:  1.7vh;">
-                        <h:outputText value=" #{customer.address}" />
+                        <h:outputText value=" #{product.stockne}" />
                     </span>
                 </p:column>
-                <p:column headerText="Ciudad" colspan="1" >
+                <p:column headerText="Transito" colspan="1" >
                     <span style="font-size:  1.7vh;">
-                        <h:outputText value=" #{customer.city}" />
+                        <h:outputText value=" #{product.observ}" />
                     </span>
                 </p:column>
-                <p:column headerText="Deuda" colspan="1" >
+                <p:column headerText="Precio" colspan="1" >
                     <span style="font-size:  1.7vh;">
-                        <h:outputText value="" />
+                        <h:outputText value=" #{product.unitPrice}" />
                     </span>
                 </p:column>
             </p:dataTable>

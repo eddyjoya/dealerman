@@ -20,6 +20,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 /**
  *
@@ -334,8 +336,9 @@ public class Products implements Serializable {
     private Integer pPortal;
 
     @MapsId("customer_id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @ForeignKey(name = "FK__products__71D1E811")
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumns({
         @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
         ,
@@ -346,6 +349,11 @@ public class Products implements Serializable {
     private String line;
 
     public Products() {
+    }
+
+    public Products(String productId, String productName) {
+        this.productId = productId;
+        this.productName = productName;
     }
 
     public String getCompanyId() {
