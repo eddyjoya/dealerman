@@ -22,6 +22,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
 
 /**
@@ -39,7 +40,7 @@ public class OrderLineItems implements Serializable {
     private Integer odetailId;
     @Column(name = "company_id", columnDefinition = "char(2)", nullable = false)
     private String companyId;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ForeignKey(name = "FK__order_lin__order__7D439ABD")
     @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
     private Orders order;
@@ -116,7 +117,18 @@ public class OrderLineItems implements Serializable {
     })
     private Branches branchFK;
 
+    @Transient
+    private BigDecimal totalPriceBruto;
+
     public OrderLineItems() {
+    }
+
+    public BigDecimal getTotalPriceBruto() {
+        return totalPriceBruto;
+    }
+
+    public void setTotalPriceBruto(BigDecimal totalPriceBruto) {
+        this.totalPriceBruto = totalPriceBruto;
     }
 
     public Integer getOdetailId() {

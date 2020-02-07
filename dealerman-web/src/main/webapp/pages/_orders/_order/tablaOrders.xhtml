@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <p:outputPanel id="pnlOrdenVenta" class="ui-g-12 ui-g-nopad" style="padding: 15px 10px;">
         <p:dataTable id="tablaOrderItems" value="#{orderDM.listOrderLineItems}" 
@@ -13,10 +14,6 @@
                      border-bottom: 0px; padding: 0 !important;" 
                      scrollable="true"                        
                      disabledTextSelection="true">
-
-            <p:ajax event="rowSelect" 
-                    process="@this" 
-                    listener="#{ventaController.onRowSelectEditProducto}" />
 
             <p:column style="padding: 0 0.25% 0 0 !important;" 
                       headerText="Código" class="tblVenta_Cantidad" colspan="4" >
@@ -46,22 +43,32 @@
                                  color: #252424 !important;  " 
                                  value="#{orderItem.product.productName}"
                                  placeholder="Producto" 
-                                 autocomplete="false" 
-                                 required="true" />
+                                 required="true" 
+                                 autocomplete="false" />
 
                 </span>
 
             </p:column>
 
-            <p:column style="padding: 0 0.25% 0 0 !important;" class="tblVenta_Cantidad"
+            <p:column style="padding: 0 0.25% 0 0 !important; text-align: center; " 
+                      class="tblVenta_Cantidad"
                       headerText="E" >
-                <span>
-                    <p:inputText style="padding: 0!important;
-                                 border: none !important;
-                                 color: #252424 !important; " 
-                                 required="true" 
-                                 value="#{orderItem.notes}"/>
-                </span>
+
+                <h:commandLink rendered="#{orderItem.product.added ne null}" 
+                               onkeypress="if (event.keyCode === 13) {
+                                           PF('dlgNotaItemLine').show();
+                                           return false;
+                                       }"
+                               onclick="PF('dlgNotaItemLine').show();">
+                    <h:graphicImage style="width:54.5%; height: auto; padding: 0!important;"
+                                    library="images"  
+                                    name="button/boton-note.png" 
+                                    value="Agregar nota" title="Agregar nota" />
+                    <f:setPropertyActionListener value="#{orderItem}" 
+                                                 target="#{orderDM.orderLineItem}"/>
+                    <f:ajax render="editItemLine"/>
+                </h:commandLink>
+
             </p:column>
             <p:column style="padding: 0 0.25% 0 0 !important;" 
                       headerText="Cantidad" 
@@ -76,9 +83,9 @@
                                          return false;
                                      }" 
                              value="#{orderItem.quantity}">
-                    <f:convertNumber pattern="#0.00###########"  locale="us" />
+                    <f:convertNumber pattern="#0.00"  locale="us" />
                     <p:ajax event="change" listener="#{orderController.calcularOrderLineItem(orderItem)}"
-                            update="pnlOrdenVenta"/>
+                            update="pnlOrdenVenta, txtTotalOrder, txtNumItems"/>
                 </p:inputText>
             </p:column>
             <p:column headerText="% D"  class="tblVenta_Cantidad" 
@@ -89,15 +96,15 @@
                                  text-align: right; 
                                  border: none !important;
                                  color: #252424 !important; " 
-                                 required="true" 
                                  onclick="this.select()" 
+                                 required="true" 
                                  onkeypress="if (event.keyCode === 13) {
                                              onchange();
                                              return false;
                                          }" 
                                  value="#{orderItem.discount1}">
                         <p:ajax event="change" listener="#{orderController.calcularOrderLineItem(orderItem)}"
-                                update="pnlOrdenVenta"/>
+                                update="pnlOrdenVenta, txtTotalOrder, txtNumItems"/>
                     </p:inputText>
                 </span>
             </p:column>
@@ -110,8 +117,14 @@
                                  color: #252424 !important; "
                                  onclick="this.select()" 
                                  required="true" 
+                                 onkeypress="if (event.keyCode === 13) {
+                                             onchange();
+                                             return false;
+                                         }" 
                                  value="#{orderItem.unitPrice}">
-                        <f:convertNumber pattern="#0.00###########" locale="us" />
+                        <p:ajax event="change" listener="#{orderController.calcularOrderLineItem(orderItem)}"
+                                update="pnlOrdenVenta, txtTotalOrder, txtNumItems"/>
+                        <f:convertNumber pattern="#0.00####" locale="us" />
                     </p:inputText>
                 </span>
             </p:column>
@@ -122,9 +135,13 @@
                 <span>
                     <p:inputText style="padding: 0!important; 
                                  border: none !important;
-                                 color: #252424 !important; " 
+                                 color: #252424 !important; 
+                                 text-align: right; " 
                                  required="true" 
-                                 value="#{orderItem.alicuota}"/>
+                                 onclick="this.select()" 
+                                 value="#{orderItem.tax}">
+                        <f:convertNumber pattern="#0" locale="us" />
+                    </p:inputText>
                 </span>
             </p:column>
             <p:column style="padding: 0 0.25% 0 0 !important;"
@@ -151,7 +168,7 @@
                                  id="iconDelete" process="@this" 
                                  icon="ui-icon-trash" 
                                  styleClass="red-btn flat"     
-                                 update="pnlOrdenVenta, message" 
+                                 update="pnlOrdenVenta,txtTotalOrder,txtNumItems,message" 
                                  action="#{orderController.removeOrderLineItem(orderItem)}" 
                                  />
                 <p:tooltip for="iconDelete" 
@@ -170,8 +187,8 @@
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.totalBruto}" style="font-size: 17px; color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
@@ -179,10 +196,9 @@
                         <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important" value="Descuento" />
                         </div>
-
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.detailDiscount}" style="font-size: 17px; color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
@@ -190,10 +206,9 @@
                         <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
                             <p:outputLabel style="color: black !important" value="SubTotal" />
                         </div>
-
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.taxable}" style="font-size: 17px; color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
@@ -205,12 +220,12 @@
 
                     <div class="ui-g-6 ui-g-nopad" style="height: 100%; width: 100px;">
                         <div class="ui-g-12 itemDescripcion" style="margin-top: 5px !important">
-                            <p:outputLabel style="color: black !important" value="Gravado" />
+                            <p:outputLabel style="color: black !important" value="Grabado" />
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.taxable}" style="font-size: 17px; color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
@@ -221,8 +236,9 @@
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.taxTotal}" 
+                                           style="font-size: 17px; color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
@@ -233,8 +249,8 @@
                         </div>
 
                         <div class="ui-g-12 itemDetalle">
-                            <p:outputLabel value="0.00" style="font-size: 17px; color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.services}" style="font-size: 17px; color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div>                        
                     </div>
@@ -254,8 +270,8 @@
                              font-weight: bolder; 
                              text-align: center;
                              color: black !important;">
-                            <p:outputLabel value="0.00" style="color: white !important">
-                                <f:convertNumber pattern="#0.00######" locale="us" />
+                            <p:outputLabel value="#{orderDM.order.total}" style="color: white !important">
+                                <f:convertNumber pattern="#0.00" locale="us" />
                             </p:outputLabel>
                         </div> 
                     </div>

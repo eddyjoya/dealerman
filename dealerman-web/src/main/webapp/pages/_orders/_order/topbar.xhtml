@@ -7,7 +7,9 @@
         <div id="pnlDescripcion"
              class="panelBotonesIzq">
             <div class="panelBotonesIzqCont">
-                <p:commandLink process="@this">
+                <p:commandLink process="@this" 
+                               update="form, message" 
+                               actionListener="#{orderController.guardarOrder()}" >
                     <p:graphicImage title="Guardar" 
                                     name="button/boton-guardar.png"
                                     library = "images"

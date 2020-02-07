@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -48,14 +49,14 @@ public class Customers implements Serializable {
     @Column(name = "customer_id", columnDefinition = "char(13)")
     private String customerId;
     @MapsId("category_id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @ForeignKey(name = "FK__customers__300424B4")
     @JoinColumns({
         @JoinColumn(name = "category_id", referencedColumnName = "category_id")
         ,
         @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
     })
-    private CategoryDeudor CustomersCatDeudorFK;
+    private CategoryDeudor categoryDeudor;
 
     @Column(name = "category_id", columnDefinition = "char(2)", nullable = false)
     private String categoryId;
@@ -245,7 +246,7 @@ public class Customers implements Serializable {
         hash = 29 * hash + Objects.hashCode(this.companyId);
         hash = 29 * hash + Objects.hashCode(this.aplicacion);
         hash = 29 * hash + Objects.hashCode(this.customerId);
-        hash = 29 * hash + Objects.hashCode(this.CustomersCatDeudorFK);
+        hash = 29 * hash + Objects.hashCode(this.categoryDeudor);
         hash = 29 * hash + Objects.hashCode(this.categoryId);
         hash = 29 * hash + Objects.hashCode(this.companyName);
         hash = 29 * hash + Objects.hashCode(this.comercialName);
@@ -439,7 +440,7 @@ public class Customers implements Serializable {
         if (!Objects.equals(this.sustentoId, other.sustentoId)) {
             return false;
         }
-        if (!Objects.equals(this.CustomersCatDeudorFK, other.CustomersCatDeudorFK)) {
+        if (!Objects.equals(this.categoryDeudor, other.categoryDeudor)) {
             return false;
         }
         if (!Objects.equals(this.chainMaster, other.chainMaster)) {
@@ -541,15 +542,17 @@ public class Customers implements Serializable {
         return Objects.equals(this.citiesFK, other.citiesFK);
     }
 
-    public Customers(String customerId, String cedula) {
+    public Customers(String customerId, String cedula, CategoryDeudor categoryDeudor) {
         this.customerId = customerId;
+        this.categoryDeudor = categoryDeudor;
         this.cedula = cedula;
     }
 
-    public Customers(String customerId, String companyName, String contactName) {
+    public Customers(String customerId, String companyName, String contactName, CategoryDeudor categoryDeudor) {
         this.customerId = customerId;
         this.companyName = companyName;
         this.contactName = contactName;
+        this.categoryDeudor = categoryDeudor;
     }
 
     public String getCompanyId() {
@@ -616,12 +619,12 @@ public class Customers implements Serializable {
         this.routeMaster = routeMaster;
     }
 
-    public CategoryDeudor getCustomersCatDeudorFK() {
-        return CustomersCatDeudorFK;
+    public CategoryDeudor getCategoryDeudor() {
+        return categoryDeudor;
     }
 
-    public void setCustomersCatDeudorFK(CategoryDeudor CustomersCatDeudorFK) {
-        this.CustomersCatDeudorFK = CustomersCatDeudorFK;
+    public void setCategoryDeudor(CategoryDeudor categoryDeudor) {
+        this.categoryDeudor = categoryDeudor;
     }
 
     public String getProvinceId() {

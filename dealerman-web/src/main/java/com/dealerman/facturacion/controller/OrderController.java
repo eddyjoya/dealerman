@@ -2,12 +2,14 @@ package com.dealerman.facturacion.controller;
 
 import com.dealerman.enumerator.BusquedaCustomersEnum;
 import com.dealerman.enumerator.BusquedaProductsEnum;
+import com.dealerman.enumerator.CategoryDeudorEnum;
 import com.dealerman.exceptions.EntidadNoGrabadaException;
 import com.dealerman.facturacion.dataManager.OrderDM;
 import com.dealerman.orders.Customers;
 import com.dealerman.orders.Orders;
 import com.dealerman.facturacionServicesUI.ICustomersService;
 import com.dealerman.facturacionServicesUI.IOrderLineItemsService;
+import com.dealerman.facturacionServicesUI.IOrdersService;
 import com.dealerman.facturacionServicesUI.ISalesmenService;
 import com.dealerman.general.CreditTerms;
 import com.dealerman.generalServicesUI.ICreditTermsService;
@@ -18,7 +20,6 @@ import com.dealerman.orders.Salesmen;
 import com.dealerman.utils.BaseController;
 import com.dealerman.utils.UtilVista;
 import com.dealerman.utils.UtilsGlobal;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -47,18 +48,19 @@ public class OrderController extends BaseController {
     @EJB
     IProductsService productsService;
     @EJB
+    IOrdersService ordersService;
+    @EJB
     IOrderLineItemsService orderLineItemsService;
     
     public void init() {
+        //Instancia nueva order
         orderDM.setOrder(new Orders());
-        orderDM.getOrder().setOrderDate(accessDM.getFechaActual());
-        orderDM.getOrder().setSourceDate(accessDM.getFechaActual());
-        orderDM.getOrder().setValidTo(accessDM.getFechaActual());
+        ordersService.instanciarOrder(orderDM.getOrder());
         if (accessDM.getBranchSelect() != null) {
+            orderDM.getOrder().setCompanyBodega(accessDM.getBranchSelect());
             orderDM.getOrder().setLocalId(accessDM.getBranchSelect().getLocalId());
             orderDM.getOrder().setIssueId(accessDM.getBranchSelect().getIssueId());
         }
-        orderDM.getOrder().setOrderNumber(BigDecimal.ONE); //?
 
         // Instance order line items
         orderDM.setListOrderLineItems(new ArrayList<OrderLineItems>());
@@ -66,8 +68,6 @@ public class OrderController extends BaseController {
 
         //Instanciar customers
         orderDM.setCustomerSelect(new Customers());
-        orderDM.getCustomerSelect().setCreditTerms(new CreditTerms());
-        orderDM.getCustomerSelect().setSalesmen(new Salesmen());
         orderDM.setListFiltroBusquedaCustomers(BusquedaCustomersEnum.values());
         orderDM.setListFiltroBusquedaProducts(BusquedaProductsEnum.values());
     }
@@ -75,7 +75,7 @@ public class OrderController extends BaseController {
     public void buscarCustomers(String buscar) {
         try {
             buscar = buscar.trim();//Quita espacios en blancos
-            List<Customers> listRespuesta = customersService.busquedaCoinciendia(buscar);
+            List<Customers> listRespuesta = customersService.busquedaCoinciendia(buscar, CategoryDeudorEnum.CLIENTES);
             if (listRespuesta == null) {//Ingreso nuevo cliente
                 ingresoCustomers(buscar);
             } else if (!(listRespuesta.isEmpty()) && (UtilVista.isNumeric(buscar))) {//Encontro cédula, ruc o código del cliente
@@ -100,8 +100,10 @@ public class OrderController extends BaseController {
                 orderDM.setTextBuscarProducto(buscar.substring(1, buscar.length()));//instancia el campo para buscar y elimina el punto
                 PrimeFaces.current().executeScript("PF('dlgBuscarProducts').show();");
             } else {
-                orderLineItemsService.addProductToLineItems(orderDM.getListOrderLineItems(), listRespuesta.get(0));
+                orderLineItemsService.addProductToLineItems(orderDM.getListOrderLineItems(), orderDM.getOrder(), listRespuesta.get(0));
                 PrimeFaces.current().ajax().update("pnlOrdenVenta");
+                PrimeFaces.current().ajax().update("txtTotalOrder");
+                PrimeFaces.current().ajax().update("txtNumItems");
             }
         } catch (EntidadNoGrabadaException ex) {
             addErrorMessage(ex.getMessage());
@@ -109,7 +111,7 @@ public class OrderController extends BaseController {
     }
     
     public void buscarCustomersAvanzado(String buscar) {
-        orderDM.setListCustomers(customersService.buscarFiltroCoinciendia(buscar.trim(), orderDM.getBusquedaCustomerSelect()));
+        orderDM.setListCustomers(customersService.buscarFiltroCoinciendia(buscar.trim(), orderDM.getBusquedaCustomerSelect(), CategoryDeudorEnum.CLIENTES));
     }
     
     public void buscarProductsAvanzado(String buscar) {
@@ -125,11 +127,22 @@ public class OrderController extends BaseController {
         addSuccessMessage("Ingreso de nuevo cliente");
     }
     
+    public void guardarOrder() {
+        try {
+            ordersService.guardarOrder(orderDM.getOrder(), orderDM.getListOrderLineItems(),
+                    orderDM.getCustomerSelect(), accessDM.getEmployeeSelect());
+            addSuccessMessage("Venta realizada correctamente.");
+        } catch (EntidadNoGrabadaException ex) {
+            System.out.println(ex.getCause());
+            addErrorMessage(ex.getMessage());
+        }
+    }
+    
     public void guardarCustomers() {
         try {
             orderDM.getCustomerSelect().setBranchSelect(accessDM.getBranchSelect());
             orderDM.getCustomerSelect().setEmployeeSelect(accessDM.getEmployeeSelect());
-            customersService.guardarCustomers(orderDM.getCustomerSelect());
+            customersService.guardarCustomers(orderDM.getCustomerSelect(), CategoryDeudorEnum.CLIENTES);
             editarCustomers(true);
             addSuccessMessage("Registro guardado correctamente");
         } catch (EntidadNoGrabadaException ex) {
@@ -158,7 +171,7 @@ public class OrderController extends BaseController {
     
     public void onRowSelectProducts(SelectEvent event) {
         try {
-            orderLineItemsService.addProductToLineItems(orderDM.getListOrderLineItems(), (Products) event.getObject());
+            orderLineItemsService.addProductToLineItems(orderDM.getListOrderLineItems(), orderDM.getOrder(), (Products) event.getObject());
         } catch (EntidadNoGrabadaException ex) {
             addErrorMessage(ex.getMessage());
         }
@@ -166,19 +179,15 @@ public class OrderController extends BaseController {
     
     public void calcularOrderLineItem(OrderLineItems orderLine) {
         orderLineItemsService.calcularTotalesOrderLineItem(orderLine);
+        ordersService.calcularTotalesOrder(orderDM.getListOrderLineItems(), orderDM.getOrder());
     }
     
     public void removeOrderLineItem(OrderLineItems orderLine) {
         orderLineItemsService.removeOrderItems(orderDM.getListOrderLineItems(), orderLine);
+        ordersService.calcularTotalesOrder(orderDM.getListOrderLineItems(), orderDM.getOrder());
     }
     
     private void cargarInfoAdicional() {
-        if (orderDM.getCustomerSelect().getCreditTerms() == null) {
-            orderDM.getCustomerSelect().setCreditTerms(new CreditTerms());
-        }
-        if (orderDM.getCustomerSelect().getSalesmen() == null) {
-            orderDM.getCustomerSelect().setSalesmen(new Salesmen());
-        }
         orderDM.setListCreditTermis(creditTermsService.buscar(new CreditTerms()));
         orderDM.setListSalesmen(salesmenService.buscar(new Salesmen()));
         PrimeFaces.current().ajax().update("pnlDatosAdicional");

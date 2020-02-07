@@ -69,7 +69,7 @@
 
                 <p:ajax event="rowSelect"
                         listener="#{orderController.onRowSelectProducts}"
-                        update="tablaOrderItems, message" 
+                        update="tablaOrderItems, message, txtTotalOrder, txtNumItems" 
                         oncomplete="PF('dlgBuscarProducts').hide();" />
 
                 <p:column headerText="Código" colspan="2" style="background-color: #FFE5CC">

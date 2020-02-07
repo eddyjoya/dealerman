@@ -56,11 +56,15 @@ public class CustomersService implements ICustomersService {
         customersDao.update(customers);
     }
 
+    private CategoryDeudor buscarCategoryDeudor(CategoryDeudorEnum tipoCategory) {
+        return categoryDeudorDao.buscar(new CategoryDeudor(tipoCategory.getAplicacion(), tipoCategory.getNombre())).get(0);
+    }
+
     @Override
-    public void guardarCustomers(Customers customer) throws EntidadNoGrabadaException {
+    public void guardarCustomers(Customers customer, CategoryDeudorEnum tipoCategory) throws EntidadNoGrabadaException {
         if (customer.getAdded() == null) {
-            validateInfoCustomers(customer);
-            CategoryDeudor categoryDeudorEncontrado = categoryDeudorDao.buscar(new CategoryDeudor(CategoryDeudorEnum.CLIENTES.getAplicacion(), CategoryDeudorEnum.CLIENTES.getNombre())).get(0);
+            CategoryDeudor categoryDeudorEncontrado = buscarCategoryDeudor(tipoCategory);
+            validateInfoCustomers(customer, categoryDeudorEncontrado);
             Salesmen salesmenEncontrado = salesmenDao.buscar(new Salesmen()).get(0);//??
             CreditTerms crediTermsEncontrado = creditTermsDao.buscar(new CreditTerms(CreditTermsEnum.CONTADO.getNombre())).get(0);
 
@@ -101,8 +105,9 @@ public class CustomersService implements ICustomersService {
         update(customer);
     }
 
-    private void validateInfoCustomers(Customers customer) throws EntidadNoGrabadaException {
-        List<Customers> listRespuesta = customersDao.buscar(new Customers(customer.getCustomerId(), customer.getCedula()));
+    private void validateInfoCustomers(Customers customer, CategoryDeudor categoryDeudorEncontrado) throws EntidadNoGrabadaException {
+
+        List<Customers> listRespuesta = customersDao.buscar(new Customers(customer.getCustomerId(), customer.getCedula(), categoryDeudorEncontrado));
         if (!listRespuesta.isEmpty()) {
             throw new EntidadNoGrabadaException("Ya exite un registro con los datos ingresados");
         }
@@ -112,17 +117,18 @@ public class CustomersService implements ICustomersService {
     }
 
     @Override
-    public List<Customers> busquedaCoinciendia(String buscar) throws EntidadNoGrabadaException {
+    public List<Customers> busquedaCoinciendia(String buscar, CategoryDeudorEnum tipoCategory) throws EntidadNoGrabadaException {
         List<Customers> lista = null;
+        CategoryDeudor categoryDeudorEncontrado = buscarCategoryDeudor(tipoCategory);
         if (UtilsGlobal.isNumeric(buscar)) {
             if (buscar.length() < 10) { // Busca por codigo del cliente
-                lista = customersDao.buscar(new Customers(buscar, null));
+                lista = customersDao.buscar(new Customers(buscar, null, categoryDeudorEncontrado));
                 if (lista.isEmpty()) {
                     throw new EntidadNoGrabadaException("¡Código no existente!");
                 }
             }
             if ((buscar.length() >= 10) && (buscar.length() <= 13)) { // Valida y busca por cédula o ruc
-                lista = customersDao.buscar(new Customers(null, buscar));
+                lista = customersDao.buscar(new Customers(null, buscar, categoryDeudorEncontrado));
                 if (lista.isEmpty()) {
                     try {
                         if (UtilsGlobal.validadorDeCedula(buscar)) { //En el que caso que no exista procede a crear un nuevo cliente
@@ -134,18 +140,19 @@ public class CustomersService implements ICustomersService {
                 }
             }
         } else if (buscar.length() > 0) { // Busca coincidencias por nombres
-            lista = customersDao.buscar(new Customers(null, buscar, null));
+            lista = customersDao.buscar(new Customers(null, buscar, null, categoryDeudorEncontrado));
         }
         return lista;
     }
 
     @Override
-    public List<Customers> buscarFiltroCoinciendia(String buscar, BusquedaCustomersEnum filtro) {
+    public List<Customers> buscarFiltroCoinciendia(String buscar, BusquedaCustomersEnum filtro, CategoryDeudorEnum tipoCategory) {
+        CategoryDeudor categoryDeudorEncontrado = buscarCategoryDeudor(tipoCategory);
         switch (filtro) {
             case Nombre:
-                return customersDao.buscar(new Customers(null, buscar, null));
+                return customersDao.buscar(new Customers(null, buscar, null, categoryDeudorEncontrado));
             case Contacto:
-                return customersDao.buscar(new Customers(null, null, buscar));
+                return customersDao.buscar(new Customers(null, null, buscar, categoryDeudorEncontrado));
             default:
                 return new ArrayList<>();
         }

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <p:dialog id="dlgNotaItemLine" 
+              closeOnEscape="true"
+              widgetVar="dlgNotaItemLine" 
+              modal="true" 
+              responsive="true" 
+              dynamic="true">
+        <div class="ui-g">     
+            <f:facet name="header">
+                <i class="fa fa-comment"/>
+                <p:spacer width="15"/>
+                Agregar nota al detalle
+            </f:facet>
+            <p:ajax event="close"
+                    update="editItemLine" resetValues="true" />
+
+            <h:form id="editItemLine"> 
+                <div class="ui-g-12 ui-l-12 ui-m-12 ui-s-12 ui-xs-12 ui-xl-12" >
+
+                    <div class="ui-inputgroup ui-g-12 itemDetalle">
+
+                        <p:inputTextarea id="txtNoteLine" 
+                                         onkeypress="if (event.keyCode === 13) {
+                                                     onchange();
+                                                     PF('dlgNotaItemLine').hide();
+                                                     return true;
+                                                 }"
+                                         placeholder="Agregar nota..." 
+                                         value="#{orderDM.orderLineItem.notes}"
+                                         rows="4" >
+                            <p:ajax event="change"/>
+                        </p:inputTextarea>
+
+
+                    </div>
+                </div>
+                <div class="ui-g-12 footer-center">
+                    <p:commandButton value="Aceptar" id="btnGuardarItemLine" process="@this, editItemLine" 
+                                     update="tablaOrderItems" 
+                                     onsuccess="PF('dlgNotaItemLine').hide();" 
+                                     icon="icon-aceptar" 
+                                     class="boton botonAceptar"/>  
+
+                    <p:spacer width="15"/>
+                    <p:commandButton value="Cancelar" process="@this" 
+                                     icon="icon-cerrar"
+                                     class="boton botonCancelar"
+                                     onclick="PF('dlgNotaItemLine').hide()"  >
+                        <p:ajax update="editItemLine" resetValues="true" />
+                    </p:commandButton>
+                </div>
+
+            </h:form>
+        </div>
+    </p:dialog>
+</html>

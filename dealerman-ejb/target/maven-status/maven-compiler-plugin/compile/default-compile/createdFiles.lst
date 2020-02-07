@@ -27,8 +27,10 @@ com\dealerman\exceptions\EntidadNoBorradaException.class
 com\dealerman\generalDaoUI\ICantonsDao.class
 com\dealerman\generalDao\CantonsDao.class
 com\dealerman\facturacionServices\CustomersService.class
+com\dealerman\facturacionDao\OrdersDao.class
 com\dealerman\facturacionDaoUI\ISalesmenDao.class
 com\dealerman\enumerator\CategoryDeudorEnum.class
+com\dealerman\enumerator\TipoOperacionEnum.class
 com\dealerman\facturacionServicesUI\ICustomersService.class
 com\dealerman\generalServicesUI\ICantonsService.class
 com\dealerman\configurationServices\CategoryDeudorService.class
@@ -48,5 +50,6 @@ com\dealerman\exceptions\EntidadNoGrabadaException.class
 com\dealerman\inventaryServices\ProductsService$1.class
 com\dealerman\utils\UtilsGlobal.class
 com\dealerman\facturacionDaoUI\ICustomersDao.class
+com\dealerman\facturacionDaoUI\IOrdersDao.class
 com\dealerman\generalServicesUI\ICreditTermsService.class
 com\dealerman\configurationServicesUI\ICategoryDeudorService.class

@@ -26,6 +26,7 @@ public class OrderDM {
     private List<Salesmen> listSalesmen;
     private List<OrderLineItems> listOrderLineItems;
     private String textBuscarProducto;
+    private OrderLineItems orderLineItem = new OrderLineItems();
     private List<Products> listProducts;
     private Customers customerSelect;
     private BusquedaCustomersEnum[] listFiltroBusquedaCustomers;
@@ -45,6 +46,14 @@ public class OrderDM {
 
     public String getTextBuscarProducto() {
         return textBuscarProducto;
+    }
+
+    public OrderLineItems getOrderLineItem() {
+        return orderLineItem;
+    }
+
+    public void setOrderLineItem(OrderLineItems orderLineItem) {
+        this.orderLineItem = orderLineItem;
     }
 
     public void setTextBuscarProducto(String textBuscarProducto) {

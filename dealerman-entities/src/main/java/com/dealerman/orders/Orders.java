@@ -9,9 +9,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -20,6 +24,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
 
 /**
@@ -36,19 +41,17 @@ public class Orders implements Serializable {
     private Integer orderId;
     @Column(name = "activity_id", columnDefinition = "int", nullable = true)
     private Integer activityId;
-    @Column(name = "company_id", columnDefinition = "char(2)", nullable = false)
-    private String companyId;
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = true)
     private String branchId;
-    @MapsId("branch_id")
-    @ManyToOne
+
     @ForeignKey(name = "FK__orders__3A81B327")
+    @ManyToOne
     @JoinColumns({
         @JoinColumn(name = "company_id", referencedColumnName = "company_id")
         ,
         @JoinColumn(name = "bodega_id", referencedColumnName = "bodega_id")
     })
-    private Branches companyBodegaFK;
+    private Branches companyBodega;
 
     @Column(name = "aplicacion", columnDefinition = "char(1)", nullable = false)
     private String aplicacion;
@@ -56,8 +59,6 @@ public class Orders implements Serializable {
     private String customerId;
     @Column(name = "ship_to_id", columnDefinition = "char(3)", nullable = true)
     private String shipToId;
-    @Column(name = "bodega_id", columnDefinition = "char(2)", nullable = false)
-    private String bodegaId;
     @Column(name = "vehicle_id", columnDefinition = "char(17)", nullable = true)
     private String vehicleId;
     @Column(name = "tipo", columnDefinition = "char(2)", nullable = false)
@@ -94,7 +95,7 @@ public class Orders implements Serializable {
     @Column(name = "order_date", columnDefinition = "smalldatetime", nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date orderDate;
-    @Column(name = "kilometer", columnDefinition = "numeric(6)", nullable = false)
+    @Column(name = "kilometer", columnDefinition = "numeric(6)", nullable = true)
     private BigDecimal kilometer;
     @Column(name = "quotation_number", columnDefinition = "numeric(8)", nullable = false)
     private BigDecimal quotationNumber;
@@ -274,7 +275,22 @@ public class Orders implements Serializable {
     })
     private Customers OrdersCustomersFK;
 
+    @Transient
+    private BigDecimal totalBruto;
+
     public Orders() {
+    }
+
+    public Orders(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public BigDecimal getTotalBruto() {
+        return totalBruto;
+    }
+
+    public void setTotalBruto(BigDecimal totalBruto) {
+        this.totalBruto = totalBruto;
     }
 
     public List<OrderLineItems> getOrderItems() {
@@ -301,14 +317,6 @@ public class Orders implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
-    }
-
     public String getBranchId() {
         return branchId;
     }
@@ -317,14 +325,13 @@ public class Orders implements Serializable {
         this.branchId = branchId;
     }
 
-    public Branches getCompanyBodegaFK() {
-        return companyBodegaFK;
-    }
-
-    public void setCompanyBodegaFK(Branches companyBodegaFK) {
-        this.companyBodegaFK = companyBodegaFK;
-    }
-
+//    public Branches getCompanyBodega() {
+//        return companyBodega;
+//    }
+//
+//    public void setCompanyBodega(Branches companyBodega) {
+//        this.companyBodega = companyBodega;
+//    }
     public String getAplicacion() {
         return aplicacion;
     }
@@ -347,14 +354,6 @@ public class Orders implements Serializable {
 
     public void setShipToId(String shipToId) {
         this.shipToId = shipToId;
-    }
-
-    public String getBodegaId() {
-        return bodegaId;
-    }
-
-    public void setBodegaId(String bodegaId) {
-        this.bodegaId = bodegaId;
     }
 
     public String getVehicleId() {
@@ -728,6 +727,16 @@ public class Orders implements Serializable {
     public Journals getJournals() {
         return journals;
     }
+
+    public Branches getCompanyBodega() {
+        return companyBodega;
+    }
+
+    public void setCompanyBodega(Branches companyBodega) {
+        this.companyBodega = companyBodega;
+    }
+
+
 
     public void setJournals(Journals journals) {
         this.journals = journals;

@@ -6,13 +6,13 @@
 
         <div class="ui-g-12 ui-g-nopad" style="margin-top: -15px; ">
             <div class="ui-g-8">
-                <p:inputTextarea rows="1" />
+                <p:inputTextarea value="#{orderDM.order.notes}" rows="1" />
             </div>
 
             <div class="ui-g-4" align="right" style="margin-top: 4px;">
                 <div class="ui-g-8 itemDescripcion">
-                    <p:outputLabel value="Items"/>
-                       </div>
+                    <p:outputLabel id="txtNumItems" value="#{orderDM.listOrderLineItems.size()-1} items"/>
+                </div>
 
             </div>
         </div>

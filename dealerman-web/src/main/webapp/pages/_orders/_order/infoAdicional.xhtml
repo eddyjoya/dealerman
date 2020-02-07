@@ -63,7 +63,8 @@
                             </div>
                             <div class="ui-g-2" style="margin-left: -5px; margin-top: -10px;" align="center">            
                                 <div class="ui-g-12 itemDetalle">
-                                    <p:calendar value="#{orderDM.order.validTo}" 
+                                    <p:calendar value="#{orderDM.order.deliverBy}" 
+                                                mindate="#{accessDM.fechaActual}" 
                                                 locale="es" 
                                                 pattern="dd/MM/yyyy" 
                                                 />

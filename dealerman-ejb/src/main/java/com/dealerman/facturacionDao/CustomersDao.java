@@ -35,6 +35,11 @@ public class CustomersDao extends GenericDao<Customers, Long>
             parametros.put("cedula", customers.getCedula());
         }
 
+        if (customers.getCategoryDeudor() != null) {
+            sql.append(" and t.categoryDeudor = :categoryDeudor");
+            parametros.put("categoryDeudor", customers.getCategoryDeudor());
+        }
+
         if (customers.getCompanyName() != null) {
             sql.append(" and LOWER(t.companyName) like :companyName");
             parametros.put("companyName", "%" + customers.getCompanyName() + "%".toLowerCase());

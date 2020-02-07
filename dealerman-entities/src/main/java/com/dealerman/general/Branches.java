@@ -11,8 +11,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +36,7 @@ public class Branches implements Serializable {
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     @ManyToOne
     @ForeignKey(name = "FK__branches__compan__145C0A3F")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Company company;
 
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = true)

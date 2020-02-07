@@ -43,7 +43,7 @@ public class GenericDao<T, PK extends Serializable> implements
             em.persist(o);
         } catch (final PersistenceException e) {
             throw new EntidadNoGrabadaException("Error al grabar: ".concat(o
-                    .toString()), e);
+                    .toString()), e.getCause());
         } catch (IllegalArgumentException ex) {
             throw new EntityExistsException(ex.getMessage());
         }
