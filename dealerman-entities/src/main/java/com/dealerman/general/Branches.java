@@ -166,7 +166,7 @@ public class Branches implements Serializable {
     private Integer defPriceType;
     @Column(name = "def_credit_term_id", columnDefinition = "char(4)", nullable = true)
     private String defCreditTermId;
-    @OneToMany(mappedBy = "companyBodegaFK")
+    @OneToMany(mappedBy = "companyBodega")
     private List<Inumbers> ListInumbers;
 
     public Branches() {

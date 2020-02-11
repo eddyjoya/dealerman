@@ -32,18 +32,14 @@ public class Journals implements Serializable {
     @Id
     @Column(name = "journal_id", columnDefinition = "int")
     private Integer journalId;
-    @Column(name = "company_id", columnDefinition = "char(2)", nullable = false)
-    private String companyId;
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = true)
     private String branchId;
-    @Column(name = "bodega_id", columnDefinition = "char(2)", nullable = false)
-    private String bodega_id;
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     @ForeignKey(name = "FK__journals__aplica__20C1E124")
-    @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
+    @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion", insertable = false, updatable = false)
     private JournalAplcs journalAplcs;
-    @Column(name = "diario", columnDefinition = "char(2)", nullable = false)
-    private String diario;
+
     @ManyToOne
     @ForeignKey(name = "FK__journals__tipo__1ED998B2")
     @JoinColumn(name = "tipo", referencedColumnName = "tipo")
@@ -73,8 +69,8 @@ public class Journals implements Serializable {
     private Boolean added;
     @Column(name = "modified", columnDefinition = "bit", nullable = true)
     private Boolean modified;
-    @MapsId("branch_id")
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     @ForeignKey(name = "FK__journals__1DE57479")
     @JoinColumns({
         @JoinColumn(name = "company_id", referencedColumnName = "company_id")
@@ -82,8 +78,8 @@ public class Journals implements Serializable {
         @JoinColumn(name = "bodega_id", referencedColumnName = "bodega_id")
     })
     private Branches branch;
-    @MapsId("branch_id")
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     @ForeignKey(name = "FK__journals__1FCDBCEB")
     @JoinColumns({
         @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
@@ -103,14 +99,6 @@ public class Journals implements Serializable {
         this.journalId = journalId;
     }
 
-    public String getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
-    }
-
     public String getBranchId() {
         return branchId;
     }
@@ -119,28 +107,12 @@ public class Journals implements Serializable {
         this.branchId = branchId;
     }
 
-    public String getBodega_id() {
-        return bodega_id;
-    }
-
-    public void setBodega_id(String bodega_id) {
-        this.bodega_id = bodega_id;
-    }
-
     public JournalAplcs getJournalAplcs() {
         return journalAplcs;
     }
 
     public void setJournalAplcs(JournalAplcs journalAplcs) {
         this.journalAplcs = journalAplcs;
-    }
-
-    public String getDiario() {
-        return diario;
-    }
-
-    public void setDiario(String diario) {
-        this.diario = diario;
     }
 
     public JournalTypes getJournalType() {

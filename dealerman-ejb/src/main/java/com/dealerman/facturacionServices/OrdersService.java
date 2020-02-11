@@ -3,10 +3,13 @@ package com.dealerman.facturacionServices;
 import com.dealerman.configuration.Employee;
 import com.dealerman.exceptions.EntidadNoGrabadaException;
 import com.dealerman.facturacionDaoUI.IOrdersDao;
+import com.dealerman.facturacionServicesUI.IDuedatesService;
+import com.dealerman.facturacionServicesUI.IOrderLineItemsService;
 import com.dealerman.facturacionServicesUI.IOrdersService;
 import com.dealerman.orders.Customers;
 import com.dealerman.orders.OrderLineItems;
 import com.dealerman.orders.Orders;
+import com.dealerman.productionDaoUI.ICostCentersDao;
 import com.dealerman.utils.UtilsGlobal;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,9 +26,19 @@ public class OrdersService implements IOrdersService {
 
     @EJB
     IOrdersDao ordersDao;
+    @EJB
+    ICostCentersDao costCentersDao;
+    @EJB
+    IOrderLineItemsService orderLineItemsService;
+    @EJB
+    IDuedatesService duedatesService;
 
     @Override
     public void instanciarOrder(Orders order) {
+        if (order.getCompanyBodega() != null) {
+            order.setLocalId(order.getCompanyBodega().getLocalId());
+            order.setIssueId(order.getCompanyBodega().getIssueId());
+        }
         order.setOrderDate(new Date());
         order.setDeliverBy(UtilsGlobal.sumarRestarDiasFecha(new Date(), 2));
         order.setOrderNumber(BigDecimal.ONE); //? revisar
@@ -33,11 +46,11 @@ public class OrdersService implements IOrdersService {
         order.setDiscount(BigDecimal.ZERO);//?
         order.setExtraDiscount(BigDecimal.ZERO);//?
         order.setFicDiscount(BigDecimal.ZERO);//?
-        order.setTaxable(BigDecimal.ZERO);//?
+        order.setTaxable(BigDecimal.ZERO);
         order.setTotalExento(BigDecimal.ZERO);//?
         order.setNoTaxValue(BigDecimal.ZERO);//?
         order.setIceValue(BigDecimal.ZERO);//?
-        order.setTaxTotal(BigDecimal.ZERO);//?
+        order.setTaxTotal(BigDecimal.ZERO);
         order.setFinance(BigDecimal.ZERO);//?
         order.setFreight(BigDecimal.ZERO);//?
         order.setFreight1(BigDecimal.ZERO);//?
@@ -57,7 +70,7 @@ public class OrdersService implements IOrdersService {
 
     }
 
-    private void create(Orders order) throws EntidadNoGrabadaException {
+    private void guardar(Orders order) throws EntidadNoGrabadaException {
         order.setAdded(true);
         order.setModified(false);
         ordersDao.create(order);
@@ -85,17 +98,23 @@ public class OrdersService implements IOrdersService {
         order.setTipo("FC");//?
         order.setCustomer(customer);
         order.setOutDiscount(BigDecimal.ZERO);
+        order.setSalesman(customer.getSalesmen());
+        order.setCreditTerms(customer.getCreditTerms());
+        order.setCostCenters(costCentersDao.buscarCostCenterFromBranch(order.getCompanyBodega()));
+        obtenerSecuenciales(order);
+        validarIngresoOrder(order, listOrderLineItems);
+        guardar(order);
+        orderLineItemsService.guardarLineItems(listOrderLineItems, order);
+        duedatesService.guardarDuedates(order);
+    }
+
+    private void obtenerSecuenciales(Orders order) {
         Orders orderLast = ordersDao.ultimoRegistro();
         if (orderLast != null) {
             order.setOrderId(orderLast.getOrderId() + 1);
         } else {
             order.setOrderId(1);
         }
-
-        validarIngresoOrder(order, listOrderLineItems);
-
-        create(order);
-
     }
 
     private void validarIngresoOrder(Orders order, List<OrderLineItems> listOrderLineItems) throws EntidadNoGrabadaException {

@@ -68,7 +68,7 @@ public class CustomersService implements ICustomersService {
             Salesmen salesmenEncontrado = salesmenDao.buscar(new Salesmen()).get(0);//??
             CreditTerms crediTermsEncontrado = creditTermsDao.buscar(new CreditTerms(CreditTermsEnum.CONTADO.getNombre())).get(0);
 
-            customer.setCategoryId(categoryDeudorEncontrado.getCategoryId());
+            customer.setCategoryDeudor(categoryDeudorEncontrado);
             customer.setAplicacion(categoryDeudorEncontrado.getAplicacion());
             customer.setCarNumber(BigDecimal.ZERO);
             customer.setLocalId(customer.getBranchSelect().getLocalId());//?

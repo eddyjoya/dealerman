@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dealerman.general;
 
 import java.io.Serializable;
@@ -99,7 +94,7 @@ public class Company implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date mora;
 
-    @Column(name = "periodo", columnDefinition = "numeric(2)", nullable = true)
+    @Column(name = "periodo", columnDefinition = "numeric(2)", nullable = false)
     private Integer periodo;
 
     @Column(name = "fecforzada", columnDefinition = "smalldatetime", nullable = false)
@@ -151,7 +146,7 @@ public class Company implements Serializable {
     @Column(name = "impuestopa", columnDefinition = "char(20)", nullable = false)
     private String impuestopa;
 
-    @Column(name = "largopieza", columnDefinition = "numeric(2)", nullable = true)
+    @Column(name = "largopieza", columnDefinition = "numeric(2)", nullable = false)
     private Integer largoPieza;
 
     @Column(name = "noflibre", columnDefinition = "bit", nullable = true)
@@ -406,7 +401,7 @@ public class Company implements Serializable {
     @Column(name = "icc", columnDefinition = "char(20)", nullable = false)
     private String icc;
 
-    @Column(name = "dalyve", columnDefinition = "bit", nullable = false)
+    @Column(name = "dalyve", columnDefinition = "bit", nullable = true)
     private Boolean dalyve;
 
     @Column(name = "bar_length", columnDefinition = "numeric(2)", nullable = false)

@@ -43,6 +43,11 @@ public class CostCenters implements Serializable {
     public CostCenters() {
     }
 
+    public CostCenters(String companyId, String jobId) {
+        this.companyId = companyId;
+        this.jobId = jobId;
+    }
+
     public String getCompanyId() {
         return companyId;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dealerman.payroll;
 
 import com.dealerman.general.Banks;
@@ -21,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
@@ -99,8 +93,6 @@ public class Empleado implements Serializable {
     private BigDecimal journeyTo;
     @Column(name = "extra_hours", columnDefinition = "numeric(3,2)", nullable = true)
     private BigDecimal extraHours;
-    @Column(name = "regional_id", columnDefinition = "char(1)", nullable = false)
-    private String regionalId;
     @Column(name = "aportaiess", columnDefinition = "bit", nullable = true)
     private Boolean aportaiess;
     @Column(name = "aportaconyugue", columnDefinition = "bit", nullable = true)
@@ -200,7 +192,7 @@ public class Empleado implements Serializable {
     private Boolean sw9;
     @Column(name = "customer_id", columnDefinition = "char(13)", nullable = true)
     private String customerId;
-    @MapsId("regional_id")
+
     @ManyToOne
     @ForeignKey(name = "FK__empleado__5BE2A6F2")
     @JoinColumns({
@@ -243,7 +235,6 @@ public class Empleado implements Serializable {
         hash = 47 * hash + Objects.hashCode(this.journeyFrom);
         hash = 47 * hash + Objects.hashCode(this.journeyTo);
         hash = 47 * hash + Objects.hashCode(this.extraHours);
-        hash = 47 * hash + Objects.hashCode(this.regionalId);
         hash = 47 * hash + Objects.hashCode(this.aportaiess);
         hash = 47 * hash + Objects.hashCode(this.aportaConyugue);
         hash = 47 * hash + Objects.hashCode(this.bankType);
@@ -359,9 +350,6 @@ public class Empleado implements Serializable {
             return false;
         }
         if (!Objects.equals(this.afiliacion, other.afiliacion)) {
-            return false;
-        }
-        if (!Objects.equals(this.regionalId, other.regionalId)) {
             return false;
         }
         if (!Objects.equals(this.bankType, other.bankType)) {
@@ -765,14 +753,6 @@ public class Empleado implements Serializable {
 
     public void setExtraHours(BigDecimal extraHours) {
         this.extraHours = extraHours;
-    }
-
-    public String getRegionalId() {
-        return regionalId;
-    }
-
-    public void setRegionalId(String regionalId) {
-        this.regionalId = regionalId;
     }
 
     public Boolean getAportaiess() {

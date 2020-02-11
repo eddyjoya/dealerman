@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dealerman.configuration;
 
 import com.dealerman.general.Branches;
@@ -16,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
@@ -31,14 +25,10 @@ public class Inumbers implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name = "company_id", columnDefinition = "char(2)")
-    private String companyId;
-
     @Column(name = "branch_id", columnDefinition = "char(2)", nullable = true)
     private String branchId;
 
-    @MapsId("branch_id")
+    @Id
     @ManyToOne
     @ForeignKey(name = "FK__inumbers__4D5F7D71")
     @JoinColumns({
@@ -46,11 +36,7 @@ public class Inumbers implements Serializable {
         ,
         @JoinColumn(name = "bodega_id", referencedColumnName = "bodega_id")
     })
-    private Branches companyBodegaFK;
-
-    @Id
-    @Column(name = "bodega_id", columnDefinition = "char(2)")
-    private String bodegaId;
+    private Branches companyBodega;
 
     @Id
     @Column(name = "aplicacion", columnDefinition = "char(1)")
@@ -155,10 +141,8 @@ public class Inumbers implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.companyId);
         hash = 59 * hash + Objects.hashCode(this.branchId);
-        hash = 59 * hash + Objects.hashCode(this.companyBodegaFK);
-        hash = 59 * hash + Objects.hashCode(this.bodegaId);
+        hash = 59 * hash + Objects.hashCode(this.companyBodega);
         hash = 59 * hash + Objects.hashCode(this.aplicacion);
         hash = 59 * hash + Objects.hashCode(this.tipo);
         hash = 59 * hash + Objects.hashCode(this.clase);
@@ -219,15 +203,11 @@ public class Inumbers implements Serializable {
             return false;
         }
         final Inumbers other = (Inumbers) obj;
-        if (!Objects.equals(this.companyId, other.companyId)) {
-            return false;
-        }
+
         if (!Objects.equals(this.branchId, other.branchId)) {
             return false;
         }
-        if (!Objects.equals(this.bodegaId, other.bodegaId)) {
-            return false;
-        }
+
         if (!Objects.equals(this.aplicacion, other.aplicacion)) {
             return false;
         }
@@ -258,7 +238,7 @@ public class Inumbers implements Serializable {
         if (!Objects.equals(this.autorizacion, other.autorizacion)) {
             return false;
         }
-        if (!Objects.equals(this.companyBodegaFK, other.companyBodegaFK)) {
+        if (!Objects.equals(this.companyBodega, other.companyBodega)) {
             return false;
         }
         if (!Objects.equals(this.numero, other.numero)) {
@@ -724,30 +704,6 @@ public class Inumbers implements Serializable {
 
     public void setDdiscMax1(BigDecimal ddiscMax1) {
         this.ddiscMax1 = ddiscMax1;
-    }
-
-    public String getBodegaId() {
-        return bodegaId;
-    }
-
-    public void setBodegaId(String bodegaId) {
-        this.bodegaId = bodegaId;
-    }
-
-    public String getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
-    }
-
-    public Branches getCompanyBodegaFK() {
-        return companyBodegaFK;
-    }
-
-    public void setCompanyBodegaFK(Branches companyBodegaFK) {
-        this.companyBodegaFK = companyBodegaFK;
     }
 
     public String getBranchId() {

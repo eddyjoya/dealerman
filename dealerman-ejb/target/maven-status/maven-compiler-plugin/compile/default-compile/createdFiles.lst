@@ -4,6 +4,7 @@ com\dealerman\generalDaoUI\ICreditTermsDao.class
 com\dealerman\generalServices\EmployeeService.class
 com\dealerman\generalServicesUI\IEmployeeService.class
 com\dealerman\inventaryDao\ProductsDao.class
+com\dealerman\productionServices\CostCentersService.class
 com\dealerman\generalServices\CantonsService.class
 com\dealerman\generalDaoUI\IEmployeeDao.class
 com\dealerman\enumerator\BusquedaProductsEnum.class
@@ -12,8 +13,11 @@ com\dealerman\exceptions\EntidadNoEncontradaException.class
 com\dealerman\generalDaoUI\ICompanyDao.class
 com\dealerman\generalServices\CreditTermsService.class
 com\dealerman\generalServicesUI\IBranchesService.class
+com\dealerman\facturacionServicesUI\IDuedatesService.class
 com\dealerman\generalDao\CreditTermsDao.class
 com\dealerman\enumerator\BusquedaCustomersEnum.class
+com\dealerman\facturacionDaoUI\IOrderLineItemsDao.class
+com\dealerman\facturacionDao\OrderLineItemsDao.class
 com\dealerman\generalServices\BranchesService.class
 com\dealerman\configurationDao\CategoryDeudorDao.class
 com\dealerman\generalServices\CompanyService.class
@@ -26,6 +30,7 @@ com\dealerman\facturacionServices\CustomersService$1.class
 com\dealerman\exceptions\EntidadNoBorradaException.class
 com\dealerman\generalDaoUI\ICantonsDao.class
 com\dealerman\generalDao\CantonsDao.class
+com\dealerman\productionServicesUI\ICostCentersService.class
 com\dealerman\facturacionServices\CustomersService.class
 com\dealerman\facturacionDao\OrdersDao.class
 com\dealerman\facturacionDaoUI\ISalesmenDao.class
@@ -35,6 +40,7 @@ com\dealerman\facturacionServicesUI\ICustomersService.class
 com\dealerman\generalServicesUI\ICantonsService.class
 com\dealerman\configurationServices\CategoryDeudorService.class
 com\dealerman\generalDaoUI\IBranchesDao.class
+com\dealerman\productionDaoUI\ICostCentersDao.class
 com\dealerman\facturacionServicesUI\IOrdersService.class
 com\dealerman\facturacionServicesUI\ISalesmenService.class
 com\dealerman\generalDao\EmployeeDao.class
@@ -44,12 +50,16 @@ com\dealerman\inventaryServicesUI\IProductsService.class
 com\dealerman\generalServicesUI\ICompanyService.class
 com\dealerman\facturacionServices\SalesmenService.class
 com\dealerman\generalDao\BranchesDao.class
+com\dealerman\facturacionServices\DuedatesService.class
 com\dealerman\configurationDaoUI\ICategoryDeudorDao.class
 com\dealerman\facturacionServicesUI\IOrderLineItemsService.class
 com\dealerman\exceptions\EntidadNoGrabadaException.class
+com\dealerman\productionDao\CostCentersDao.class
 com\dealerman\inventaryServices\ProductsService$1.class
 com\dealerman\utils\UtilsGlobal.class
+com\dealerman\facturacionDao\IDuedatesDao.class
 com\dealerman\facturacionDaoUI\ICustomersDao.class
+com\dealerman\facturacionDaoUI\DuedatesDao.class
 com\dealerman\facturacionDaoUI\IOrdersDao.class
 com\dealerman\generalServicesUI\ICreditTermsService.class
 com\dealerman\configurationServicesUI\ICategoryDeudorService.class

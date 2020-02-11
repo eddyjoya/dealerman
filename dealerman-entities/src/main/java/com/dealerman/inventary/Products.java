@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dealerman.inventary;
 
 import com.dealerman.general.Countries;
@@ -16,12 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 /**
  *
@@ -33,8 +25,6 @@ public class Products implements Serializable {
 
     @Column(name = "company_id", columnDefinition = "char(2)", nullable = false)
     private String companyId;
-    @Column(name = "aplicacion", columnDefinition = "char(1)", nullable = false)
-    private String aplicacion;
     @Id
     @Column(name = "product_id", columnDefinition = "char(25)")
     private String productId;
@@ -52,8 +42,6 @@ public class Products implements Serializable {
     private String ownerCompanyId;
     @Column(name = "owner_bodega_id", columnDefinition = "char(2)", nullable = true)
     private String ownerBodegaId;
-    @Column(name = "customer_id", columnDefinition = "char(13)", nullable = true)
-    private String customerId;
     @ManyToOne
     @ForeignKey(name = "FK__products__group___778AC167")
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
@@ -335,10 +323,8 @@ public class Products implements Serializable {
     @Column(name = "p_portal", columnDefinition = "numeric(1)", nullable = true)
     private Integer pPortal;
 
-    @MapsId("customer_id")
     @ManyToOne(optional = false)
     @ForeignKey(name = "FK__products__71D1E811")
-    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumns({
         @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
         ,
@@ -362,14 +348,6 @@ public class Products implements Serializable {
 
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
-    }
-
-    public String getAplicacion() {
-        return aplicacion;
-    }
-
-    public void setAplicacion(String aplicacion) {
-        this.aplicacion = aplicacion;
     }
 
     public String getProductId() {
@@ -418,14 +396,6 @@ public class Products implements Serializable {
 
     public void setOwnerBodegaId(String ownerBodegaId) {
         this.ownerBodegaId = ownerBodegaId;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
     }
 
     public Customers getCustomer() {

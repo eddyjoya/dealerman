@@ -1,6 +1,7 @@
 package com.dealerman.facturacionServices;
 
 import com.dealerman.exceptions.EntidadNoGrabadaException;
+import com.dealerman.facturacionDaoUI.IOrderLineItemsDao;
 import com.dealerman.facturacionServicesUI.IOrderLineItemsService;
 import com.dealerman.facturacionServicesUI.IOrdersService;
 import com.dealerman.inventary.Products;
@@ -20,22 +21,49 @@ public class OrderLineItemsService implements IOrderLineItemsService {
 
     @EJB
     IOrdersService ordersService;
+    @EJB
+    IOrderLineItemsDao orderLineItemsDao;
 
     @Override
     public void addProductToLineItems(List<OrderLineItems> listOrderLineItems, Orders order, Products product) throws EntidadNoGrabadaException {
         validateIngresoLineItems(listOrderLineItems, product);
         OrderLineItems orderLineNew = new OrderLineItems();
         orderLineNew.setProduct(product);
+        orderLineNew.setBranch(order.getCompanyBodega());
         orderLineNew.setQuantity(BigDecimal.ONE);
         orderLineNew.setDiscount1(BigDecimal.ZERO);
         orderLineNew.setDiscount2(BigDecimal.ZERO);
+        orderLineNew.setService(Boolean.FALSE);
+        orderLineNew.setPackages(product.getPackageEn());
+        orderLineNew.setBonus(0);
+        orderLineNew.setIce(BigDecimal.ZERO);
+        orderLineNew.setIceValue(BigDecimal.ZERO);
+        orderLineNew.setFobPrice(BigDecimal.ZERO);
+        orderLineNew.setLastCost(BigDecimal.ZERO);
+        orderLineNew.setTotalCost(BigDecimal.ZERO);
+        orderLineNew.setPriceType(0);
         orderLineNew.setTax(12);
+        orderLineNew.setAlicuota(BigDecimal.ZERO);
         orderLineNew.setUnitPrice(product.getUnitPrice());
         listOrderLineItems.remove(listOrderLineItems.size() - 1); //Elimina el primer item default
         listOrderLineItems.add(orderLineNew);//Agrega un nuevo registro
         instanciaOrderItems(listOrderLineItems);//instacia un nuevo item default para añadir un nuevo registro
         calcularTotalesOrderLineItem(orderLineNew); //calcula totales de la item line
         ordersService.calcularTotalesOrder(listOrderLineItems, order);//Calcula totales de la orden
+    }
+
+    private void guardar(OrderLineItems orderLineItems) throws EntidadNoGrabadaException {
+        orderLineItemsDao.create(orderLineItems);
+    }
+
+    @Override
+    public void guardarLineItems(List<OrderLineItems> listOrderLineItems, Orders order)
+            throws EntidadNoGrabadaException {
+        listOrderLineItems.remove(listOrderLineItems.size() - 1);//Elimina el ultimo registro de default
+        for (OrderLineItems itemLine : listOrderLineItems) {
+            itemLine.setOrder(order);
+            guardar(itemLine);
+        }
     }
 
     @Override

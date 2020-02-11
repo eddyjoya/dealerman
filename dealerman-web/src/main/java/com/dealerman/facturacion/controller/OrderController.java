@@ -20,9 +20,7 @@ import com.dealerman.orders.Salesmen;
 import com.dealerman.utils.BaseController;
 import com.dealerman.utils.UtilVista;
 import com.dealerman.utils.UtilsGlobal;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -38,7 +36,7 @@ import org.primefaces.event.SelectEvent;
 @ManagedBean(name = "orderController")
 @ViewScoped
 public class OrderController extends BaseController {
-    
+
     @ManagedProperty("#{orderDM}")
     OrderDM orderDM;
     @EJB
@@ -53,17 +51,12 @@ public class OrderController extends BaseController {
     IOrdersService ordersService;
     @EJB
     IOrderLineItemsService orderLineItemsService;
-    
+
     public void init() {
         //Instancia nueva order
         orderDM.setOrder(new Orders());
+        orderDM.getOrder().setCompanyBodega(accessDM.getBranchSelect());
         ordersService.instanciarOrder(orderDM.getOrder());
-        
-        if (accessDM.getBranchSelect() != null) {
-            orderDM.getOrder().setCompanyBodega(accessDM.getBranchSelect());
-            orderDM.getOrder().setLocalId(accessDM.getBranchSelect().getLocalId());
-            orderDM.getOrder().setIssueId(accessDM.getBranchSelect().getIssueId());
-        }
 
         // Instance order line items
         orderDM.setListOrderLineItems(new ArrayList<OrderLineItems>());
@@ -74,7 +67,7 @@ public class OrderController extends BaseController {
         orderDM.setListFiltroBusquedaCustomers(BusquedaCustomersEnum.values());
         orderDM.setListFiltroBusquedaProducts(BusquedaProductsEnum.values());
     }
-    
+
     public void buscarCustomers(String buscar) {
         try {
             buscar = buscar.trim();//Quita espacios en blancos
@@ -93,7 +86,7 @@ public class OrderController extends BaseController {
             addErrorMessage(ex.getMessage());
         }
     }
-    
+
     public void buscarProducts(String buscar) {
         try {
             buscar = UtilsGlobal.quitarEspacios(buscar);//Quita espacios en blancos
@@ -112,15 +105,15 @@ public class OrderController extends BaseController {
             addErrorMessage(ex.getMessage());
         }
     }
-    
+
     public void buscarCustomersAvanzado(String buscar) {
         orderDM.setListCustomers(customersService.buscarFiltroCoinciendia(buscar.trim(), orderDM.getBusquedaCustomerSelect(), CategoryDeudorEnum.CLIENTES));
     }
-    
+
     public void buscarProductsAvanzado(String buscar) {
         orderDM.setListProducts(productsService.buscarFiltroCoinciendia(buscar.trim(), orderDM.getBusquedaProductsSelect()));
     }
-    
+
     private void ingresoCustomers(String ruc) {
         orderDM.setCustomerSelect(new Customers());
         orderDM.getCustomerSelect().setCedula(ruc);
@@ -129,18 +122,17 @@ public class OrderController extends BaseController {
         updatePanelClientes();
         addSuccessMessage("Ingreso de nuevo cliente");
     }
-    
+
     public void guardarOrder() {
         try {
             ordersService.guardarOrder(orderDM.getOrder(), orderDM.getListOrderLineItems(),
                     orderDM.getCustomerSelect(), accessDM.getEmployeeSelect());
             addSuccessMessage("Venta realizada correctamente.");
         } catch (EntidadNoGrabadaException ex) {
-            System.out.println(ex.getClass());
             addErrorMessage(ex.getMessage());
         }
     }
-    
+
     public void guardarCustomers() {
         try {
             orderDM.getCustomerSelect().setBranchSelect(accessDM.getBranchSelect());
@@ -152,26 +144,26 @@ public class OrderController extends BaseController {
             addErrorMessage(ex.getMessage());
         }
     }
-    
+
     public void cancelarCustomers() {
         orderDM.setCustomerSelect(new Customers());
         orderDM.setListCreditTermis(new ArrayList<CreditTerms>());
         orderDM.setListSalesmen(new ArrayList<Salesmen>());
         editarCustomers(true);
     }
-    
+
     public void editarCustomers(boolean band) {
         orderDM.setEditCustomers(band);
         orderDM.setEditEmail(band);
     }
-    
+
     public void onRowSelectCustomers(SelectEvent event) {
         orderDM.setCustomerSelect((Customers) event.getObject());
         orderDM.getCustomerSelect().setCustomerId(orderDM.getCustomerSelect().getCustomerId().trim()); //Quita los espacios en blanco
         cargarInfoAdicional();
         validarEmail(orderDM.getCustomerSelect().geteMail());
     }
-    
+
     public void onRowSelectProducts(SelectEvent event) {
         try {
             orderLineItemsService.addProductToLineItems(orderDM.getListOrderLineItems(), orderDM.getOrder(), (Products) event.getObject());
@@ -179,23 +171,23 @@ public class OrderController extends BaseController {
             addErrorMessage(ex.getMessage());
         }
     }
-    
+
     public void calcularOrderLineItem(OrderLineItems orderLine) {
         orderLineItemsService.calcularTotalesOrderLineItem(orderLine);
         ordersService.calcularTotalesOrder(orderDM.getListOrderLineItems(), orderDM.getOrder());
     }
-    
+
     public void removeOrderLineItem(OrderLineItems orderLine) {
         orderLineItemsService.removeOrderItems(orderDM.getListOrderLineItems(), orderLine);
         ordersService.calcularTotalesOrder(orderDM.getListOrderLineItems(), orderDM.getOrder());
     }
-    
+
     private void cargarInfoAdicional() {
         orderDM.setListCreditTermis(creditTermsService.buscar(new CreditTerms()));
         orderDM.setListSalesmen(salesmenService.buscar(new Salesmen()));
         PrimeFaces.current().ajax().update("pnlDatosAdicional");
     }
-    
+
     private void validarEmail(String email) {
         if ((email == null) || (email.isEmpty())) {
             editarCustomers(false);
@@ -204,22 +196,22 @@ public class OrderController extends BaseController {
         }
         updatePanelClientes();
     }
-    
+
     private void updatePanelClientes() {
         PrimeFaces.current().ajax().update("pnlDatosCliente");
         PrimeFaces.current().ajax().update("botonesCustomers");
     }
-    
+
     public void closeBusquedaCustomers() {
         orderDM.setListCustomers(new ArrayList<Customers>());
     }
-    
+
     public OrderDM getOrderDM() {
         return orderDM;
     }
-    
+
     public void setOrderDM(OrderDM orderDM) {
         this.orderDM = orderDM;
     }
-    
+
 }

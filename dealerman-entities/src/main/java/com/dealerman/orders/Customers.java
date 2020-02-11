@@ -23,7 +23,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -48,8 +47,8 @@ public class Customers implements Serializable {
     @Id
     @Column(name = "customer_id", columnDefinition = "char(13)", nullable = false)
     private String customerId;
-    @MapsId("category_id")
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @ForeignKey(name = "FK__customers__300424B4")
     @JoinColumns({
         @JoinColumn(name = "category_id", referencedColumnName = "category_id")
@@ -58,8 +57,6 @@ public class Customers implements Serializable {
     })
     private CategoryDeudor categoryDeudor;
 
-    @Column(name = "category_id", columnDefinition = "char(2)", nullable = false)
-    private String categoryId;
     @Column(name = "company_name", columnDefinition = "varchar(80)", nullable = true)
     private String companyName;
     @Column(name = "comercial_name", columnDefinition = "varchar(80)", nullable = true)
@@ -72,12 +69,7 @@ public class Customers implements Serializable {
     @ForeignKey(name = "FK_customers_route_master")
     @JoinColumn(name = "route_code", referencedColumnName = "route_code")
     private RouteMaster routeMaster;
-    @Column(name = "province_id", columnDefinition = "char(2)", nullable = true)
-    private String provinceId;
-    @Column(name = "canton_id", columnDefinition = "char(3)", nullable = true)
-    private String cantonId;
-    @Column(name = "city_id", columnDefinition = "char(3)", nullable = true)
-    private String cityId;
+
     @Column(name = "contact_name", columnDefinition = "varchar(30)", nullable = true)
     private String contactName;
     @ManyToOne
@@ -211,16 +203,15 @@ public class Customers implements Serializable {
     @Column(name = "ship_to_no", columnDefinition = "tinyint", nullable = false)
     private BigDecimal shipToNo;
 
-    @MapsId("province_id")
     @ManyToOne
     @ForeignKey(name = "FK_customers_cantons")
     @JoinColumns({
-        @JoinColumn(name = "province_id", referencedColumnName = "province_id")
+        @JoinColumn(name = "province_id", referencedColumnName = "province_id", insertable = false, updatable = false)
         ,
-        @JoinColumn(name = "canton_id", referencedColumnName = "canton_id")
+        @JoinColumn(name = "canton_id", referencedColumnName = "canton_id", insertable = false, updatable = false)
     })
     private Cantons CantonsProvinceFK;
-    @MapsId("city_id")
+
     @ManyToOne
     @ForeignKey(name = "FK_customers_cities")
     @JoinColumns({
@@ -247,14 +238,10 @@ public class Customers implements Serializable {
         hash = 29 * hash + Objects.hashCode(this.aplicacion);
         hash = 29 * hash + Objects.hashCode(this.customerId);
         hash = 29 * hash + Objects.hashCode(this.categoryDeudor);
-        hash = 29 * hash + Objects.hashCode(this.categoryId);
         hash = 29 * hash + Objects.hashCode(this.companyName);
         hash = 29 * hash + Objects.hashCode(this.comercialName);
         hash = 29 * hash + Objects.hashCode(this.chainMaster);
         hash = 29 * hash + Objects.hashCode(this.routeMaster);
-        hash = 29 * hash + Objects.hashCode(this.provinceId);
-        hash = 29 * hash + Objects.hashCode(this.cantonId);
-        hash = 29 * hash + Objects.hashCode(this.cityId);
         hash = 29 * hash + Objects.hashCode(this.contactName);
         hash = 29 * hash + Objects.hashCode(this.sexo);
         hash = 29 * hash + Objects.hashCode(this.estadoCivil);
@@ -338,22 +325,10 @@ public class Customers implements Serializable {
         if (!Objects.equals(this.customerId, other.customerId)) {
             return false;
         }
-        if (!Objects.equals(this.categoryId, other.categoryId)) {
-            return false;
-        }
         if (!Objects.equals(this.companyName, other.companyName)) {
             return false;
         }
         if (!Objects.equals(this.comercialName, other.comercialName)) {
-            return false;
-        }
-        if (!Objects.equals(this.provinceId, other.provinceId)) {
-            return false;
-        }
-        if (!Objects.equals(this.cantonId, other.cantonId)) {
-            return false;
-        }
-        if (!Objects.equals(this.cityId, other.cityId)) {
             return false;
         }
         if (!Objects.equals(this.contactName, other.contactName)) {
@@ -579,14 +554,6 @@ public class Customers implements Serializable {
         this.customerId = customerId;
     }
 
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public String getCompanyName() {
         return companyName;
     }
@@ -625,30 +592,6 @@ public class Customers implements Serializable {
 
     public void setCategoryDeudor(CategoryDeudor categoryDeudor) {
         this.categoryDeudor = categoryDeudor;
-    }
-
-    public String getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(String provinceId) {
-        this.provinceId = provinceId;
-    }
-
-    public String getCantonId() {
-        return cantonId;
-    }
-
-    public void setCantonId(String cantonId) {
-        this.cantonId = cantonId;
-    }
-
-    public String getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
     }
 
     public Sexo getSexo() {

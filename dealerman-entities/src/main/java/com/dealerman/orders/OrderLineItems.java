@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dealerman.orders;
 
 import com.dealerman.general.Branches;
@@ -20,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
@@ -38,17 +32,13 @@ public class OrderLineItems implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "odetail_id", columnDefinition = "int")
     private Integer odetailId;
-    @Column(name = "company_id", columnDefinition = "char(2)", nullable = false)
-    private String companyId;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ForeignKey(name = "FK__order_lin__order__7D439ABD")
     @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
     private Orders order;
-    @Column(name = "bodega_id", columnDefinition = "char(2)", nullable = false)
-    private String bodegaId;
-    @ManyToOne
+    @ManyToOne(optional = false)
     @ForeignKey(name = "FK__order_lin__produ__7C4F7684")
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Products product;
     @Column(name = "serial_no", columnDefinition = "char(1)", nullable = true)
     private String serialNo;
@@ -96,7 +86,7 @@ public class OrderLineItems implements Serializable {
     private BigDecimal fobPrice;
     @Column(name = "alicuota", columnDefinition = "numeric(6,4)", nullable = false)
     private BigDecimal alicuota;
-    @Column(name = "qty1", columnDefinition = "numeric(11,3)", nullable = false)
+    @Column(name = "qty1", columnDefinition = "numeric(11,3)", nullable = true)
     private BigDecimal qty1;
     @Column(name = "service", columnDefinition = "bit", nullable = false)
     private Boolean service;
@@ -107,20 +97,24 @@ public class OrderLineItems implements Serializable {
     @Column(name = "e_id", columnDefinition = "int", nullable = true)
     private Integer eId;
 
-    @MapsId("company_id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @ForeignKey(name = "FK__order_line_items__7B5B524B")
     @JoinColumns({
         @JoinColumn(name = "company_id", referencedColumnName = "company_id")
         ,
         @JoinColumn(name = "bodega_id", referencedColumnName = "bodega_id")
     })
-    private Branches branchFK;
+    private Branches branch;
 
     @Transient
     private BigDecimal totalPriceBruto;
 
     public OrderLineItems() {
+    }
+
+    @Override
+    public String toString() {
+        return "OrderLineItems{" + "odetailId=" + odetailId + ", order=" + order + ", product=" + product + ", serialNo=" + serialNo + ", nPieces=" + nPieces + ", packages=" + packages + ", unitId=" + unitId + ", quantity=" + quantity + ", priceType=" + priceType + ", unitPrice=" + unitPrice + ", discount1=" + discount1 + ", discount2=" + discount2 + ", discountValue=" + discountValue + ", totalPrice=" + totalPrice + ", iceValue=" + iceValue + ", tax=" + tax + ", noTaxObject=" + noTaxObject + ", taxValue=" + taxValue + ", totalCost=" + totalCost + ", lastCost=" + lastCost + ", bonus=" + bonus + ", ice=" + ice + ", notes=" + notes + ", fobPrice=" + fobPrice + ", alicuota=" + alicuota + ", qty1=" + qty1 + ", service=" + service + ", lnO=" + lnO + ", oId=" + oId + ", eId=" + eId + ", branch=" + branch + ", totalPriceBruto=" + totalPriceBruto + '}';
     }
 
     public BigDecimal getTotalPriceBruto() {
@@ -139,20 +133,12 @@ public class OrderLineItems implements Serializable {
         this.odetailId = odetailId;
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public Branches getBranch() {
+        return branch;
     }
 
-    public Branches getBranchFK() {
-        return branchFK;
-    }
-
-    public void setBranchFK(Branches branchFK) {
-        this.branchFK = branchFK;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setBranch(Branches branch) {
+        this.branch = branch;
     }
 
     public Orders getOrder() {
@@ -161,14 +147,6 @@ public class OrderLineItems implements Serializable {
 
     public void setOrder(Orders order) {
         this.order = order;
-    }
-
-    public String getBodegaId() {
-        return bodegaId;
-    }
-
-    public void setBodegaId(String bodegaId) {
-        this.bodegaId = bodegaId;
     }
 
     public Products getProduct() {

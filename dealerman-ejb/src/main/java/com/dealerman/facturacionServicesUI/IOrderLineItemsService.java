@@ -19,6 +19,9 @@ public interface IOrderLineItemsService {
 
     public void instanciaOrderItems(List<OrderLineItems> listOrderLineItems);
 
+    public void guardarLineItems(List<OrderLineItems> listOrderLineItems, Orders order)
+            throws EntidadNoGrabadaException;
+
     public void removeOrderItems(List<OrderLineItems> listOrderLineItems, OrderLineItems orderLine);
 
     public void calcularTotalesOrderLineItem(OrderLineItems orderLine);
