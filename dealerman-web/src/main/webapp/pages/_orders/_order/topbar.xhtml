@@ -7,7 +7,7 @@
         <div id="pnlDescripcion"
              class="panelBotonesIzq">
             <div class="panelBotonesIzqCont">
-                <p:commandLink process="@this" 
+                <p:commandLink process="@this, notes" 
                                update="form, message" 
                                actionListener="#{orderController.guardarOrder()}" >
                     <p:graphicImage title="Guardar" 

@@ -9,18 +9,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -45,7 +40,7 @@ public class Orders implements Serializable {
     private String branchId;
 
     @ForeignKey(name = "FK__orders__3A81B327")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumns({
         @JoinColumn(name = "company_id", referencedColumnName = "company_id")
         ,
@@ -53,10 +48,15 @@ public class Orders implements Serializable {
     })
     private Branches companyBodega;
 
-    @Column(name = "aplicacion", columnDefinition = "char(1)", nullable = false)
-    private String aplicacion;
-    @Column(name = "customer_id", columnDefinition = "char(13)", nullable = false)
-    private String customerId;
+    @ForeignKey(name = "FK__orders__3B75D760")
+    @ManyToOne(optional = false)
+    @JoinColumns({
+        @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
+        ,
+        @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    })
+    private Customers customer;
+
     @Column(name = "ship_to_id", columnDefinition = "char(3)", nullable = true)
     private String shipToId;
     @Column(name = "vehicle_id", columnDefinition = "char(17)", nullable = true)
@@ -81,7 +81,7 @@ public class Orders implements Serializable {
     private Integer ambiente;
     @Column(name = "local_id", columnDefinition = "char(3)", nullable = true)
     private String localId;
-    @Column(name = "issue_id", columnDefinition = "char(2)", nullable = true)
+    @Column(name = "issue_id", columnDefinition = "char(3)", nullable = true)
     private String issueId;
     @Column(name = "order_number", columnDefinition = "numeric(9)", nullable = false)
     private BigDecimal orderNumber;
@@ -97,9 +97,9 @@ public class Orders implements Serializable {
     private Date orderDate;
     @Column(name = "kilometer", columnDefinition = "numeric(6)", nullable = true)
     private BigDecimal kilometer;
-    @Column(name = "quotation_number", columnDefinition = "numeric(8)", nullable = false)
+    @Column(name = "quotation_number", columnDefinition = "numeric(8)", nullable = true)
     private BigDecimal quotationNumber;
-    @Column(name = "pedido_number", columnDefinition = "numeric(8)", nullable = false)
+    @Column(name = "pedido_number", columnDefinition = "numeric(8)", nullable = true)
     private BigDecimal pedidoNumber;
     @Column(name = "price_type", columnDefinition = "tinyint", nullable = true)
     private Integer priceType;
@@ -107,11 +107,11 @@ public class Orders implements Serializable {
     private Integer carNumber;
     @ManyToOne
     @ForeignKey(name = "FK_orders_cost_centers")
-    @JoinColumn(name = "job_id", referencedColumnName = "job_id")
+    @JoinColumn(name = "job_id", referencedColumnName = "job_id", nullable = true)
     private CostCenters costCenters;
     @ManyToOne
     @ForeignKey(name = "FK__orders__credit_t__38996AB5")
-    @JoinColumn(name = "credit_term_id", referencedColumnName = "credit_term_id")
+    @JoinColumn(name = "credit_term_id", referencedColumnName = "credit_term_id", nullable = true)
     private CreditTerms creditTerms;
     @Column(name = "deliver_by", columnDefinition = "smalldatetime", nullable = true)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -141,11 +141,11 @@ public class Orders implements Serializable {
     private BigDecimal ficDiscount;
     @Column(name = "taxable", columnDefinition = "money", nullable = false)
     private BigDecimal taxable;
-    @Column(name = "total_exento", columnDefinition = "money", nullable = false)
+    @Column(name = "total_exento", columnDefinition = "money", nullable = true)
     private BigDecimal totalExento;
-    @Column(name = "no_tax_value", columnDefinition = "money", nullable = false)
+    @Column(name = "no_tax_value", columnDefinition = "money", nullable = true)
     private BigDecimal noTaxValue;
-    @Column(name = "ice_value", columnDefinition = "money", nullable = false)
+    @Column(name = "ice_value", columnDefinition = "money", nullable = true)
     private BigDecimal iceValue;
     @Column(name = "tax_total", columnDefinition = "money", nullable = false)
     private BigDecimal taxTotal;
@@ -257,23 +257,13 @@ public class Orders implements Serializable {
     private String confirmadoBy;
     @Column(name = "newone", columnDefinition = "bit", nullable = true)
     private Boolean newone;
-    @Column(name = "degso", columnDefinition = "text", nullable = true)
+    @Column(name = "degso", columnDefinition = "text", nullable = true, length = 65536)
     private String degso;
-    @Column(name = "to_attach", columnDefinition = "text", nullable = true)
+    @Column(name = "to_attach", columnDefinition = "text", nullable = true, length = 65536)
     private String toAttach;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLineItems> orderItems;
-
-    @MapsId("customer_id")
-    @ManyToOne
-    @ForeignKey(name = "FK__orders__3B75D760")
-    @JoinColumns({
-        @JoinColumn(name = "aplicacion", referencedColumnName = "aplicacion")
-        ,
-        @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    })
-    private Customers OrdersCustomersFK;
 
     @Transient
     private BigDecimal totalBruto;
@@ -291,14 +281,6 @@ public class Orders implements Serializable {
 
     public void setTotalBruto(BigDecimal totalBruto) {
         this.totalBruto = totalBruto;
-    }
-
-    public List<OrderLineItems> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderLineItems> orderItems) {
-        this.orderItems = orderItems;
     }
 
     public Integer getOrderId() {
@@ -323,29 +305,6 @@ public class Orders implements Serializable {
 
     public void setBranchId(String branchId) {
         this.branchId = branchId;
-    }
-
-//    public Branches getCompanyBodega() {
-//        return companyBodega;
-//    }
-//
-//    public void setCompanyBodega(Branches companyBodega) {
-//        this.companyBodega = companyBodega;
-//    }
-    public String getAplicacion() {
-        return aplicacion;
-    }
-
-    public void setAplicacion(String aplicacion) {
-        this.aplicacion = aplicacion;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
     }
 
     public String getShipToId() {
@@ -386,6 +345,22 @@ public class Orders implements Serializable {
 
     public void setSource(Integer source) {
         this.source = source;
+    }
+
+    public Branches getCompanyBodega() {
+        return companyBodega;
+    }
+
+    public void setCompanyBodega(Branches companyBodega) {
+        this.companyBodega = companyBodega;
+    }
+
+    public Customers getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customers customer) {
+        this.customer = customer;
     }
 
     public String getCompanyTo() {
@@ -728,16 +703,6 @@ public class Orders implements Serializable {
         return journals;
     }
 
-    public Branches getCompanyBodega() {
-        return companyBodega;
-    }
-
-    public void setCompanyBodega(Branches companyBodega) {
-        this.companyBodega = companyBodega;
-    }
-
-
-
     public void setJournals(Journals journals) {
         this.journals = journals;
     }
@@ -1078,12 +1043,12 @@ public class Orders implements Serializable {
         this.toAttach = toAttach;
     }
 
-    public Customers getOrdersCustomersFK() {
-        return OrdersCustomersFK;
+    public List<OrderLineItems> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrdersCustomersFK(Customers OrdersCustomersFK) {
-        this.OrdersCustomersFK = OrdersCustomersFK;
+    public void setOrderItems(List<OrderLineItems> orderItems) {
+        this.orderItems = orderItems;
     }
 
 }

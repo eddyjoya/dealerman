@@ -20,7 +20,9 @@ import com.dealerman.orders.Salesmen;
 import com.dealerman.utils.BaseController;
 import com.dealerman.utils.UtilVista;
 import com.dealerman.utils.UtilsGlobal;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -56,6 +58,7 @@ public class OrderController extends BaseController {
         //Instancia nueva order
         orderDM.setOrder(new Orders());
         ordersService.instanciarOrder(orderDM.getOrder());
+        
         if (accessDM.getBranchSelect() != null) {
             orderDM.getOrder().setCompanyBodega(accessDM.getBranchSelect());
             orderDM.getOrder().setLocalId(accessDM.getBranchSelect().getLocalId());
@@ -133,7 +136,7 @@ public class OrderController extends BaseController {
                     orderDM.getCustomerSelect(), accessDM.getEmployeeSelect());
             addSuccessMessage("Venta realizada correctamente.");
         } catch (EntidadNoGrabadaException ex) {
-            System.out.println(ex.getCause());
+            System.out.println(ex.getClass());
             addErrorMessage(ex.getMessage());
         }
     }

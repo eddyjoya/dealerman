@@ -1,24 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui">
-
-    <div class="ui-g" style=" padding: 0;">
-
-        <div class="ui-g-12 ui-g-nopad" style="margin-top: -15px; ">
-            <div class="ui-g-8">
-                <p:inputTextarea value="#{orderDM.order.notes}" rows="1" />
-            </div>
-
-            <div class="ui-g-4" align="right" style="margin-top: 4px;">
-                <div class="ui-g-8 itemDescripcion">
-                    <p:outputLabel id="txtNumItems" value="#{orderDM.listOrderLineItems.size()-1} items"/>
+    <p:outputPanel id="notes">
+        <div class="ui-g" style=" padding: 0;">
+            <div class="ui-g-12 ui-g-nopad" style="margin-top: -15px; ">
+                <div class="ui-g-8">
+                    <p:inputTextarea value="#{orderDM.order.notes}" rows="1" />
                 </div>
 
+                <div class="ui-g-4" align="right" style="margin-top: 4px;">
+                    <div class="ui-g-8 itemDescripcion">
+                        <p:outputLabel id="txtNumItems" value="#{orderDM.listOrderLineItems.size()-1} items"/>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-
-    </div>
-
-
+    </p:outputPanel>
 </html>

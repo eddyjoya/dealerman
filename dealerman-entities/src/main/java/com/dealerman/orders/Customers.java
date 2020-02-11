@@ -43,10 +43,10 @@ public class Customers implements Serializable {
     @Column(name = "company_id", columnDefinition = "char(2)", nullable = false)
     private String companyId;
     @Id
-    @Column(name = "aplicacion", columnDefinition = "char(1)")
+    @Column(name = "aplicacion", columnDefinition = "char(1)", nullable = false)
     private String aplicacion;
     @Id
-    @Column(name = "customer_id", columnDefinition = "char(13)")
+    @Column(name = "customer_id", columnDefinition = "char(13)", nullable = false)
     private String customerId;
     @MapsId("category_id")
     @ManyToOne(cascade = CascadeType.ALL)

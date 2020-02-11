@@ -26,20 +26,9 @@ public class OrdersService implements IOrdersService {
 
     @Override
     public void instanciarOrder(Orders order) {
-        order.setSource(0);//?
         order.setOrderDate(new Date());
-        order.setDeliverBy(UtilsGlobal.sumarRestarDiasFecha(new Date(), 2));//?
-        order.setValidTo(new Date());
-        order.setTrxNumber(BigDecimal.ZERO);//?
-        order.setAmbiente(1);//?
+        order.setDeliverBy(UtilsGlobal.sumarRestarDiasFecha(new Date(), 2));
         order.setOrderNumber(BigDecimal.ONE); //? revisar
-        order.setTipoEmision(1);
-        order.setInvoiceNumber("");//?
-        order.setQuotationNumber(BigDecimal.ZERO);//?
-        order.setPedidoNumber(BigDecimal.ZERO); //?
-        order.setPriceType(1);//?
-        order.setCarNumber(0);//?
-        order.setWithTax(Boolean.TRUE);
         order.setDetailDiscount(BigDecimal.ZERO);
         order.setDiscount(BigDecimal.ZERO);//?
         order.setExtraDiscount(BigDecimal.ZERO);//?
@@ -55,27 +44,14 @@ public class OrdersService implements IOrdersService {
         order.setCost(BigDecimal.ZERO);
         order.setCostLast(BigDecimal.ZERO);//?
         order.setTotal(BigDecimal.ZERO);
-        order.setOldone(Boolean.FALSE);//?
-        order.setIvaIncluded(Boolean.FALSE);//?
-        order.setUnposted(Boolean.FALSE);//?
-        order.setRetenido(Boolean.FALSE);//?
         order.setTaxPerc(12);//?
-        order.setPending(Boolean.FALSE);//?
-        order.setCash(BigDecimal.ZERO);//?
-        order.setChange1(BigDecimal.ZERO);//?
-        order.setOutDiscount(BigDecimal.ZERO);//?
-        order.setCreditoTributario(Boolean.TRUE);//?
-        order.setCompId("18"); //?
-        order.setIceTaxable(BigDecimal.ZERO);//?
-        order.setIceTotal(BigDecimal.ZERO);//?
-        order.setServices(BigDecimal.ZERO);//?
-        order.setServiceTax(BigDecimal.ZERO);//?
-        order.setIvaReturn("N"); //?
-        order.setNoComps(1);//?
-        order.setStatus(null);//?
-        order.setNewone(Boolean.TRUE);//?
-        order.setActivityId(00);//?
-        order.setTipo("FC");//?
+        order.setIceTaxable(BigDecimal.ZERO);
+        order.setIceTotal(BigDecimal.ZERO);
+        order.setServices(BigDecimal.ZERO);
+        order.setServiceTax(BigDecimal.ZERO);
+        order.setPedidoNumber(BigDecimal.ZERO);//?
+        order.setQuotationNumber(BigDecimal.ZERO);//?
+
         //nuevo
         order.setTotalBruto(BigDecimal.ZERO);
 
@@ -96,50 +72,24 @@ public class OrdersService implements IOrdersService {
     @Override
     public void guardarOrder(Orders order, List<OrderLineItems> listOrderLineItems,
             Customers customer, Employee employeeSelect) throws EntidadNoGrabadaException {
-        Orders orderResp = order;
-        order = new Orders();
-        order.setAplicacion(customer.getAplicacion());
-        order.setCustomerId(customer.getCustomerId());
+
         order.setClase(" ");
         order.setCost(BigDecimal.ZERO);
         order.setCostLast(BigDecimal.ZERO);
         order.setDateTime(new Date());//?
-        order.setSourceDate(new Date());//?
-        order.setDetailDiscount(BigDecimal.ZERO);
-        order.setDiscount(BigDecimal.ZERO);
         order.setEmployeeId(employeeSelect.getEmployeeId());
-        order.setExtraDiscount(BigDecimal.ZERO);
-        order.setFicDiscount(BigDecimal.ZERO);
-        order.setFinance(BigDecimal.ZERO);
-        order.setFreight(BigDecimal.ZERO);
-        order.setFreight1(BigDecimal.ZERO);
-        order.setIceTaxable(BigDecimal.ZERO);
-        order.setIceTotal(BigDecimal.ZERO);
-        order.setIceValue(BigDecimal.ZERO);
         order.setIvaReturn("N");
-        order.setNoComps(0);
-        order.setNoTaxValue(BigDecimal.ZERO);
-        order.setOrderDate(new Date());
-        order.setOrderNumber(BigDecimal.ONE);
-        order.setOutDiscount(BigDecimal.ZERO);
-        order.setPedidoNumber(BigDecimal.ZERO);
-        order.setServiceTax(BigDecimal.ZERO);
+        order.setNoComps(1);
         order.setSource(1);
         order.setSourceDate(new Date());
-        order.setTaxPerc(1);
-        order.setTaxTotal(BigDecimal.ZERO);
-        order.setTaxable(BigDecimal.ZERO);
-        order.setTipo("FC");
-        order.setTotal(BigDecimal.ZERO);
-        order.setTotalExento(BigDecimal.ZERO);
-        order.setQuotationNumber(BigDecimal.ONE);
-        order.setCompanyBodega(orderResp.getCompanyBodega());
-
+        order.setTipo("FC");//?
+        order.setCustomer(customer);
+        order.setOutDiscount(BigDecimal.ZERO);
         Orders orderLast = ordersDao.ultimoRegistro();
         if (orderLast != null) {
             order.setOrderId(orderLast.getOrderId() + 1);
         } else {
-            order.setOrderId(0);
+            order.setOrderId(1);
         }
 
         validarIngresoOrder(order, listOrderLineItems);
