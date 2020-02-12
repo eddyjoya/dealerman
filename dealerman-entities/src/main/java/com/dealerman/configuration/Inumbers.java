@@ -56,7 +56,7 @@ public class Inumbers implements Serializable {
     private String diario;
     @Column(name = "recibe", columnDefinition = "char(5)", nullable = false)
     private String recibe;
-    @Column(name = "filtro", columnDefinition = "tinyint", nullable = true)
+    @Column(name = "filtro", columnDefinition = "tinyint", nullable = false)
     private Integer filtro;
     @Column(name = "asknumber", columnDefinition = "bit", nullable = true)
     private Boolean askNumber;
@@ -102,9 +102,9 @@ public class Inumbers implements Serializable {
     private Integer typeMax;
     @Column(name = "discount", columnDefinition = "bit", nullable = true)
     private Boolean discount;
-    @Column(name = "disc_min", columnDefinition = "numeric(5,2)", nullable = false)
+    @Column(name = "disc_min", columnDefinition = "numeric(5,2)", nullable = true)
     private BigDecimal discMin;
-    @Column(name = "disc_max", columnDefinition = "numeric(5,2)", nullable = false)
+    @Column(name = "disc_max", columnDefinition = "numeric(5,2)", nullable = true)
     private BigDecimal discMax;
     @Column(name = "freight", columnDefinition = "bit", nullable = true)
     private Boolean freight;
